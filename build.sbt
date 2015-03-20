@@ -1,4 +1,4 @@
-name := """ics-play-bootstrap"""
+name := """Kale With Friends"""
 
 version := "1.0-SNAPSHOT"
 
