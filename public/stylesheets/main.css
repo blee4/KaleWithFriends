@@ -8,3 +8,7 @@ body {
   background-position: center;
   height: 200px;
 }
+
+h1 {
+  text-align: center;
+}

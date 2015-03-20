@@ -6,7 +6,7 @@
   <head>
     <title>@page (Kale With Friends)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.2/darkly/bootstrap.min.css">
 
       <!--  Load site-specific customizations after bootstrap. -->
     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
@@ -30,12 +30,10 @@
               <!--  Display three horizontal lines when navbar collapsed. -->
             <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Kale With Friends</a>
+          <a class="navbar-brand" a href="@routes.Application.index()">Kale With Friends</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="@("active".when(page == "Home"))">
-                <a href="@routes.Application.index()">Home</a></li>
             <li class="@("active".when(page == "Profile"))">
                 <a href="@routes.Application.Profile()">Profile</a></li>
             <li class="@("active".when(page == "Friends Profile"))">
