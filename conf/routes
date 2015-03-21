@@ -4,13 +4,13 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-GET     /profile                    controllers.Application.Profile()
-GET     /friendsprofile             controllers.Application.FriendsProfile()
-GET     /farmersprofile             controllers.Application.FarmersProfile()
-GET     /cookbook                   controllers.Application.Cookbook()
-GET     /recipe                     controllers.Application.Recipe()
-GET     /local                      controllers.Application.Local()
-GET     /mealplanner                controllers.Application.MealPlanner()
+GET     /profile                    controllers.Application.profile()
+GET     /friendsprofile             controllers.Application.friendsProfile()
+GET     /farmersprofile             controllers.Application.farmersProfile()
+GET     /cookbook                   controllers.Application.cookbook()
+GET     /recipe                     controllers.Application.recipe()
+GET     /local                      controllers.Application.local()
+GET     /mealplanner                controllers.Application.mealPlanner()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
