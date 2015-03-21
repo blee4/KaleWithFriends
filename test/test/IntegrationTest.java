@@ -31,6 +31,10 @@ public class IntegrationTest {
 
         browser.goTo("http://localhost:3333/farmersprofile");
         assertThat(browser.pageSource()).contains("Contact Information");
+
+        browser.goTo("http://localhost:3333/recipe");
+        assertThat(browser.pageSource()).contains("Ingredients");
+
       }
     });
   }
