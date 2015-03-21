@@ -29,54 +29,54 @@
            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs-9OW6VqNBsZWzQrLQP1-8vJe4MH-l7w">
            </script>
            <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-           <script type="text/javascript">
-           var map;
-           var infowindow;
+           <script>
+             var map;
+             var infowindow;
 
-           function initialize() {
-             var honolulu = new google.maps.LatLng(21.297, - 157.816);
+             function initialize() {
+               var honolulu = new google.maps.LatLng(21.297, - 157.816);
 
-             map = new google.maps.Map(document.getElementById('map-canvas'), {
-               center: honolulu,
-               zoom: 15
-             });
+               map = new google.maps.Map(document.getElementById('map-canvas'), {
+                 center: honolulu,
+                 zoom: 15
+               });
 
-             var request = {
-               location : honolulu,
-               radius : 500,
-               types :[ 'store' ]
-             } ;
+               var request = {
+                 location : honolulu,
+                 radius : 500,
+                 types :[ 'store' ]
+               } ;
 
-             infowindow = new google.maps.InfoWindow ( ) ;
-             var service = new google.maps.places.PlacesService ( map ) ;
-             service.nearbySearch ( request, callback ) ;
-           }
+               infowindow = new google.maps.InfoWindow ( ) ;
+               var service = new google.maps.places.PlacesService ( map ) ;
+               service.nearbySearch ( request, callback ) ;
+             }
 
-           function callback(results, status) {
-             if (status == google.maps.places.PlacesServiceStatus.OK) {
-               for (var i = 0; i < results.length; i++) {
-                 createMarker(results[i]);
+             function callback(results, status) {
+               if (status == google.maps.places.PlacesServiceStatus.OK) {
+                 for (var i = 0; i < results.length; i++) {
+                   createMarker(results[i]);
+                 }
                }
              }
-           }
 
-           function createMarker(place) {
-             var placeLoc = place.geometry.location ;
-             var marker = new google.maps.Marker ( {
-               map : map,
-               position : place.geometry.location
-             } ) ;
+             function createMarker(place) {
+               var placeLoc = place.geometry.location ;
+               var marker = new google.maps.Marker ( {
+                 map : map,
+                 position : place.geometry.location
+               } ) ;
 
-             google.maps.event.addListener ( marker, 'click', function ( ) {
-               infowindow.setContent ( place.name ) ;
-               infowindow.open ( map, this ) ;
-             } ) ;
-           }
+               google.maps.event.addListener ( marker, 'click', function ( ) {
+                 infowindow.setContent ( place.name ) ;
+                 infowindow.open ( map, this ) ;
+               } ) ;
+             }
 
-           google.maps.event.addDomListener(window, 'load', initialize);
+             google.maps.event.addDomListener(window, 'load', initialize);
+
            </script>
-           <div class="google-map-canvas" id="map-canvas">
-           </div>
+           <div id="map-canvas"></div>
          </div>
        </div>
      </div>
