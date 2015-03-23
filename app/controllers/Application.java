@@ -18,6 +18,7 @@ public class Application extends Controller {
 
   /**
    * Returns the home page.
+   *
    * @return The resulting home page.
    */
   public static Result index() {
@@ -26,6 +27,7 @@ public class Application extends Controller {
 
   /**
    * Returns the profile page.
+   *
    * @return The resulting profile page.
    */
   public static Result profile() {
@@ -34,6 +36,7 @@ public class Application extends Controller {
 
   /**
    * Returns the Friend's profile page.
+   *
    * @return The resulting Friend's profile page.
    */
   public static Result friendsProfile() {
@@ -42,6 +45,7 @@ public class Application extends Controller {
 
   /**
    * Returns the Farmer's profile page.
+   *
    * @return The resulting Farmer's profile page.
    */
   public static Result farmersProfile() {
@@ -50,6 +54,7 @@ public class Application extends Controller {
 
   /**
    * Returns the cookbook page.
+   *
    * @return The resulting cookbook page.
    */
   public static Result cookbook() {
@@ -58,6 +63,7 @@ public class Application extends Controller {
 
   /**
    * Returns the recipe page.
+   *
    * @return The resulting recipe page.
    */
   public static Result recipe() {
@@ -66,6 +72,7 @@ public class Application extends Controller {
 
   /**
    * Returns the local page.
+   *
    * @return The resulting local page.
    */
   public static Result local() {
@@ -74,6 +81,7 @@ public class Application extends Controller {
 
   /**
    * Returns the Meal Planner page.
+   *
    * @return The resulting Meal Planner page.
    */
   public static Result mealPlanner() {
