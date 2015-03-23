@@ -25,58 +25,58 @@ public class Application extends Controller {
   }
 
   /**
-   * Returns the Profile page.
-   * @return The resulting Profile page.
+   * Returns the profile page.
+   * @return The resulting profile page.
    */
-  public static Result Profile() {
-    return ok(Profile.render("Welcome to Profile."));
+  public static Result profile() {
+    return ok(Profile.render("Welcome to profile."));
   }
 
   /**
-   * Returns the Friend's Profile page.
-   * @return The resulting Friend's Profile page.
+   * Returns the Friend's profile page.
+   * @return The resulting Friend's profile page.
    */
-  public static Result FriendsProfile() {
+  public static Result friendsProfile() {
     return ok(FriendsProfile.render("Welcome to Friend's Profile."));
   }
 
   /**
-   * Returns the Farmer's Profile page.
-   * @return The resulting Farmer's Profile page.
+   * Returns the Farmer's profile page.
+   * @return The resulting Farmer's profile page.
    */
-  public static Result FarmersProfile() {
+  public static Result farmersProfile() {
     return ok(FarmersProfile.render("Welcome to Farmer's Profile."));
   }
 
   /**
-   * Returns the Cookbook page.
-   * @return The resulting Cookbook page.
+   * Returns the cookbook page.
+   * @return The resulting cookbook page.
    */
-  public static Result Cookbook() {
-    return ok(Cookbook.render("Welcome to Cookbook."));
+  public static Result cookbook() {
+    return ok(Cookbook.render("Welcome to cookbook."));
   }
 
   /**
-   * Returns the Recipe page.
-   * @return The resulting Recipe page.
+   * Returns the recipe page.
+   * @return The resulting recipe page.
    */
-  public static Result Recipe() {
-    return ok(Recipe.render("Welcome to Recipe."));
+  public static Result recipe() {
+    return ok(Recipe.render("Welcome to recipe."));
   }
 
   /**
-   * Returns the Local page.
-   * @return The resulting Local page.
+   * Returns the local page.
+   * @return The resulting local page.
    */
-  public static Result Local() {
-    return ok(Local.render("Welcome to Local."));
+  public static Result local() {
+    return ok(Local.render("Welcome to local."));
   }
 
   /**
    * Returns the Meal Planner page.
    * @return The resulting Meal Planner page.
    */
-  public static Result MealPlanner() {
+  public static Result mealPlanner() {
     return ok(MealPlanner.render("Welcome to Meal Planner."));
   }
 
