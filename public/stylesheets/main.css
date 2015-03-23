@@ -45,7 +45,8 @@ html, body, .container-fluid, .row, .map {
   margin-left: auto;
   margin-right: 25px;
   float: left;
-  padding:10px;
+  padding: 10px;
+}
 
 #homepage {
   padding-left: 30px;
