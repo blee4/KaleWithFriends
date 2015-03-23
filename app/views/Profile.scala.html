@@ -1,7 +1,107 @@
 @(message: String)
 
 @Main("Page1") {
-  <div class="container">
-    <p>@message</p>
-  </div>
+    <div id="homepage">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search friends...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
+
+            <div class="col-sm-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search all recipes...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+
+        <div class="horizontal">
+            <div class="table">
+                <article>
+                    <h3>KaleLoverForever</h3>
+                </article>
+                <article>
+                    <h3>KaleLover4Life</h3>
+                </article>
+                <article>
+                    <h3>NumberOneKaleLover</h3>
+                </article>
+                <article>
+                    <h3>KaleLover8o8</h3>
+                </article>
+                <article>
+                    <h3>ILoveKale</h3>
+                </article>
+                <article>
+                    <h3>KaleAllDay</h3>
+                </article>
+                <article>
+                    <h3>KaleEveryDay</h3>
+                </article>
+                <article>
+                    <h3>MoreKalePlease</h3>
+                </article>
+                <article>
+                    <h3>KaleKaleKale</h3>
+                </article>
+                <article>
+                    <h3>KaleAlways</h3>
+                </article>
+                    <!-- Repeat this part as many times as necessary. -->
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="well">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">
+                            My fridge
+                        </a>
+                        <a href="#" class="list-group-item"><span class="badge">4 lb</span>
+                            Kale</a>
+                        <a href="#" class="list-group-item"><span class="badge">1 lb</span>
+                            Spinach</a>
+                        <a href="#" class="list-group-item"><span class="badge">2 lb</span>
+                            Brocolli</a>
+                        <a href="#" class="list-group-item"><span class="badge">1 lb</span>
+                            Bananas</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="well">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item active">
+                            <h4 class="list-group-item-heading">Kalua Pork and Kale: 3/14/15 by KaleLoverForever</h4>
+                            <p class="list-group-item-text">
+                                <img src="@routes.Assets.at("images/kaluaPorkWithKale.jpg")" id="picture">
+                        <body>Ingredients</body>
+                            <ul>
+                                <li>1 pork butt roast (5-6 pounds)</li>
+                                <li>1 tablespoon coarse salt (sea salt or Hawaiian salt is best)</li>
+                                <li>3 tablespoons liquid smoke (hickory flavored)</li>
+                                <li> 2-3 bananas (unpeeled)</li>
+                            </ul>
+                        </a>
+
+                        <a href="#" class="list-group-item active">
+                            <h4 class="list-group-item-heading">Kalua Pork and Kale: 3/14/15 by KaleLoverForever</h4>
+                            <p class="list-group-item-text">
+                                <img src="@routes.Assets.at("images/smoothie.jpg")" id="picture">
+                        <body>Description</body>
+                            <p>If you have never had a kale smoothie before, you are definitely missing out! This recipe is the best kale smoothie recipe out there, and it will not disappoint you! All of the ingredients are cheap and easy to find, and it will give you the energy that you need to start your day, workout, etc. Also...</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 }
