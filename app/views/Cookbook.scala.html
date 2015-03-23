@@ -1,7 +1,48 @@
 @(message: String)
 
 @Main("Page1") {
-    <div class="container">
-        <p>@message</p>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4 cookbook_search">
+            <form role="form">
+                <input type="text" class="form-control">
+                <button class="btn btn-sm btn-block btn-success" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="col-sm-4"></div>
     </div>
-}
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="well">
+                <div class="recipe">
+                    <h2>Public Recipes Recently Added</h2>
+                    <img src="@routes.Assets.at("images/recipe-1.jpg")">
+                    <a href="/recipe"><h4>Recipe #1 Title</h4></a>
+                    <p>Brief recipe description #1.</p>
+                </div>
+                <div class="recipe">
+                    <img src="@routes.Assets.at("images/recipe-2.jpg")">
+                    <a href="/recipe"><h4>Recipe #2 Title</h4></a>
+                    <p>Brief recipe description #2.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="well">
+                <div class="recipe">
+                    <h2>Favorite Recipes</h2>
+                    <img src="@routes.Assets.at("images/recipe-1.jpg")">
+                    <a href="/recipe"><h4>Favorite #1 Title</h4></a>
+                    <p>Brief recipe description #1.</p>
+                </div>
+                <div class="recipe">
+                    <img src="@routes.Assets.at("images/recipe-2.jpg")">
+                    <a href="/recipe"><h4>Favorite #2 Title</h4></a>
+                    <p>Brief recipe description #2.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    }

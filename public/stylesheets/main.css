@@ -28,6 +28,25 @@ html, body, .container-fluid, .row, .map {
   width: 50%;
 }
 
+.cookbook_search {
+  padding-bottom: 25px;
+}
+.recipe {
+  padding-bottom: 75px;
+}
+
+.recipe h2 {
+  padding-bottom: 25px;
+}
+.recipe img {
+  background-image: url("../images/recipe-1.jpg");
+  width: 150px;
+  display: block;
+  margin-left: auto;
+  margin-right: 25px;
+  float: left;
+  padding:10px;
+
 #homepage {
   padding-left: 30px;
 }
