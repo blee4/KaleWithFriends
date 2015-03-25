@@ -23,10 +23,30 @@ In addition to the previous deliverable functionality, users will be able to cre
 In addition to the previous deliverable functionality, the stock (in the user's fridge and in the farmer's market) will have expiration dates. There will be a functioning meal planner that can take in a user's food preferences, a budget, their current fridge items, and their location, and automatically generate meals for the upcoming week, with recommendations on where to buy the ingredients that they need.
 
 ## Mockup
-<img src="doc/images/homePage.jpg" width="500px"/>
-<img src="doc/images/profile.jpg" width="500px"/>
-<img src="doc/images/friendsProfile.jpg" width="500px"/>
-<img src="doc/images/farmersProfile.jpg" width="500px"/>
-<img src="doc/images/cookbook.jpg" width="500px"/>
-<img src="doc/images/recipe.jpg" width="500px"/>
-<img src="doc/images/local.jpg" width="500px"/>
+Home Page
+
+<img src="doc/images/homePage.jpg" width="700px"/>
+
+Profile Page
+
+<img src="doc/images/profile.jpg" width="700px"/>
+
+Friend's Profile Page
+
+<img src="doc/images/friendsProfile.jpg" width="700px"/>
+
+Farmer's Profile Page
+
+<img src="doc/images/farmersProfile.jpg" width="700px"/>
+
+Cookbook Page
+
+<img src="doc/images/cookbook.jpg" width="700px"/>
+
+Recipe Page
+
+<img src="doc/images/recipe.jpg" width="700px"/>
+
+Local Maps Page
+
+<img src="doc/images/local.jpg" width="700px"/>
