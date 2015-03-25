@@ -23,30 +23,64 @@ In addition to the previous deliverable functionality, users will be able to cre
 In addition to the previous deliverable functionality, the stock (in the user's fridge and in the farmer's market) will have expiration dates. There will be a functioning meal planner that can take in a user's food preferences, a budget, their current fridge items, and their location, and automatically generate meals for the upcoming week, with recommendations on where to buy the ingredients that they need.
 
 ## Mockup
-Home Page
+Home Page (Desktop)
 
 <img src="doc/images/homePage.jpg" width="700px"/>
 
-Profile Page
+Home Page (Mobile)
+
+<img src="doc/images/homePageMobile.png" width="700px"/>
+
+
+Profile Page (Desktop)
 
 <img src="doc/images/profile.jpg" width="700px"/>
 
-Friend's Profile Page
+Profile Page (Mobile)
+
+<img src="doc/images/profileMobile.png" width="700px"/>
+
+
+Friend's Profile Page (Desktop)
 
 <img src="doc/images/friendsProfile.jpg" width="700px"/>
 
-Farmer's Profile Page
+Friend's Profile Page (Mobile)
+
+<img src="doc/images/friendsProfileMobile.png" width="700px"/>
+
+
+Farmer's Profile Page (Desktop)
 
 <img src="doc/images/farmersProfile.jpg" width="700px"/>
 
-Cookbook Page
+Farmer's Profile Page (Mobile)
+
+<img src="doc/images/farmersProfileMobile.png" width="700px"/>
+
+
+Cookbook Page (Desktop)
 
 <img src="doc/images/cookbook.jpg" width="700px"/>
 
-Recipe Page
+Cookbook Page (Mobile)
+
+<img src="doc/images/cookbookMobile.png" width="700px"/>
+
+
+Recipe Page (Desktop)
 
 <img src="doc/images/recipe.jpg" width="700px"/>
 
-Local Maps Page
+Recipe Page (Mobile)
+
+<img src="doc/images/recipeMobile.png" width="700px"/>
+
+
+Local Maps Page (Desktop)
 
 <img src="doc/images/local.jpg" width="700px"/>
+
+Local Maps Page (Mobile)
+
+<img src="doc/images/localMobile.png" width="700px"/>
