@@ -15,7 +15,7 @@ h1 {
 
 /* all map containers must be full height */
 html, body, .container-fluid, .row, .map {
-  height: 98%
+  height: 100%
 }
 
 #map-canvas {
