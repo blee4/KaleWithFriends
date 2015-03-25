@@ -1,7 +1,10 @@
 @(message: String)
 
 @Main("Page1") {
-    <div class="container">
-        <p>@message</p>
+  <div class="container">
+    <div class="well">
+      <h2>Meal Planner</h2>
+        <img src="@routes.Assets.at("images/calendar-placeholder.png")" id="calendar">
     </div>
+  </div>
 }
