@@ -79,8 +79,17 @@ Recipe Page (Mobile)
 
 Local Maps Page (Desktop)
 
-<img src="doc/images/local.jpg" width="700px"/>
+<img src="doc/images/local.png" width="700px"/>
 
 Local Maps Page (Mobile)
 
 <img src="doc/images/localMobile.png" width="700px"/>
+
+
+Meal Planner Page (Desktop)
+
+<img src="doc/images/mealPlanner.png" width="700px"/>
+
+Meal Planner Page (Mobile)
+
+<img src="doc/images/mealPlannerMobile.png" width="700px"/>
