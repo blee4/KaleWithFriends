@@ -23,9 +23,9 @@ html, body, .container-fluid, .row, .map {
   height: 98%;
 }
 
-#kaluaPorkPicture {
+#kaluaPorkPicture, #farmerPicture{
   height: 50%;
-  width: 50%;
+  width: 60%;
 }
 
 .cookbook_search {
