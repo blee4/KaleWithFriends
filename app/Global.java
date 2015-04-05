@@ -15,11 +15,18 @@ public class Global extends GlobalSettings {
   @Override
   public void onStart(Application application) {
     super.onStart(application);
-    ArrayList<TimedIngredients> ingredientses = new ArrayList<TimedIngredients>();
-    ingredientses.add(new TimedIngredients("Kale", 10, Calendar.getInstance(), Calendar.getInstance(), 1.99));
-    ingredientses.add(new TimedIngredients("Orange", 5, Calendar.getInstance(), Calendar.getInstance(), 2.49));
-    Farmer farmer = new Farmer("Joe", "KCC", ingredientses);
+
+    ArrayList<TimedIngredients> ingredients = new ArrayList<TimedIngredients>();
+    ingredients.add(new TimedIngredients("Kale", 10, Calendar.getInstance(), Calendar.getInstance(), 1.99));
+    ingredients.add(new TimedIngredients("Orange", 5, Calendar.getInstance(), Calendar.getInstance(), 2.49));
+    Farmer farmer = new Farmer("Joe", "KCC", ingredients);
     FarmerDB.addFarmer(farmer);
+
+    ArrayList<TimedIngredients> ingredients2 = new ArrayList<TimedIngredients>();
+    ingredients2.add(new TimedIngredients("Celery", 100, Calendar.getInstance(), Calendar.getInstance(), 0.50));
+    ingredients2.add(new TimedIngredients("Carrots", 40, Calendar.getInstance(), Calendar.getInstance(), 5.00));
+    Farmer farmer2 = new Farmer("Ken", "KCC", ingredients2);
+    FarmerDB.addFarmer(farmer2);
   }
 
 }
