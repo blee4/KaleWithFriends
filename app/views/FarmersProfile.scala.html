@@ -1,4 +1,4 @@
-@(message: String)
+@(farmerList: List[Farmer])
 
 @Main("Farmer's Profile") {
   <div class="container">
@@ -7,14 +7,11 @@
         <img src="@routes.Assets.at("images/farmPicture.jpg")" id="farmerPicture">
         <h2>Contact Information</h2>
         <ul>
-          <li>Farmer Joe</li>
-          <li>2550 McCarthy Mall </li>
-          <li>Honolulu, HI 96822</li>
+          <li>@farmerList.head.getName()</li>
         </ul>
         <h2>Markets</h2>
         <ul>
-          <li>Farmer's Market at Ward every Wednesday</li>
-          <li>Farmer's Market at KCC every Saturday</li>
+          <li>@farmerList.head.getLocation </li>
         </ul>
       </div>
     </div>
@@ -26,24 +23,15 @@
             <th>Item</th>
             <th>Price</th>
             <th>Stock</th>
+
           </tr>
 
+          @for(ingredient <- farmerList.head.getIngredientList){
           <tr>
-            <td>Kale</td>
-            <td>$0.50 per lb.</td>
-            <td>Plentiful</td>
-          </tr>
-
-          <tr>
-            <td>Oranges</td>
-            <td>$2.50 per lb.</td>
-            <td>Limited</td>
-          </tr>
-
-          <tr>
-            <td>Apples</td>
-            <td>$1.50 per lb.</td>
-            <td>Limited</td>
+            <td>@ingredient.getName()</td>
+            <td>@ingredient.getPrice() per lb.</td>
+            <td>@ingredient.getQuantity</td>
+          }
           </tr>
         </table>
       </div>

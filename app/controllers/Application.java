@@ -1,15 +1,16 @@
 package controllers;
 
+import models.FarmerDB;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.Index;
-import views.html.Profile;
-import views.html.FriendsProfile;
-import views.html.FarmersProfile;
 import views.html.Cookbook;
-import views.html.Recipe;
+import views.html.FarmersProfile;
+import views.html.FriendsProfile;
+import views.html.Index;
 import views.html.Local;
 import views.html.MealPlanner;
+import views.html.Profile;
+import views.html.Recipe;
 
 /**
  * Provides controllers for this application.
@@ -49,7 +50,7 @@ public class Application extends Controller {
    * @return The resulting Farmer's profile page.
    */
   public static Result farmersProfile() {
-    return ok(FarmersProfile.render("Welcome to Farmer's Profile."));
+    return ok(FarmersProfile.render(FarmerDB.getFarmers()));
   }
 
   /**
