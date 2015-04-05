@@ -1,52 +1,42 @@
-@(message: String)
+@(farmerList: List[Farmer])
 
 @Main("Farmer's Profile") {
-  <div class="container">
-    <div class="col-md-6">
-      <div class="well">
-        <img src="@routes.Assets.at("images/farmPicture.jpg")" id="farmerPicture">
-        <h2>Contact Information</h2>
-        <ul>
-          <li>Farmer Joe</li>
-          <li>2550 McCarthy Mall </li>
-          <li>Honolulu, HI 96822</li>
-        </ul>
-        <h2>Markets</h2>
-        <ul>
-          <li>Farmer's Market at Ward every Wednesday</li>
-          <li>Farmer's Market at KCC every Saturday</li>
-        </ul>
+  @for(farmer <- farmerList) {
+    <div class="container">
+        <div class="col-md-6">
+          <div class="well">
+            <img src="@routes.Assets.at("images/farmPicture.jpg")" id="farmerPicture">
+            <h2>Contact Information</h2>
+            <ul>
+              <li>@farmer.getName()</li>
+            </ul>
+            <h2>Markets</h2>
+            <ul>
+              <li>@farmer.getLocation </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="well">
+            <h2>Inventory</h2>
+            <table class="table table-striped table-bordered">
+              <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Stock</th>
+
+              </tr>
+
+              @for(ingredient <- farmer.getIngredientList) {
+                <tr>
+                  <td>@ingredient.getName()</td>
+                  <td>$@ingredient.getPrice() per lb.</td>
+                  <td>@ingredient.getQuantity</td>
+                  }
+            </tr>
+            </table>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="col-md-6">
-      <div class="well">
-        <h2>Inventory</h2>
-        <table class="table table-striped table-bordered">
-          <tr>
-            <th>Item</th>
-            <th>Price</th>
-            <th>Stock</th>
-          </tr>
-
-          <tr>
-            <td>Kale</td>
-            <td>$0.50 per lb.</td>
-            <td>Plentiful</td>
-          </tr>
-
-          <tr>
-            <td>Oranges</td>
-            <td>$2.50 per lb.</td>
-            <td>Limited</td>
-          </tr>
-
-          <tr>
-            <td>Apples</td>
-            <td>$1.50 per lb.</td>
-            <td>Limited</td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
+  }
 }

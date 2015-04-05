@@ -1,0 +1,51 @@
+package models;
+
+import java.util.ArrayList;
+
+/**
+ * Model for farmers. Contains a farmer's name, location, and their produces.
+ * <p/>
+ * Created by Jack on 4/4/2015.
+ */
+public class Farmer {
+
+  private String name;
+  private String location;
+  private ArrayList<TimedIngredients> ingredientList;
+
+  /**
+   * Creates a farmer object.
+   * @param name The name of the farmer.
+   * @param location The location of the farmer.
+   * @param ingredientList The list of the farmer's produce.
+   */
+  public Farmer(String name, String location, ArrayList<TimedIngredients> ingredientList) {
+    this.name = name;
+    this.location = location;
+    this.ingredientList = ingredientList;
+  }
+
+  /**
+   * Gets the name of the farmer.
+   * @return The name.
+   */
+  public String getName() {
+    return name;
+  }
+
+  /**
+   * Gets the location of the farmer.
+   * @return The location.
+   */
+  public String getLocation() {
+    return location;
+  }
+
+  /**
+   * Gets the current stock of the farmer.
+   * @return The list of farmer's produce.
+   */
+  public ArrayList<TimedIngredients> getIngredientList() {
+    return ingredientList;
+  }
+}
