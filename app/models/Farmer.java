@@ -7,11 +7,12 @@ import java.util.ArrayList;
  * <p/>
  * Created by Jack on 4/4/2015.
  */
-public class Farmer {
+public class Farmer extends User{
 
-  private String name;
   private String location;
   private ArrayList<TimedIngredients> ingredientList;
+
+
 
   /**
    * Creates a farmer object.
@@ -19,10 +20,10 @@ public class Farmer {
    * @param location The location of the farmer.
    * @param ingredientList The list of the farmer's produce.
    */
-  public Farmer(String name, String location, ArrayList<TimedIngredients> ingredientList) {
-    this.name = name;
+  public Farmer(long id, String name, String type, String location, ArrayList<TimedIngredients> ingredientList) {
     this.location = location;
     this.ingredientList = ingredientList;
+    super(id, name, type);
   }
 
   /**
