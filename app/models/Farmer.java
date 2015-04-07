@@ -21,9 +21,9 @@ public class Farmer extends User{
    * @param ingredientList The list of the farmer's produce.
    */
   public Farmer(long id, String name, String type, String location, ArrayList<TimedIngredients> ingredientList) {
+    super(id, name, type);
     this.location = location;
     this.ingredientList = ingredientList;
-    super(id, name, type);
   }
 
   /**
