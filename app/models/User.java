@@ -19,6 +19,7 @@ public class User {
   public User(long id, String name, String type) {
     this.name = name;
     this.type = type;
+    this.id = id;
   }
 
   /**
