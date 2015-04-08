@@ -1,6 +1,4 @@
-@(message: String)
-
-<!DOCTYPE html>
+@(message: String, farmerAddresses: List[String])
 
 @Main("Local") {
 
@@ -30,28 +28,43 @@
           <script>
           var map;
           var infowindow;
+          var geocoder;
 
           function initialize ( ) {
-            var honolulu = new google.maps.LatLng ( 21.297, - 157.816 ) ;
+          var honolulu = new google.maps.LatLng ( 21.297, - 157.816 ) ;
+          geocoder = new google.maps.Geocoder ( ) ;
 
-            map = new google.maps.Map ( document.getElementById ( 'map-canvas' ), {
-              center : honolulu,
-              zoom : 15
-            } ) ;
+          map = new google.maps.Map ( document.getElementById ( 'map-canvas' ), {
+          center : honolulu,
+          zoom : 15
+          } ) ;
 
-            var request = {
-              location : honolulu,
-              radius : 500,
-              types :[ 'store' ]
-            } ;
+          var numberOfAddresses = @farmerAddresses.length;
+          var addressOne = '@farmerAddresses.toString()';
 
-          infowindow = new google.maps.InfoWindow ( ) ;
-          var service = new google.maps.places.PlacesService ( map ) ;
-            service.nearbySearch ( request, callback ) ;
+              @for(address <- farmerAddresses) {
+                  var address = '@address.toString()';
+                  codeAddress(address);
+              }
+          }
+
+
+          function codeAddress(address) {
+              geocoder.geocode( { 'address': address}, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                  map.setCenter(results[0].geometry.location);
+                  var marker = new google.maps.Marker({
+                  map: map,
+                  position: results[0].geometry.location
+                  });
+              } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+              }
+              });
           }
 
           function callback ( results, status ) {
-            if ( status == google.maps.places.PlacesServiceStatus.OK ) {
+            if ( status == google.maps.places.GeocoderStatus.OK ) {
               for ( var i = 0 ; i < results.length ; i ++ ) {
                 createMarker ( results[ i ] ) ;
               }
