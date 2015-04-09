@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import models.Farmer;
 import models.FarmerDB;
 import play.data.Form;
 import play.mvc.Controller;
@@ -79,8 +80,10 @@ public class Application extends Controller {
    */
   public static Result local() {
     List<String> addresses = new ArrayList<>();
-    addresses.add("2212 Metcalf St. Honolulu, HI");
-    addresses.add("2500 Campus Rd. Honolulu, HI");
+
+    for (Farmer f : FarmerDB.getFarmers()) {
+      addresses.add(f.getName() + "|" + f.getLocation());
+    }
 
     return ok(Local.render("Welcome to local.", addresses));
   }
