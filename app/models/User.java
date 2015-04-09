@@ -12,9 +12,9 @@ public class User {
   /**
    * Creates a contact object.
    *
-   * @param name      contact name
-   * @param type      contact type
-   * @param id        contact id
+   * @param name contact name
+   * @param type contact type
+   * @param id   contact id
    */
   public User(long id, String name, String type) {
     this.name = name;
@@ -24,6 +24,7 @@ public class User {
 
   /**
    * Gets user name.
+   *
    * @return the user name.
    */
   public String getName() {
@@ -32,7 +33,8 @@ public class User {
 
   /**
    * Sets the user name.
-    * @param name the user name
+   *
+   * @param name the user name
    */
   public void setName(String name) {
     this.name = name;
@@ -40,6 +42,7 @@ public class User {
 
   /**
    * Gets the user type.
+   *
    * @return the user type
    */
   public String getType() {
@@ -48,6 +51,7 @@ public class User {
 
   /**
    * Sets the user type.
+   *
    * @param type the user type
    */
   public void setType(String type) {
@@ -56,6 +60,7 @@ public class User {
 
   /**
    * Gets the user id.
+   *
    * @return the user id
    */
   public long getId() {
@@ -64,6 +69,7 @@ public class User {
 
   /**
    * Sets the user id.
+   *
    * @param id the user id.
    */
   public void setId(long id) {

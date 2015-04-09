@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import models.Farmer;
 import models.FarmerDB;
+import models.RecipeDB;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -69,7 +70,7 @@ public class Application extends Controller {
    * @return The resulting recipe page.
    */
   public static Result recipe() {
-    return ok(Recipe.render("Welcome to recipe."));
+    return ok(Recipe.render(RecipeDB.getRecipe()));
   }
 
   /**
