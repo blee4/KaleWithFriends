@@ -9,11 +9,9 @@ import java.util.ArrayList;
  */
 public class Recipe {
 
-<<<<<<< HEAD
-  /** The name of the recipe. */
-=======
+  /** The recipe ID*/
   private long id;
->>>>>>> origin/Ingredients-mealplanner
+  /** The name of the recipe. */
   private String name;
   /** A brief description of the recipe. */
   private String description;
