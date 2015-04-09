@@ -1,18 +1,33 @@
-@(message: String)
+@(contactForm: Form[views.loginData.LoginData], loginTypeMap: Map[String, Boolean])
+
+@import views.html.helper._
+@import views.html.bootstrap3._
+
 
 @Main("Home") {
     <div class="row">
-        <div class="col-sm-4 col-sm-offset-4">
-            <form role="form">
-                <h1>Kale with friends.</h1>
-                <input type="text" class="form-control" placeholder="Email address" autofocus >
-                <br>
-                <input type="password" class="form-control" placeholder="Password" >
-                <br>
-                <button class="btn btn-lg btn-block btn-success" type="submit">Sign in</button>
-            </form>
-        </div>
+
+    <div class = "col-sm-4 col-sm-offset-4">
+        @form(routes.Application.login(), 'class -> "form-horizontal") {
+        <input type ="hidden" name="@contactForm("id").name" id="@contactForm("id").id" value="@contactForm("id").value">
+
+            <!-- Name -->
+        @text(contactForm("name"),
+            label = "Username",
+            placeholder = "Username",
+            help = "")
+
+            <!-- UserType -->
+        @bootstrap3.select(contactForm("loginType"),
+            label = "Login",
+            optionMap = loginTypeMap,
+            isMultiple = false,
+            help = "")
+
+            <button class="btn btn-lg btn-block btn-success" type="submit">Sign in</button>
+    }</div>
     </div>
-
-
 }
+
+
+

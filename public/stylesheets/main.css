@@ -20,7 +20,7 @@ html, body, .container-fluid, .row, .map {
 
 #map-canvas {
   width: 100%;
-  height: 98%;
+  height: 100%;
 }
 
 #kaluaPorkPicture, #farmerPicture{
@@ -91,4 +91,5 @@ html, body, .container-fluid, .row, .map {
   height: 100px;
   padding-right: 20px;
 }
+
 
