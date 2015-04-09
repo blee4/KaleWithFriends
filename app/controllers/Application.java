@@ -1,6 +1,7 @@
 package controllers;
 
 import models.FarmerDB;
+import models.RecipeDB;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -67,7 +68,7 @@ public class Application extends Controller {
    * @return The resulting recipe page.
    */
   public static Result recipe() {
-    return ok(Recipe.render("Welcome to recipe."));
+    return ok(Recipe.render(RecipeDB.getRecipe()));
   }
 
   /**

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Farmer extends User{
 
   private String location;
-  private ArrayList<TimedIngredients> ingredientList;
+  private ArrayList<TimedIngredient> ingredientList;
 
 
 
@@ -20,7 +20,7 @@ public class Farmer extends User{
    * @param location The location of the farmer.
    * @param ingredientList The list of the farmer's produce.
    */
-  public Farmer(long id, String name, String type, String location, ArrayList<TimedIngredients> ingredientList) {
+  public Farmer(long id, String name, String type, String location, ArrayList<TimedIngredient> ingredientList) {
     super(id, name, type);
     this.location = location;
     this.ingredientList = ingredientList;
@@ -46,7 +46,7 @@ public class Farmer extends User{
    * Gets the current stock of the farmer.
    * @return The list of farmer's produce.
    */
-  public ArrayList<TimedIngredients> getIngredientList() {
+  public ArrayList<TimedIngredient> getIngredientList() {
     return ingredientList;
   }
 }

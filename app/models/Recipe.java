@@ -9,6 +9,7 @@ import java.util.ArrayList;
  */
 public class Recipe {
 
+  private long id;
   private String name;
   private ArrayList<Ingredient> ingredientList;
   private ArrayList<String> procedure;
@@ -20,7 +21,8 @@ public class Recipe {
    * @param ingredientList The list of ingredients needed for the recipe.
    * @param procedure The directions to create the recipe.
    */
-  public Recipe(String name, ArrayList<Ingredient> ingredientList, ArrayList<String> procedure) {
+  public Recipe(long id, String name, ArrayList<Ingredient> ingredientList, ArrayList<String> procedure) {
+    this.id = id;
     this.name = name;
     this.ingredientList = ingredientList;
     this.procedure = procedure;
