@@ -1,4 +1,4 @@
-@(message: String, farmerAddresses: List[String])
+@(message: String, farmerInfo: List[String])
 
 @Main("Local") {
 
@@ -39,17 +39,16 @@
               zoom : 15
             } ) ;
 
-            var numberOfAddresses = @farmerAddresses.length;
-            var addressOne = '@farmerAddresses.toString()';
             infowindow = new google.maps.InfoWindow ( ) ;
 
-            @for(address <- farmerAddresses) {
-              var address = '@address.toString()';
-              codeAddress(address);
+            @for(info <- farmerInfo) {
+              var nameAddress = '@info.toString() '.split("|");
+
+              codeAddress(nameAddress[0], nameAddress[1]);
             }
           }
 
-          function codeAddress(address) {
+          function codeAddress(name, address) {
             geocoder.geocode( { 'address': address}, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
                 map.setCenter(results[0].geometry.location);
@@ -59,7 +58,7 @@
                 });
 
                 google.maps.event.addListener ( marker, 'click', function ( ) {
-                  infowindow.setContent ( address ) ;
+                  infowindow.setContent ( name ) ;
                   infowindow.open ( map, this ) ;
                 });
               }
