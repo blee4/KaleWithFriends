@@ -9,8 +9,13 @@ import java.util.ArrayList;
  */
 public class Recipe {
 
+  /** The name of the recipe. */
   private String name;
+  /** A brief description of the recipe. */
+  private String description;
+  /** The list of ingredients. */
   private ArrayList<Ingredient> ingredientList;
+  /** The steps to make the dish. */
   private ArrayList<String> procedure;
 
 
@@ -32,6 +37,14 @@ public class Recipe {
    */
   public String getName() {
     return name;
+  }
+
+  /**
+   * Gets the description of the recipe.
+   * @return The description.
+   */
+  public String getDescription() {
+    return description;
   }
 
   /**

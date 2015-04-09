@@ -15,7 +15,6 @@ import views.html.FriendsProfile;
 import views.html.Index;
 import views.html.Local;
 import views.html.MealPlanner;
-import views.html.Dashboard;
 import views.html.Recipe;
 import views.loginData.LoginData;
 import views.loginData.LoginTypes;
@@ -112,9 +111,8 @@ public class Application extends Controller {
     else {
       LoginData data = formData.get();
       System.out.println("OK: " + data.name + " " + data.loginType);
-      if (data.loginType.equals("Farmer")){
+      if (data.loginType.equals("Farmer")) {
         return ok(FarmersDashboard.render(formData));
-
       }
       else {
         return ok(Dashboard.render(formData));

@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * <p/>
  * Created by Jack on 4/4/2015.
  */
-public class Farmer extends User{
+public class Farmer extends User {
 
   private String location;
   private ArrayList<TimedIngredients> ingredientList;
@@ -16,7 +16,9 @@ public class Farmer extends User{
 
   /**
    * Creates a farmer object.
+   * @param id The id of the farmer.
    * @param name The name of the farmer.
+   * @param type The type of user. (Farmer or Consumer)
    * @param location The location of the farmer.
    * @param ingredientList The list of the farmer's produce.
    */

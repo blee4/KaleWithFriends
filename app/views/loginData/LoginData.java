@@ -30,7 +30,7 @@ public class LoginData {
   /**
    * Constructor using existing login.
    *
-   * @param c existing contact
+   * @param user existing contact
    */
   public LoginData(User user) {
     this.loginType = user.getType();
