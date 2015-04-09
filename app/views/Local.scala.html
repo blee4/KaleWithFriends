@@ -54,11 +54,12 @@
                 map.setCenter(results[0].geometry.location);
                 var marker = new google.maps.Marker({
                   map: map,
-                  position: results[0].geometry.location
+                  position: results[0].geometry.location,
+                  title: name
                 });
 
                 google.maps.event.addListener ( marker, 'click', function ( ) {
-                  infowindow.setContent ( name ) ;
+                  infowindow.setContent ( name + " | " + address) ;
                   infowindow.open ( map, this ) ;
                 });
               }
