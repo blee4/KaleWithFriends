@@ -1,7 +1,6 @@
 import models.Farmer;
 import models.FarmerDB;
 import models.Ingredient;
-import models.IngredientsToRecipe;
 import models.Recipe;
 import models.RecipeDB;
 import models.TimedIngredient;
@@ -41,11 +40,10 @@ public class Global extends GlobalSettings {
     saladProcedure.add("Chop Tomato and Kale");
     saladProcedure.add("Mix chopped Kale and Tomato");
     saladProcedure.add("Add choice of salad dressing and enjoy.");
-    Recipe kaleSalad = new Recipe(1,"Kale Salad", saladIngredients, saladProcedure);
+    Recipe kaleSalad = new Recipe(1, "Kale Salad", saladIngredients, saladProcedure);
     RecipeDB.addRecipe(kaleSalad);
 
-    ArrayList<Recipe> theList = IngredientsToRecipe.getRecipesFromIngredients(ingredients);
-    System.out.println(theList.get(0).getName());
+
   }
 
 }

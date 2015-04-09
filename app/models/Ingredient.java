@@ -2,7 +2,7 @@ package models;
 
 /**
  * Model for Ingredients.
-
+ * <p/>
  * Created by Jack on 4/4/2015.
  */
 public class Ingredient {
@@ -12,7 +12,8 @@ public class Ingredient {
 
   /**
    * Creates an ingredient object.
-   * @param name The name of the ingreident.
+   *
+   * @param name     The name of the ingreident.
    * @param quantity The quantity of the ingredient.
    */
   public Ingredient(String name, int quantity) {
@@ -22,6 +23,7 @@ public class Ingredient {
 
   /**
    * Gets the name of the ingreident.
+   *
    * @return The name.
    */
   public String getName() {
@@ -30,6 +32,7 @@ public class Ingredient {
 
   /**
    * Gets the quantity of the ingredient.
+   *
    * @return The quantity.
    */
   public int getQuantity() {

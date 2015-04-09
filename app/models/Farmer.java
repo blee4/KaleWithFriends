@@ -7,17 +7,17 @@ import java.util.ArrayList;
  * <p/>
  * Created by Jack on 4/4/2015.
  */
-public class Farmer extends User{
+public class Farmer extends User {
 
   private String location;
   private ArrayList<TimedIngredient> ingredientList;
 
 
-
   /**
    * Creates a farmer object.
-   * @param name The name of the farmer.
-   * @param location The location of the farmer.
+   *
+   * @param name           The name of the farmer.
+   * @param location       The location of the farmer.
    * @param ingredientList The list of the farmer's produce.
    */
   public Farmer(long id, String name, String type, String location, ArrayList<TimedIngredient> ingredientList) {
@@ -28,6 +28,7 @@ public class Farmer extends User{
 
   /**
    * Gets the name of the farmer.
+   *
    * @return The name.
    */
   public String getName() {
@@ -36,6 +37,7 @@ public class Farmer extends User{
 
   /**
    * Gets the location of the farmer.
+   *
    * @return The location.
    */
   public String getLocation() {
@@ -44,6 +46,7 @@ public class Farmer extends User{
 
   /**
    * Gets the current stock of the farmer.
+   *
    * @return The list of farmer's produce.
    */
   public ArrayList<TimedIngredient> getIngredientList() {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Cookbook database to hold all the recipes.
- *
+ * <p/>
  * Created by Jack on 4/4/2015.
  */
 public class Cookbook {
@@ -16,6 +16,7 @@ public class Cookbook {
 
   /**
    * Adds a recipe to the cookbook.
+   *
    * @param recipe The recipe to add.
    */
   public static void addRecipe(Recipe recipe) {
