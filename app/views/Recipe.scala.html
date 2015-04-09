@@ -1,25 +1,21 @@
-@(message: String)
+@(recipeList: List[Recipe])
+
 
 @Main("Recipe") {
+  @for(recipe <- recipeList){
   <div class="container">
     <div class="col-md-6">
       <div class="well">
 
-        <h2>Kalua Pork with Kale</h2>
+        <h2>@recipe.getName</h2>
 
         <img src="@routes.Assets.at("images/kaluaPorkWithKale.jpg")" id="kaluaPorkPicture">
 
-
         <h2>Ingredients</h2>
         <ul>
-          <li>1 pork butt roast (5-6 pounds)</li>
-          <li>1 tablespoon coarse salt (sea salt or Hawaiian salt is best)</li>
-          <li>3 tablespoons liquid smoke (hickory flavored)</li>
-          <li> 2-3 bananas (unpeeled)</li>
-          <li>1 bunch of Kale</li>
-          <li>4 tablespoons butter</li>
-          <li> 1/2 teaspoon salt</li>
-          <li> 1/4 teaspoon ground black pepper</li>
+          @for(ingredient <- recipe.getIngredientList){
+            <li>@ingredient.getName()</li>
+          }
         </ul>
       </div>
     </div>
@@ -27,23 +23,9 @@
       <div class="well">
         <h2>Directions</h2>
         <ol>
-          <li><p>
-            Pierce the meat all over with the blade of a sharp knife. Place dry in a large crockpot. Press the coarse salt into the meat all over. Drizzle the liquid smoke over the meat. Place the unpeeled bananas on top of the roast.</p></li>
-
-          <li><p>
-            Braise on low for 13 1/2 to 15 hours (overnight), turning once about halfway through. The bananas will turn black. Again place them on top when turning the roast</p></li>
-
-          <li><p>
-            About half an hour before the roast is done (tender), cut the Kale into strips or small pieces and braise in butter, salt, pepper, and about 1/4 cup of water in a large pan until it begins to soften. Do not overcook, since it will likely have to be reheated later.</p></li>
-
-          <li><p>
-            Remove roast from crockpot and let cool for 10 to 15 minutes. Pour off the accumulated juices with fat floating on top and reserve. Also reserve the bananas. Then shred (pull) the pork with two forks, discarding fat, bones, and other waste. Return the pulled pork to the cleaned crockpot and keep it warm until serving time (or refrigerate and reheat later).</p></li>
-
-          <li><p>
-            Chill the reserved juices until the fat layer has congealed (you can hasten this in the freezer, but check it often), then lift the congealed fat off with a tablespoon and discard (it will be ready for that in about 75 to 90 minutes). Pour the remaining juices over the pork, heat, and serve with the kale (or present the rewarmed juices in a gravy boat for the guests to spoon over their pork). You can also add a few tablespoons to Kale when sautéing. Discard the banana.</p></li>
-
-          <li><p>Serve over hot quinoa.</p></li>
-
+          @for(procedure <- recipe.getProcedure){
+            <li><p>@procedure</p></li>
+          }
             <!-- Source: https://uscgwifey.wordpress.com/tag/kalua-pig/ -->
         </ol>
       </div>
@@ -62,4 +44,5 @@
       </div>
     </div>
   </div>
+  }
 }

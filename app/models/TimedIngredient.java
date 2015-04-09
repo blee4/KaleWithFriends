@@ -4,10 +4,10 @@ import java.util.Calendar;
 
 /**
  * Model for ingredients with time and price. Subclass of Ingredients.
-
+ * <p/>
  * Created by Jack on 4/4/2015.
  */
-public class TimedIngredients extends Ingredient {
+public class TimedIngredient extends Ingredient {
 
   private Calendar startDate;
   private Calendar endDate;
@@ -15,13 +15,14 @@ public class TimedIngredients extends Ingredient {
 
   /**
    * Creates an ingredient object that also contains the time (freshness) and price.
-   * @param name The name.
-   * @param quantity The quantity.
+   *
+   * @param name      The name.
+   * @param quantity  The quantity.
    * @param startDate The start date.
-   * @param endDate The end date.
-   * @param price The price.
+   * @param endDate   The end date.
+   * @param price     The price.
    */
-  public TimedIngredients(String name, int quantity, Calendar startDate, Calendar endDate, double price) {
+  public TimedIngredient(String name, int quantity, Calendar startDate, Calendar endDate, double price) {
     super(name, quantity);
     this.startDate = startDate;
     this.endDate = endDate;
@@ -31,6 +32,7 @@ public class TimedIngredients extends Ingredient {
 
   /**
    * Gets start date.
+   *
    * @return The start date.
    */
   public Calendar getStartDate() {
@@ -39,6 +41,7 @@ public class TimedIngredients extends Ingredient {
 
   /**
    * Gets the end date.
+   *
    * @return The end date.
    */
   public Calendar getEndDate() {
@@ -47,8 +50,8 @@ public class TimedIngredients extends Ingredient {
 
   /**
    * Gets the price.
-   * @return The price.
    *
+   * @return The price.
    */
   public double getPrice() {
     return price;
