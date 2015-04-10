@@ -8,6 +8,7 @@ import models.RecipeDB;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.AvailableNow;
 import views.html.Cookbook;
 import views.html.Dashboard;
 import views.html.FarmersDashboard;
@@ -119,5 +120,14 @@ public class Application extends Controller {
         return ok(Dashboard.render(formData));
       }
     }
+  }
+
+  /**
+   * Returns the available now page.
+   *
+   * @return The resulting available now page.
+   */
+  public static Result availableNow() {
+    return ok(AvailableNow.render(FarmerDB.getFarmers()));
   }
 }

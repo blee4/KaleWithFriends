@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Model for farmers. Contains a farmer's name, location, and their produces.
@@ -15,10 +16,12 @@ public class Farmer extends User {
 
   /**
    * Creates a farmer object.
-   * @param id The id of the farmer.
-   * @param name The name of the farmer.
-   * @param type The type of user. (Farmer or Consumer)
+   *
+   * @param id       The id of the farmer.
+   * @param name     The name of the farmer.
+   * @param type     The type of user. (Farmer or Consumer)
    * @param location The location of the farmer.
+   * @param ingredientList The list of produce the farmer has.
    */
   public Farmer(long id, String name, String type, String location, ArrayList<TimedIngredient> ingredientList) {
     super(id, name, type);
@@ -51,5 +54,22 @@ public class Farmer extends User {
    */
   public ArrayList<TimedIngredient> getIngredientList() {
     return ingredientList;
+  }
+
+  /**
+   * Gets the fresh ingredients the farmers has in stock.
+   *
+   * @return The list of fresh ingredients.
+   */
+  public ArrayList<TimedIngredient> getFreshIngredientList() {
+    ArrayList<TimedIngredient> freshIngredients = new ArrayList<TimedIngredient>();
+
+    for (TimedIngredient ingredient : ingredientList) {
+      Calendar today = Calendar.getInstance();
+      if (today.after(ingredient.getStartDate()) && today.before(ingredient.getEndDate())) {
+        freshIngredients.add(ingredient);
+      }
+    }
+    return freshIngredients;
   }
 }
