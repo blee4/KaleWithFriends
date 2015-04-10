@@ -1,10 +1,25 @@
-@(message: String)
+@(message: String, recipeList: List[Recipe])
 
 @Main("Page1") {
   <div class="container">
     <div class="well">
       <h2>Meal Planner</h2>
-        <img src="@routes.Assets.at("images/calendar-placeholder.png")" id="calendar">
-    </div>
+        @for(recipe <- recipeList) {
+            <div class="container">
+                <div class="col-md-12">
+                    <div class="well">
+
+                        <h2><a href="@routes.Application.recipe(recipe.getId)">@recipe.getName</a></h2>
+
+                        <img src="@routes.Assets.at(recipe.getImagePath)" class="recipe_image">
+
+                        <h2>Description</h2>
+                        <p>@recipe.getDescription</p>
+
+                    </div>
+                </div>
+            </div>
+        }
+        </div>
   </div>
 }

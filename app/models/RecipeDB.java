@@ -11,6 +11,8 @@ import java.util.List;
 
 public class RecipeDB {
 
+  /** The most recent index added to the list. */
+  private static long currentId = 0;
   /**
    * The list that contains all the recipes.
    */
@@ -20,19 +22,28 @@ public class RecipeDB {
    * Adds a recipe to the database.
    *
    * @param recipe The recipe.
+   * @return The index of the item added. This should be saved for future reference.
    */
-  public static void addRecipe(Recipe recipe) {
+  public static long addRecipe(Recipe recipe) {
     recipeList.add(recipe);
+    return currentId++;
   }
 
+  /**
+   * Gets the current id.
+   * @return The current id.
+   */
+  public static long getCurrentId() {
+    return currentId;
+  }
   /**
    * Gets a recipe given the id.
    *
    * @param id The farmer id.
    * @return The corresponding recipe.
    */
-  public static Recipe getRecipe(int id) {
-    return recipeList.get(id);
+  public static Recipe getRecipe(long id) {
+    return recipeList.get((int) id);
   }
 
   /**
