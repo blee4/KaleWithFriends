@@ -29,8 +29,13 @@ html, body, .container-fluid, .row, .map {
 }
 
 .recipe_image {
-  height: 50%;
-  width: 60%;
+  height: 100px;
+  display: block;
+  padding-right: 25px;
+}
+
+.recipe_well {
+  margin-bottom: 100px;
 }
 
 .cookbook_search {

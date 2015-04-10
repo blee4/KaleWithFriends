@@ -5,21 +5,19 @@
     <div class="well">
       <h2>Meal Planner</h2>
         @for(recipe <- recipeList) {
-            <div class="container">
-                <div class="col-md-12">
-                    <div class="well">
-
-                        <h2><a href="@routes.Application.recipe(recipe.getId)">@recipe.getName</a></h2>
-
-                        <img src="@routes.Assets.at(recipe.getImagePath)" class="recipe_image">
-
-                        <h2>Description</h2>
-                        <p>@recipe.getDescription</p>
-
-                    </div>
-                </div>
+        <div class="well recipe_well">
+            <div class="col-md-3">
+                <h2><a href="@routes.Application.recipe(recipe.getId)">@recipe.getName</a></h2>
             </div>
-        }
+            <div class="col-md-3">
+                <img src="@routes.Assets.at(recipe.getImagePath)" class="recipe_image">
+            </div>
+            <div class="col-md-6">
+                <h3>Description</h3>
+                <p>@recipe.getDescription</p>
+            </div>
         </div>
+        }
+    </div>
   </div>
 }

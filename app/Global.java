@@ -44,6 +44,9 @@ public class Global extends GlobalSettings {
     Recipe kaleSalad = new Recipe(RecipeDB.getCurrentId(), "Kale Salad", "A very simple kale salad made from kale, tomoatoes and oranges", saladIngredients, saladProcedure, "images/kaluaPorkWithKale.jpg");
     RecipeDB.addRecipe(kaleSalad);
 
+    Recipe kaleSalad2 = new Recipe(RecipeDB.getCurrentId(), "Kale Salad-2", "Another simple kale salad made from kale, tomoatoes and oranges", saladIngredients, saladProcedure, "images/smoothie.jpg");
+    RecipeDB.addRecipe(kaleSalad2);
+
   }
 
 }
