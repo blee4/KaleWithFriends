@@ -1,7 +1,5 @@
 package controllers;
 
-import java.util.ArrayList;
-import java.util.List;
 import models.Farmer;
 import models.FarmerDB;
 import models.RecipeDB;
@@ -20,6 +18,9 @@ import views.html.MealPlanner;
 import views.html.Recipe;
 import views.loginData.LoginData;
 import views.loginData.LoginTypes;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Provides controllers for this application.
@@ -50,6 +51,7 @@ public class Application extends Controller {
   /**
    * Returns the Farmer's profile page.
    *
+   * @param id The id of the farmer.
    * @return The resulting Farmer's profile page.
    */
   public static Result farmersProfile(long id) {
