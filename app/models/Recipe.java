@@ -9,21 +9,32 @@ import java.util.ArrayList;
  */
 public class Recipe {
 
-  /** The recipe ID*/
+  /**
+   * The recipe ID.
+   */
   private long id;
-  /** The name of the recipe. */
+  /**
+   * The name of the recipe.
+   */
   private String name;
-  /** A brief description of the recipe. */
+  /**
+   * A brief description of the recipe.
+   */
   private String description;
-  /** The list of ingredients. */
+  /**
+   * The list of ingredients.
+   */
   private ArrayList<Ingredient> ingredientList;
-  /** The steps to make the dish. */
+  /**
+   * The steps to make the dish.
+   */
   private ArrayList<String> procedure;
 
 
   /**
    * Creates a recipe object.
    *
+   * @param id             The Recipe's id.
    * @param name           The name of the recipe.
    * @param ingredientList The list of ingredients needed for the recipe.
    * @param procedure      The directions to create the recipe.
@@ -46,6 +57,7 @@ public class Recipe {
 
   /**
    * Gets the description of the recipe.
+   *
    * @return The description.
    */
   public String getDescription() {

@@ -12,21 +12,41 @@ public class Farmer extends User {
 
   private String location;
   private ArrayList<TimedIngredient> ingredientList;
+  private String pictureLocation = "";
 
 
   /**
    * Creates a farmer object.
    *
-   * @param id       The id of the farmer.
-   * @param name     The name of the farmer.
-   * @param type     The type of user. (Farmer or Consumer)
-   * @param location The location of the farmer.
+   * @param id             The id of the farmer.
+   * @param name           The name of the farmer.
+   * @param type           The type of user. (Farmer or Consumer)
+   * @param location       The location of the farmer.
    * @param ingredientList The list of produce the farmer has.
    */
   public Farmer(long id, String name, String type, String location, ArrayList<TimedIngredient> ingredientList) {
     super(id, name, type);
     this.location = location;
     this.ingredientList = ingredientList;
+  }
+
+  /**
+   * Creates a farmer object with a picture location.
+   *
+   * @param id              The id of the farmer.
+   * @param name            The name of the farmer.
+   * @param type            The type of user. (Farmer or Consumer)
+   * @param location        The location of the farmer.
+   * @param pictureLocation The location for the farmer's logo/picture.
+   * @param ingredientList  The list of produce the farmer has.
+   */
+  public Farmer(long id, String name, String type, String location, String pictureLocation,
+                ArrayList<TimedIngredient> ingredientList) {
+    super(id, name, type);
+    this.location = location;
+    this.ingredientList = ingredientList;
+    this.pictureLocation = pictureLocation;
+
   }
 
   /**
@@ -54,6 +74,15 @@ public class Farmer extends User {
    */
   public ArrayList<TimedIngredient> getIngredientList() {
     return ingredientList;
+  }
+
+  /**
+   * Gets the location for the logo/picture for the farmer.
+   *
+   * @return The logo/picture of the farmer as a String.
+   */
+  public String getPictureLocation() {
+    return pictureLocation;
   }
 
   /**
