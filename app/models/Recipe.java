@@ -8,10 +8,9 @@ import java.util.ArrayList;
  * Created by Jack on 4/4/2015.
  */
 public class Recipe {
-
   /**
    * The recipe ID.
-   */
+   * */
   private long id;
   /**
    * The name of the recipe.
@@ -34,7 +33,7 @@ public class Recipe {
   /**
    * Creates a recipe object.
    *
-   * @param id             The Recipe's id.
+   * @param id             The id of the recipe.
    * @param name           The name of the recipe.
    * @param ingredientList The list of ingredients needed for the recipe.
    * @param procedure      The directions to create the recipe.
