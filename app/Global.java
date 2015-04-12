@@ -1,6 +1,7 @@
 import models.Farmer;
 import models.FarmerDB;
 import models.Ingredient;
+import models.IngredientDate;
 import models.Recipe;
 import models.RecipeDB;
 import models.TimedIngredient;
@@ -20,16 +21,21 @@ public class Global extends GlobalSettings {
     super.onStart(application);
 
     ArrayList<TimedIngredient> ingredients = new ArrayList<TimedIngredient>();
-    ingredients.add(new TimedIngredient("Kale", 10, Calendar.getInstance(), Calendar.getInstance(), 1.99));
-    ingredients.add(new TimedIngredient("Orange", 5, Calendar.getInstance(), Calendar.getInstance(), 2.49));
+    ingredients.add(new TimedIngredient("Kale", 10, IngredientDate.makeCalendar(2015, Calendar.APRIL, 8),
+        IngredientDate.makeCalendar(2015, Calendar.APRIL, 10), 1.99));
+    ingredients.add(new TimedIngredient("Orange", 5, IngredientDate.makeCalendar(2015, Calendar.APRIL, 8),
+        IngredientDate.makeCalendar(2015, Calendar.APRIL, 20), 2.49));
     Farmer farmer = new Farmer(1, "Nalo LIFE", "Farmer", "4303 Diamond Head Rd, Honolulu, HI", ingredients);
     FarmerDB.addFarmer(farmer);
 
     ArrayList<TimedIngredient> ingredients2 = new ArrayList<TimedIngredient>();
-    ingredients2.add(new TimedIngredient("Celery", 100, Calendar.getInstance(), Calendar.getInstance(), 0.50));
-    ingredients2.add(new TimedIngredient("Carrots", 40, Calendar.getInstance(), Calendar.getInstance(), 5.00));
+    ingredients2.add(new TimedIngredient("Celery", 100, IngredientDate.makeCalendar(2015, Calendar.APRIL, 1),
+        IngredientDate.makeCalendar(2015, Calendar.APRIL, 10), 0.50));
+    ingredients2.add(new TimedIngredient("Carrot", 40, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
+        IngredientDate.makeCalendar(2015, Calendar.APRIL, 7), 5.00));
+    ingredients2.add(new TimedIngredient("Green Apple", 40, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
+        IngredientDate.makeCalendar(2015, Calendar.APRIL, 19), 3.00));
     Farmer farmer2 = new Farmer(2, "Aloun Farms", "Farmer", "1050 Ala Moana Blvd Honolulu, HI", ingredients2);
-
     FarmerDB.addFarmer(farmer2);
 
 
