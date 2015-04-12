@@ -1,11 +1,10 @@
-@(farmerList: List[Farmer])
+@(farmer: Farmer)
 
 @Main("Farmer's Dashboard") {
-  @for(farmer <- farmerList) {
     <div class="container">
         <div class="col-md-6">
           <div class="well">
-            <img src="@routes.Assets.at("images/farmPicture.jpg")" id="farmerPicture">
+            <img src="@routes.Assets.at(farmer.getPictureLocation())" id="farmerPicture">
             <h2>Contact Information</h2>
             <ul>
               <li>@farmer.getName()</li>
@@ -38,5 +37,5 @@
           </div>
         </div>
       </div>
-  }
+
 }

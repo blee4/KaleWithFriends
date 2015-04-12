@@ -52,8 +52,9 @@ public class Application extends Controller {
    *
    * @return The resulting Farmer's profile page.
    */
-  public static Result farmersProfile() {
-    return ok(FarmersProfile.render(FarmerDB.getFarmers()));
+  public static Result farmersProfile(long id) {
+    Farmer farmer = FarmerDB.getFarmer((int) id);
+    return ok(FarmersProfile.render(farmer));
   }
 
   /**

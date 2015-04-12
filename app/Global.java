@@ -25,7 +25,7 @@ public class Global extends GlobalSettings {
         IngredientDate.makeCalendar(2015, Calendar.APRIL, 10), 1.99));
     ingredients.add(new TimedIngredient("Orange", 5, IngredientDate.makeCalendar(2015, Calendar.APRIL, 8),
         IngredientDate.makeCalendar(2015, Calendar.APRIL, 20), 2.49));
-    Farmer farmer = new Farmer(1, "Nalo LIFE", "Farmer", "4303 Diamond Head Rd, Honolulu, HI", ingredients);
+    Farmer farmer = new Farmer(0, "Nalo LIFE", "Farmer", "4303 Diamond Head Rd, Honolulu, HI", "images/farmPicture.jpg", ingredients);
     FarmerDB.addFarmer(farmer);
 
     ArrayList<TimedIngredient> ingredients2 = new ArrayList<TimedIngredient>();
@@ -35,7 +35,7 @@ public class Global extends GlobalSettings {
         IngredientDate.makeCalendar(2015, Calendar.APRIL, 7), 5.00));
     ingredients2.add(new TimedIngredient("Green Apple", 40, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
         IngredientDate.makeCalendar(2015, Calendar.APRIL, 19), 3.00));
-    Farmer farmer2 = new Farmer(2, "Aloun Farms", "Farmer", "1050 Ala Moana Blvd Honolulu, HI", ingredients2);
+    Farmer farmer2 = new Farmer(1, "Aloun Farms", "Farmer", "1050 Ala Moana Blvd Honolulu, HI", "images/farmPicture.jpg", ingredients2);
     FarmerDB.addFarmer(farmer2);
 
 
