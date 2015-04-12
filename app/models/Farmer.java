@@ -34,25 +34,29 @@ public class Farmer extends User {
     this.markets = markets;
     this.phone = phone;
     this.ingredientList = ingredientList;
+    this.pictureLocation = pictureLocation;
   }
 
+
   /**
-   * Creates a farmer object with a picture location.
-   *
-   * @param id              The id of the farmer.
-   * @param name            The name of the farmer.
-   * @param type            The type of user. (Farmer or Consumer)
-   * @param location        The location of the farmer.
-   * @param pictureLocation The location for the farmer's logo/picture.
-   * @param ingredientList  The list of produce the farmer has.
+   * Creates a farmer object with an associated picture location.
+   * @param id The id of the farmer.
+   * @param name The name of the farmer.
+   * @param type The type of user. (Farmer or Consumer)
+   * @param markets The location of the farmers markets.
+   * @param phone The phone number of the farmer.
+   * @param location The location of the farmer.
+   * @param pictureLocation The location of the picture.
+   * @param ingredientList The list of current farmer stock.
    */
-  public Farmer(long id, String name, String type, String location, String pictureLocation,
-                ArrayList<TimedIngredient> ingredientList) {
+  public Farmer(long id, String name, String type, String location,
+                String markets, String phone, String pictureLocation, ArrayList<TimedIngredient> ingredientList) {
     super(id, name, type);
     this.location = location;
+    this.markets = markets;
+    this.phone = phone;
     this.ingredientList = ingredientList;
     this.pictureLocation = pictureLocation;
-
   }
 
   /**
