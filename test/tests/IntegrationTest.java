@@ -1,4 +1,4 @@
-package test;
+package tests;
 
 import org.junit.Test;
 import play.libs.F.Callback;
@@ -38,5 +38,6 @@ public class IntegrationTest {
       }
     });
   }
+
 
 }
