@@ -6,14 +6,10 @@
         <div class="col-md-6">
           <div class="well">
             <img src="@routes.Assets.at("images/farmPicture.jpg")" id="farmerPicture">
-            <h2>Contact Information</h2>
-            <ul>
-              <li>@farmer.getName()</li>
-            </ul>
-            <h2>Markets</h2>
-            <ul>
-              <li>@farmer.getLocation </li>
-            </ul>
+            <h2>@farmer.getName()</h2>
+              <h4>Farm location: </h4>  @farmer.getLocation()<br><br>
+              <h4>Market locations:</h4> @farmer.getMarkets()<br><br>
+                <h4>Phone Number: </h4>@farmer.getPhone()<br><br>
           </div>
         </div>
         <div class="col-md-6">
