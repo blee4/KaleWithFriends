@@ -21,7 +21,8 @@ public class Global extends GlobalSettings {
 
     ArrayList<TimedIngredient> ingredients = new ArrayList<TimedIngredient>();
     ingredients.add(new TimedIngredient("Nalo Greens", 20, Calendar.getInstance(), Calendar.getInstance(), "6.00"));
-    ingredients.add(new TimedIngredient("Dandelion Greens", 15, Calendar.getInstance(), Calendar.getInstance(), "6.00"));
+    ingredients.add(new TimedIngredient("Dandelion Greens", 15, Calendar.getInstance(),
+        Calendar.getInstance(), "6.00"));
     ingredients.add(new TimedIngredient("Braising Greens", 13, Calendar.getInstance(), Calendar.getInstance(), "6.00"));
     ingredients.add(new TimedIngredient("Baby Kale", 21, Calendar.getInstance(), Calendar.getInstance(), "2.00"));
     ingredients.add(new TimedIngredient("Baby Swiss Chard", 9, Calendar.getInstance(), Calendar.getInstance(), "2.00"));
@@ -38,9 +39,11 @@ public class Global extends GlobalSettings {
         Calendar.getInstance(), "2.00"));
     ingredients.add(new TimedIngredient("Nalo Tomato (Large)", 10, Calendar.getInstance(),
         Calendar.getInstance(), "1.50"));
-    ingredients.add(new TimedIngredient("Sumida Watercress", 4, Calendar.getInstance(), Calendar.getInstance(), "2.00"));
+    ingredients.add(new TimedIngredient("Sumida Watercress", 4, Calendar.getInstance(),
+        Calendar.getInstance(), "2.00"));
     ingredients.add(new TimedIngredient("Kamiya Papaya", 10, Calendar.getInstance(), Calendar.getInstance(), "3.00"));
-    ingredients.add(new TimedIngredient("Fat Law Baby Cucumber", 9, Calendar.getInstance(), Calendar.getInstance(), "2.00"));
+    ingredients.add(new TimedIngredient("Fat Law Baby Cucumber", 9, Calendar.getInstance(),
+        Calendar.getInstance(), "2.00"));
     ingredients.add(new TimedIngredient("Nozawa Corn", 10, Calendar.getInstance(), Calendar.getInstance(), "2.00"));
     ingredients.add(new TimedIngredient("Ho Farm Tomato", 14, Calendar.getInstance(), Calendar.getInstance(), "1.00"));
     Farmer farmer = new Farmer(1, "Nalo LIFE", "Farmer", "41-574 Makakalo Street Waimanalo, HI 96795",
@@ -63,13 +66,19 @@ public class Global extends GlobalSettings {
     ingredients2.add(new TimedIngredient("Mint", 16, Calendar.getInstance(), Calendar.getInstance(), "2.00"));
     ingredients2.add(new TimedIngredient("Basil", 14, Calendar.getInstance(), Calendar.getInstance(), "2.25"));
     ingredients2.add(new TimedIngredient("Chives", 16, Calendar.getInstance(), Calendar.getInstance(), "2.00"));
-    ingredients2.add(new TimedIngredient("Chinese Parsley", 19, Calendar.getInstance(), Calendar.getInstance(), "2.00"));
-    ingredients2.add(new TimedIngredient("American Parsley", 24, Calendar.getInstance(), Calendar.getInstance(), "2.50"));
-    ingredients2.add(new TimedIngredient("Lemon Grass", 11, Calendar.getInstance(), Calendar.getInstance(),"2.00"));
-    ingredients2.add(new TimedIngredient("Shanghai Pak Choy", 21, Calendar.getInstance(), Calendar.getInstance(), "2.00"));
-    ingredients2.add(new TimedIngredient("Ewa Sweet Onion", 14, Calendar.getInstance(), Calendar.getInstance(), "0.50"));
-    ingredients2.add(new TimedIngredient("Eggplant (Long)", 15, Calendar.getInstance(), Calendar.getInstance(), "2.00"));
-    ingredients2.add(new TimedIngredient("Japanese Cucumber", 18, Calendar.getInstance(), Calendar.getInstance(), "2.00"));
+    ingredients2.add(new TimedIngredient("Chinese Parsley", 19, Calendar.getInstance(),
+        Calendar.getInstance(), "2.00"));
+    ingredients2.add(new TimedIngredient("American Parsley", 24, Calendar.getInstance(),
+        Calendar.getInstance(), "2.50"));
+    ingredients2.add(new TimedIngredient("Lemon Grass", 11, Calendar.getInstance(), Calendar.getInstance(), "2.00"));
+    ingredients2.add(new TimedIngredient("Shanghai Pak Choy", 21, Calendar.getInstance(),
+        Calendar.getInstance(), "2.00"));
+    ingredients2.add(new TimedIngredient("Ewa Sweet Onion", 14, Calendar.getInstance(),
+        Calendar.getInstance(), "0.50"));
+    ingredients2.add(new TimedIngredient("Eggplant (Long)", 15, Calendar.getInstance(),
+        Calendar.getInstance(), "2.00"));
+    ingredients2.add(new TimedIngredient("Japanese Cucumber", 18, Calendar.getInstance(),
+        Calendar.getInstance(), "2.00"));
     ingredients2.add(new TimedIngredient("Long Beans", 19, Calendar.getInstance(), Calendar.getInstance(), "1.00"));
     ingredients2.add(new TimedIngredient("String Beans", 21, Calendar.getInstance(), Calendar.getInstance(), "1.00"));
     ingredients2.add(new TimedIngredient("Paria Leaf (Bitter Melon Leaf)", 5, Calendar.getInstance(),
@@ -82,10 +91,12 @@ public class Global extends GlobalSettings {
     ingredients2.add(new TimedIngredient("Cantaloupe", 20, Calendar.getInstance(), Calendar.getInstance(), "1.00"));
     ingredients2.add(new TimedIngredient("Honeydew", 21, Calendar.getInstance(), Calendar.getInstance(), "0.50"));
     ingredients2.add(new TimedIngredient("Sunburst", 25, Calendar.getInstance(), Calendar.getInstance(), "3.00"));
-    ingredients2.add(new TimedIngredient("Ewa Sweet Onion", 14, Calendar.getInstance(), Calendar.getInstance(), "0.50"));
+    ingredients2.add(new TimedIngredient("Ewa Sweet Onion", 14, Calendar.getInstance(),
+        Calendar.getInstance(), "0.50"));
     ingredients2.add(new TimedIngredient("Broccoli", 19, Calendar.getInstance(), Calendar.getInstance(), "2.00"));
     ingredients2.add(new TimedIngredient("Sweet Corn", 20, Calendar.getInstance(), Calendar.getInstance(), "2.00"));
-    ingredients2.add(new TimedIngredient("Halloween Pumpkin", 0, Calendar.getInstance(), Calendar.getInstance(), "0.50"));
+    ingredients2.add(new TimedIngredient("Halloween Pumpkin", 0, Calendar.getInstance(),
+        Calendar.getInstance(), "0.50"));
     ingredients2.add(new TimedIngredient("Kabocha Squash", 2, Calendar.getInstance(), Calendar.getInstance(), "3.00"));
     ingredients2.add(new TimedIngredient("Thai Watermelon", 7, Calendar.getInstance(), Calendar.getInstance(), "0.25"));
     ingredients2.add(new TimedIngredient("Curly Kale", 9, Calendar.getInstance(), Calendar.getInstance(), "2.00"));

@@ -1,15 +1,13 @@
 package controllers;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-
 import models.Farmer;
 import models.FarmerDB;
 import models.RecipeDB;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.AvailableNow;
 import views.html.Cookbook;
 import views.html.Dashboard;
 import views.html.FarmersDashboard;
@@ -21,6 +19,9 @@ import views.html.MealPlanner;
 import views.html.Recipe;
 import views.loginData.LoginData;
 import views.loginData.LoginTypes;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Provides controllers for this application.
@@ -53,10 +54,12 @@ public class Application extends Controller {
   /**
    * Returns the Farmer's profile page.
    *
+   * @param id The id of the farmer.
    * @return The resulting Farmer's profile page.
    */
-  public static Result farmersProfile() {
-    return ok(FarmersProfile.render(FarmerDB.getFarmers()));
+  public static Result farmersProfile(long id) {
+    Farmer farmer = FarmerDB.getFarmer((int) id);
+    return ok(FarmersProfile.render(farmer));
   }
 
   /**
@@ -123,5 +126,14 @@ public class Application extends Controller {
         return ok(Dashboard.render(formData));
       }
     }
+  }
+
+  /**
+   * Returns the available now page.
+   *
+   * @return The resulting available now page.
+   */
+  public static Result availableNow() {
+    return ok(AvailableNow.render(FarmerDB.getFarmers()));
   }
 }

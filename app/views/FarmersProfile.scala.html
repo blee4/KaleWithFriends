@@ -1,7 +1,6 @@
-@(farmerList: List[Farmer])
+@(farmer: Farmer)
 
 @Main("Farmer's Dashboard") {
-  @for(farmer <- farmerList) {
     <div class="container">
         <div class="col-md-6">
           <div class="well">
@@ -34,5 +33,5 @@
           </div>
         </div>
       </div>
-  }
+
 }

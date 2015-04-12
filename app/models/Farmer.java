@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Model for farmers. Contains a farmer's name, location, and their produces.
@@ -11,6 +12,7 @@ public class Farmer extends User {
 
   private String location;
   private ArrayList<TimedIngredient> ingredientList;
+  private String pictureLocation = "";
   private String markets;
   private String phone;
 
@@ -32,6 +34,25 @@ public class Farmer extends User {
     this.markets = markets;
     this.phone = phone;
     this.ingredientList = ingredientList;
+  }
+
+  /**
+   * Creates a farmer object with a picture location.
+   *
+   * @param id              The id of the farmer.
+   * @param name            The name of the farmer.
+   * @param type            The type of user. (Farmer or Consumer)
+   * @param location        The location of the farmer.
+   * @param pictureLocation The location for the farmer's logo/picture.
+   * @param ingredientList  The list of produce the farmer has.
+   */
+  public Farmer(long id, String name, String type, String location, String pictureLocation,
+                ArrayList<TimedIngredient> ingredientList) {
+    super(id, name, type);
+    this.location = location;
+    this.ingredientList = ingredientList;
+    this.pictureLocation = pictureLocation;
+
   }
 
   /**
@@ -77,5 +98,31 @@ public class Farmer extends User {
    */
   public ArrayList<TimedIngredient> getIngredientList() {
     return ingredientList;
+  }
+
+  /**
+   * Gets the location for the logo/picture for the farmer.
+   *
+   * @return The logo/picture of the farmer as a String.
+   */
+  public String getPictureLocation() {
+    return pictureLocation;
+  }
+
+  /**
+   * Gets the fresh ingredients the farmers has in stock.
+   *
+   * @return The list of fresh ingredients.
+   */
+  public ArrayList<TimedIngredient> getFreshIngredientList() {
+    ArrayList<TimedIngredient> freshIngredients = new ArrayList<TimedIngredient>();
+
+    for (TimedIngredient ingredient : ingredientList) {
+      Calendar today = Calendar.getInstance();
+      if (today.after(ingredient.getStartDate()) && today.before(ingredient.getEndDate())) {
+        freshIngredients.add(ingredient);
+      }
+    }
+    return freshIngredients;
   }
 }
