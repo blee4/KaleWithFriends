@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.Map;
 import models.Farmer;
 import models.FarmerDB;
 import models.RecipeDB;
@@ -33,9 +34,11 @@ public class Application extends Controller {
    * @return The resulting home page.
    */
   public static Result index() {
+    LoginData data = new LoginData();
 
-    Form<LoginData> formData = Form.form(LoginData.class).bindFromRequest();
-    return ok(Index.render(formData, LoginTypes.getTypes()));
+    Form<LoginData> formData = Form.form(LoginData.class).fill(data);
+    Map<String, Boolean> loginTypeMap = LoginTypes.getTypes();
+    return ok(Index.render(formData, loginTypeMap));
   }
 
 

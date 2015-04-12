@@ -11,7 +11,7 @@ public class TimedIngredient extends Ingredient {
 
   private Calendar startDate;
   private Calendar endDate;
-  private double price;
+  private String price;
 
   /**
    * Creates an ingredient object that also contains the time (freshness) and price.
@@ -22,7 +22,7 @@ public class TimedIngredient extends Ingredient {
    * @param endDate   The end date.
    * @param price     The price.
    */
-  public TimedIngredient(String name, int quantity, Calendar startDate, Calendar endDate, double price) {
+  public TimedIngredient(String name, int quantity, Calendar startDate, Calendar endDate, String price) {
     super(name, quantity);
     this.startDate = startDate;
     this.endDate = endDate;
@@ -53,7 +53,7 @@ public class TimedIngredient extends Ingredient {
    *
    * @return The price.
    */
-  public double getPrice() {
+  public String getPrice() {
     return price;
   }
 }
