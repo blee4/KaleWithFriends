@@ -51,7 +51,7 @@ public class Application extends Controller {
    * @return The resulting Friend's profile page.
    */
   public static Result friendsProfile() {
-    return ok(FriendsProfile.render()));
+    return ok(FriendsProfile.render("Welcome to friend page."));
   }
 
   /**
