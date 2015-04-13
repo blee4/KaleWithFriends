@@ -28,6 +28,16 @@ html, body, .container-fluid, .row, .map {
   width: 60%;
 }
 
+.recipe_image {
+  height: 100px;
+  display: block;
+  padding-right: 25px;
+}
+
+.recipe_well {
+  margin-bottom: 100px;
+}
+
 .cookbook_search {
   padding-bottom: 25px;
 }
@@ -97,3 +107,6 @@ html, body, .container-fluid, .row, .map {
   width: 64px;
 }
 
+.gm-style-iw {
+  color: #000000;
+}

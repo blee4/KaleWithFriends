@@ -71,16 +71,20 @@ public class Application extends Controller {
    * @return The resulting cookbook page.
    */
   public static Result cookbook() {
-    return ok(Cookbook.render("Welcome to cookbook."));
+    return ok(Cookbook.render(RecipeDB.getRecipe()));
   }
 
   /**
    * Returns the recipe page.
    *
+   * @param id The id for the recipe.
    * @return The resulting recipe page.
    */
-  public static Result recipe() {
-    return ok(Recipe.render(RecipeDB.getRecipe()));
+  public static Result recipe(long id) {
+    ArrayList<models.Recipe> r = new ArrayList<>();
+    r.add(RecipeDB.getRecipe(id));
+
+    return ok(Recipe.render(r));
   }
 
   /**
@@ -104,7 +108,7 @@ public class Application extends Controller {
    * @return The resulting Meal Planner page.
    */
   public static Result mealPlanner() {
-    return ok(MealPlanner.render("Welcome to Meal Planner."));
+    return ok(MealPlanner.render("Welcome to Meal Planner.", RecipeDB.getFreshRecipeList()));
   }
 
   /**
