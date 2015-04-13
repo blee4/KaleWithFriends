@@ -11,7 +11,9 @@ import java.util.List;
 
 public class RecipeDB {
 
-  /** The most recent index added to the list. */
+  /**
+   * The most recent index added to the list.
+   */
   private static long currentId = 0;
   /**
    * The list that contains all the recipes.
@@ -31,11 +33,13 @@ public class RecipeDB {
 
   /**
    * Gets the current id.
+   *
    * @return The current id.
    */
   public static long getCurrentId() {
     return currentId;
   }
+
   /**
    * Gets a recipe given the id.
    *
@@ -55,5 +59,21 @@ public class RecipeDB {
     return recipeList;
   }
 
+  /**
+   * Gets a list of recipes that is currently available with fresh ingredients.
+   * @return The list of recipes that can be made with fresh ingredients.
+   */
+  public static List<Recipe> getFreshRecipeList() {
+    ArrayList<Ingredient> freshIngredients = new ArrayList<Ingredient>();
+    ArrayList<Recipe> freshRecipeList;
 
+    for (Farmer farmer : FarmerDB.getFarmers()) {
+      for (Ingredient ingredient : farmer.getFreshIngredientList()) {
+        freshIngredients.add(ingredient);
+      }
+    }
+
+    freshRecipeList = IngredientsToRecipe.getRecipesFromIngredients(freshIngredients);
+    return freshRecipeList;
+  }
 }

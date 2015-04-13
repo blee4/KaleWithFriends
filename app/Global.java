@@ -16,6 +16,7 @@ import java.util.Calendar;
  * Created by Jack on 4/4/2015.
  */
 public class Global extends GlobalSettings {
+
   @Override
   public void onStart(Application application) {
     super.onStart(application);
@@ -154,18 +155,44 @@ public class Global extends GlobalSettings {
 
 
     ArrayList<Ingredient> saladIngredients = new ArrayList<Ingredient>();
-    saladIngredients.add(new Ingredient("Kale", 2));
-    saladIngredients.add(new Ingredient("Tomato", 1));
-    saladIngredients.add(new Ingredient("Oranges", 2));
+    saladIngredients.add(new Ingredient("Baby Kale", 2));
+    saladIngredients.add(new Ingredient("Cantaloupe", 1));
+    saladIngredients.add(new Ingredient("Nalo Greens", 2));
     ArrayList<String> saladProcedure = new ArrayList<String>();
-    saladProcedure.add("Chop Tomato and Kale");
-    saladProcedure.add("Mix chopped Kale and Tomato");
+    saladProcedure.add("Chop Cantaloupe, Kale, and Nalo Greens");
+    saladProcedure.add("Mix chopped Kale, Cantaloupe, and Nalo Greens");
     saladProcedure.add("Add choice of salad dressing and enjoy.");
-    Recipe kaleSalad = new Recipe(RecipeDB.getCurrentId(), "Kale Salad", "A very simple kale salad made from kale, tomoatoes and oranges", saladIngredients, saladProcedure, "images/kaluaPorkWithKale.jpg");
+    Recipe kaleSalad = new Recipe(RecipeDB.getCurrentId(), "Kale Salad",
+        "A very simple kale salad made from kale, nalo greens and cantaloupe.",
+        saladIngredients, saladProcedure, "images/kaleSalad.jpg");
     RecipeDB.addRecipe(kaleSalad);
 
-    Recipe kaleSalad2 = new Recipe(RecipeDB.getCurrentId(), "Kale Salad-2", "Another simple kale salad made from kale, tomoatoes and oranges", saladIngredients, saladProcedure, "images/smoothie.jpg");
-    RecipeDB.addRecipe(kaleSalad2);
+
+    ArrayList<Ingredient> stirFryChoySumIngredients = new ArrayList<Ingredient>();
+    stirFryChoySumIngredients.add(new Ingredient("Choy Sum", 2));
+    stirFryChoySumIngredients.add(new Ingredient("Baby Eggplant", 2));
+    stirFryChoySumIngredients.add(new Ingredient("String Beans", 1));
+    ArrayList<String> stirFryChoySumProcedure = new ArrayList<String>();
+    stirFryChoySumProcedure.add("Heat wok until it smokes.");
+    stirFryChoySumProcedure.add("Add oil and heat until it shimmers and is about to start smoking.");
+    stirFryChoySumProcedure.add("Add ginger and garlic, stir fry until very fragrant, about forty seconds");
+    stirFryChoySumProcedure.add("Add choy sum, string beans, and eggplant all at once, and stir fry"
+       + " very vigorously; water will escape from the greens immediately.");
+    stirFryChoySumProcedure.add("Stir and fry until the leaves are wilted and the stems are just starting to wilt");
+    stirFryChoySumProcedure.add("Immediately remove from heat and "
+        + "scrape into a heated serving platter and serve right away.");
+    Recipe stirFryChoySum = new Recipe(RecipeDB.getCurrentId(), "Stir Fry Choy Sum",
+        "A simple stir fry of choy sum, eggplant, and string beans.",
+        stirFryChoySumIngredients, stirFryChoySumProcedure, "images/stirFryChoySum.jpg");
+    RecipeDB.addRecipe(stirFryChoySum);
+
+    ArrayList<Ingredient> orangeIngredients = new ArrayList<Ingredient>();
+    orangeIngredients.add(new Ingredient("Orange", 1));
+    ArrayList<String> orangeProceure = new ArrayList<String>();
+    orangeProceure.add("Peel skin and eat.");
+    Recipe orange = new Recipe(RecipeDB.getCurrentId(), "Orange", "Just an orange.", orangeIngredients,
+        orangeProceure, "images/smoothie.jpg");
+    RecipeDB.addRecipe(orange);
 
   }
 

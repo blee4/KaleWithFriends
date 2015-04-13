@@ -14,10 +14,10 @@ public class IngredientsToRecipe {
   /**
    * Find list of recipes a user can cook given their ingredients.
    *
-   * @param ingredientList Thet list of ingredients.
+   * @param ingredientList The list of ingredients.
    * @return Recipes the user can cook.
    */
-  public static ArrayList<Recipe> getRecipesFromIngredients(ArrayList<TimedIngredient> ingredientList) {
+  public static ArrayList<Recipe> getRecipesFromIngredients(ArrayList<Ingredient> ingredientList) {
     List<Recipe> listFromRecipeDB = RecipeDB.getRecipe();
     ArrayList<Recipe> returnRecipeList = new ArrayList<Recipe>();
 
@@ -27,7 +27,7 @@ public class IngredientsToRecipe {
       for (Ingredient ingredient : recipeIngredientList) {
         flag = false;
         for (int i = 0; i < ingredientList.size(); i++) {
-          if (ingredient.getName().equals(recipeIngredientList.get(i).getName())) {
+          if (ingredient.getName().equals(ingredientList.get(i).getName())) {
             flag = true;
             break;
           }
