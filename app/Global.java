@@ -188,11 +188,41 @@ public class Global extends GlobalSettings {
 
     ArrayList<Ingredient> orangeIngredients = new ArrayList<Ingredient>();
     orangeIngredients.add(new Ingredient("Orange", 1));
-    ArrayList<String> orangeProceure = new ArrayList<String>();
-    orangeProceure.add("Peel skin and eat.");
+    ArrayList<String> orangeProcedure = new ArrayList<String>();
+    orangeProcedure.add("Peel skin and eat.");
     Recipe orange = new Recipe(RecipeDB.getCurrentId(), "Orange", "Just an orange.", orangeIngredients,
-        orangeProceure, "images/smoothie.jpg");
+        orangeProcedure, "images/orange.jpg");
     RecipeDB.addRecipe(orange);
+
+
+    ArrayList<Ingredient> cornIngredients = new ArrayList<Ingredient>();
+    cornIngredients.add(new Ingredient("Sweet Corn", 1));
+    ArrayList<String> cornProcedure = new ArrayList<String>();
+    cornProcedure.add("Husk the corn.");
+    cornProcedure.add("Rinse the corn.");
+    cornProcedure.add("Bring a pot of water to a boil.");
+    cornProcedure.add("Place corn in the water.");
+    cornProcedure.add("Wait for the water to return to a boil.");
+    cornProcedure.add("Cook the corn for about 5 to 7 minutes or until soft.");
+    cornProcedure.add("Remove corn from water and serve.");
+    Recipe corn = new Recipe(RecipeDB.getCurrentId(), "Corn on the Cob", "Corn on the Cob!", cornIngredients,
+        cornProcedure, "images/cornOnTheCob.jpg");
+    RecipeDB.addRecipe(corn);
+
+    ArrayList<Ingredient> mintTeaIngredients = new ArrayList<Ingredient>();
+    mintTeaIngredients.add(new Ingredient("Mint", 1));
+    ArrayList<String> mintTeaProcedure = new ArrayList<String>();
+    mintTeaProcedure.add("Put 2 cups of water into a cooking bowl.");
+    mintTeaProcedure.add("Rinse the mint under clean water and mix into bowl.");
+    mintTeaProcedure.add("Boil the water until boiling.");
+    mintTeaProcedure.add("Turn off heat and stir for 3 minutes.");
+    mintTeaProcedure.add("Strain the leaves.");
+    mintTeaProcedure.add("Add sugar and serve.");
+    Recipe mintTea = new Recipe(RecipeDB.getCurrentId(), "Mint Tea",
+        "A simple tea created with mint leaves.", mintTeaIngredients,
+        mintTeaProcedure, "images/mintTea.jpg");
+    RecipeDB.addRecipe(mintTea);
+
 
   }
 

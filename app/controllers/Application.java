@@ -68,7 +68,7 @@ public class Application extends Controller {
    * @return The resulting cookbook page.
    */
   public static Result cookbook() {
-    return ok(Cookbook.render("Welcome to cookbook."));
+    return ok(Cookbook.render(RecipeDB.getRecipe()));
   }
 
   /**
