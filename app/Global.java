@@ -218,7 +218,8 @@ public class Global extends GlobalSettings {
     mintTeaProcedure.add("Turn off heat and stir for 3 minutes.");
     mintTeaProcedure.add("Strain the leaves.");
     mintTeaProcedure.add("Add sugar and serve.");
-    Recipe mintTea = new Recipe(RecipeDB.getCurrentId(), "Mint Tea", "A simple tea created with mint leaves.", mintTeaIngredients,
+    Recipe mintTea = new Recipe(RecipeDB.getCurrentId(), "Mint Tea",
+        "A simple tea created with mint leaves.", mintTeaIngredients,
         mintTeaProcedure, "images/mintTea.jpg");
     RecipeDB.addRecipe(mintTea);
 
