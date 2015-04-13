@@ -15,7 +15,7 @@
           @for(farmer <- farmerList) {
             @for(ingredient <- farmer.getFreshIngredientList) {
               <tr>
-                <td><a href="@routes.Application.farmersProfile(farmer.getId)">@farmer.getName()</a></td>
+                <td><a href="@routes.Application.farmersProfile(farmer.getName)">@farmer.getName()</a></td>
                 <td>@ingredient.getName()</td>
                 <td>$@ingredient.getPrice() per lb.</td>
                 <td>@ingredient.getQuantity</td>

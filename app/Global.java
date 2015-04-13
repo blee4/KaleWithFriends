@@ -1,3 +1,5 @@
+import models.Consumer;
+import models.ConsumerDB;
 import models.Farmer;
 import models.FarmerDB;
 import models.Ingredient;
@@ -153,6 +155,34 @@ public class Global extends GlobalSettings {
         "Kapiolani Community College Farmers Market", "808-677-9516", "images/farmPicture.jpg", ingredients2);
     FarmerDB.addFarmer(farmer2);
 
+    ArrayList<Ingredient> fridge1 = new ArrayList<Ingredient>();
+    fridge1.add(new Ingredient("Banana", 3));
+    fridge1.add(new Ingredient("Kale", 2));
+    fridge1.add(new Ingredient("Rice", 4));
+    fridge1.add(new Ingredient("Flour", 2));
+    fridge1.add(new Ingredient("Kalua Pig", 1));
+    fridge1.add(new Ingredient("Spinach", 3));
+    fridge1.add(new Ingredient("Tomato", 1));
+    fridge1.add(new Ingredient("Milk", 1));
+    fridge1.add(new Ingredient("Avocado", 2));
+    fridge1.add(new Ingredient("Sliced Bread", 1));
+    Consumer consumer1 = new Consumer(1, "Kale Lover", "Consumer", "2500 Campus Road, Honolulu, HI 96822", fridge1);
+    ConsumerDB.addConsumer(consumer1);
+
+
+    ArrayList<Ingredient> fridge2 = new ArrayList<Ingredient>();
+    fridge2.add(new Ingredient("Olives", 1));
+    fridge2.add(new Ingredient("Lettuce", 3));
+    fridge2.add(new Ingredient("Poi", 3));
+    fridge2.add(new Ingredient("Ginger", 1));
+    fridge2.add(new Ingredient("Soy Milk", 1));
+    fridge2.add(new Ingredient("Pita Bread", 2));
+    fridge2.add(new Ingredient("Greek Yogurt", 1));
+    fridge2.add(new Ingredient("Fresh Garlic", 1));
+    fridge2.add(new Ingredient("Apples", 2));
+    fridge2.add(new Ingredient("Cheddar Cheese", 1));
+    Consumer consumer2 = new Consumer(2, "Kale Friend", "Consumer", "3071 Pualei Circle 96815", fridge2);
+    ConsumerDB.addConsumer(consumer2);
 
     ArrayList<Ingredient> saladIngredients = new ArrayList<Ingredient>();
     saladIngredients.add(new Ingredient("Baby Kale", 2));

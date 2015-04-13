@@ -1,107 +1,71 @@
-@(contactForm: Form[views.loginData.LoginData])
+@(farmer: Farmer)
 
 @Main("Page1") {
-    <div id="homepage">
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search friends...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                </div><!-- /input-group -->
-            </div><!-- /.col-lg-6 -->
+        <div id="homepage">
+            <div class="row">
+                <div class="col-sm-4">
+                    <button class="btn btn-lg btn-block btn-success" type="button">
+                        <a href="@routes.Application.availableNow()">Edit Stock</a></button>
 
-            <div class="col-sm-3">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search all recipes...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                </div><!-- /input-group -->
-            </div><!-- /.col-lg-6 -->
-        </div><!-- /.row -->
 
-        <div class="horizontal">
-            <div class="table">
-                <article>
-                    <h3>I'm a Farmer</h3>
-                </article>
-                <article>
-                    <h3>KaleLover4Life</h3>
-                </article>
-                <article>
-                    <h3>NumberOneKaleLover</h3>
-                </article>
-                <article>
-                    <h3>KaleLover8o8</h3>
-                </article>
-                <article>
-                    <h3>ILoveKale</h3>
-                </article>
-                <article>
-                    <h3>KaleAllDay</h3>
-                </article>
-                <article>
-                    <h3>KaleEveryDay</h3>
-                </article>
-                <article>
-                    <h3>MoreKalePlease</h3>
-                </article>
-                <article>
-                    <h3>KaleKaleKale</h3>
-                </article>
-                <article>
-                    <h3>KaleAlways</h3>
-                </article>
-                    <!-- Repeat this part as many times as necessary. -->
-            </div>
-        </div>
+                    <div class="well">
+                        <img src="@routes.Assets.at(farmer.getPictureLocation())" id="farmerPicture">
+                        <h2>@farmer.getName()</h2>
+                        <h4>Farm location: </h4>  @farmer.getLocation()<br><br>
+                        <h4>Market locations:</h4> @farmer.getMarkets()<br><br>
+                        <h4>Phone Number: </h4>@farmer.getPhone()<br><br>
+                    </div>
 
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="well">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item active">
-                            My fridge
-                        </a>
-                        <a href="#" class="list-group-item"><span class="badge">4 lb</span>
-                            Kale</a>
-                        <a href="#" class="list-group-item"><span class="badge">1 lb</span>
-                            Spinach</a>
-                        <a href="#" class="list-group-item"><span class="badge">2 lb</span>
-                            Brocolli</a>
-                        <a href="#" class="list-group-item"><span class="badge">1 lb</span>
-                            Bananas</a>
+                    <div class="well">
+                        <h2>Inventory</h2>
+                        <table class="table table-striped table-bordered">
+                            <tr>
+                                <th>Item</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+
+                            </tr>
+
+                            @for(ingredient <- farmer.getIngredientList) {
+                                <tr>
+                                    <td>@ingredient.getName()</td>
+                                    <td>$@ingredient.getPrice() per lb.</td>
+                                    <td>@ingredient.getQuantity</td>
+                                    }
+                        </tr>
+                        </table>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-8">
-                <div class="well">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item active">
-                            <h4 class="list-group-item-heading">Kalua Pork and Kale: 3/14/15 by KaleLoverForever</h4>
-                            <p class="list-group-item-text">
-                                <img src="@routes.Assets.at("images/kaluaPorkWithKale.jpg")" id="picture">
-                        <body>Ingredients</body>
-                            <ul>
-                                <li>1 pork butt roast (5-6 pounds)</li>
-                                <li>1 tablespoon coarse salt (sea salt or Hawaiian salt is best)</li>
-                                <li>3 tablespoons liquid smoke (hickory flavored)</li>
-                                <li> 2-3 bananas (unpeeled)</li>
-                            </ul>
-                        </a>
 
-                        <a href="#" class="list-group-item active">
-                            <h4 class="list-group-item-heading">Kalua Pork and Kale: 3/14/15 by KaleLoverForever</h4>
-                            <p class="list-group-item-text">
-                                <img src="@routes.Assets.at("images/smoothie.jpg")" id="picture">
-                        <body>Description</body>
-                            <p>If you have never had a kale smoothie before, you are definitely missing out! This recipe is the best kale smoothie recipe out there, and it will not disappoint you! All of the ingredients are cheap and easy to find, and it will give you the energy that you need to start your day, workout, etc. Also...</p>
-                        </a>
+                <div class="col-sm-8">
+                    <div class="well">
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object" src="@routes.Assets.at("images/farmPicture.jpg")">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">Nalo LIFE</h4>
+                                We just ran out of kale. But we still have lots of other fresh vegetables waiting
+                                to be bought! Come see us at the Windward Mall Farmers market!
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img class="media-object" src="@routes.Assets.at("images/farmPicture.jpg")">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">Aloun Farms</h4>
+                                Our hard-working farmers just finished picking some fresh kale! Come see us on
+                                Saturday morning at KCC for your weekly dose of kale!
+                            </div></div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-}
+
+
+    }
