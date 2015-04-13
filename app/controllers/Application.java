@@ -74,6 +74,7 @@ public class Application extends Controller {
   /**
    * Returns the recipe page.
    *
+   * @param id The id for the recipe.
    * @return The resulting recipe page.
    */
   public static Result recipe(long id) {
@@ -104,7 +105,7 @@ public class Application extends Controller {
    * @return The resulting Meal Planner page.
    */
   public static Result mealPlanner() {
-    return ok(MealPlanner.render("Welcome to Meal Planner.", RecipeDB.getRecipe()));
+    return ok(MealPlanner.render("Welcome to Meal Planner.", RecipeDB.getFreshRecipeList()));
   }
 
   /**
