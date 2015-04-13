@@ -161,9 +161,11 @@ public class Global extends GlobalSettings {
     saladProcedure.add("Chop Tomato and Kale");
     saladProcedure.add("Mix chopped Kale and Tomato");
     saladProcedure.add("Add choice of salad dressing and enjoy.");
-    Recipe kaleSalad = new Recipe(1, "Kale Salad", saladIngredients, saladProcedure);
+    Recipe kaleSalad = new Recipe(RecipeDB.getCurrentId(), "Kale Salad", "A very simple kale salad made from kale, tomoatoes and oranges", saladIngredients, saladProcedure, "images/kaluaPorkWithKale.jpg");
     RecipeDB.addRecipe(kaleSalad);
 
+    Recipe kaleSalad2 = new Recipe(RecipeDB.getCurrentId(), "Kale Salad-2", "Another simple kale salad made from kale, tomoatoes and oranges", saladIngredients, saladProcedure, "images/smoothie.jpg");
+    RecipeDB.addRecipe(kaleSalad2);
 
   }
 

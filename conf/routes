@@ -3,6 +3,7 @@
 # ~~~~
 
 # Home page
+<<<<<<< HEAD
 GET        /                        controllers.Application.index()
 GET        /profile                 controllers.Application.login()
 GET        /friendsprofile          controllers.Application.friendsProfile()
@@ -14,6 +15,18 @@ GET        /mealplanner             controllers.Application.mealPlanner()
 GET        /dashboard               controllers.Application.login()
 GET        /farmersdashboard        controllers.Application.login()
 GET        /availablenow            controllers.Application.availableNow()
+=======
+GET        /                      controllers.Application.index()
+GET        /profile               controllers.Application.login()
+GET        /friendsprofile        controllers.Application.friendsProfile()
+GET        /farmersprofile        controllers.Application.farmersProfile()
+GET        /cookbook              controllers.Application.cookbook()
+GET        /recipe                controllers.Application.recipe(id: Long)
+GET        /local                 controllers.Application.local()
+GET        /mealplanner           controllers.Application.mealPlanner()
+GET        /dashboard             controllers.Application.login()
+GET        /farmersdashboard      controllers.Application.login()
+>>>>>>> origin/Ingredient-database
 
 # Map static resources from the /public folder to the /assets URL path
 GET        /assets/*file            controllers.Assets.at(path="/public", file)
