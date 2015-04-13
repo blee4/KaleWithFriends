@@ -75,4 +75,13 @@ public class User {
   public void setId(long id) {
     this.id = id;
   }
+
+  public static boolean isName(String name) {
+    if((ConsumerDB.getConsumer(name) == null) || (FarmerDB.getFarmer(name) == null)) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
 }

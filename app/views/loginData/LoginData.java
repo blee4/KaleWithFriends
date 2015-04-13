@@ -49,8 +49,7 @@ public class LoginData {
     if (loginType == null || !LoginTypes.isType(loginType)) {
       errors.add(new ValidationError("loginType", "Login type is invalid."));
     }
-
-    return errors.isEmpty() ? null : errors;
+      return errors.isEmpty() ? null : errors;
   }
 
 }

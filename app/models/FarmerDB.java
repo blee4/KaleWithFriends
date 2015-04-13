@@ -1,7 +1,9 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Farmer database to hold all the farmers.
@@ -14,7 +16,7 @@ public class FarmerDB {
   /**
    * The list that contains all the farmers.
    */
-  public static ArrayList<Farmer> farmerList = new ArrayList<Farmer>();
+  public static Map<String, Farmer> farmerList = new HashMap<>();
 
   /**
    * Adds a farmer to the database.
@@ -22,17 +24,17 @@ public class FarmerDB {
    * @param farmer The farmer.
    */
   public static void addFarmer(Farmer farmer) {
-    farmerList.add(farmer);
+    farmerList.put(farmer.getName(), farmer);
   }
 
   /**
-   * Gets a farmer given the id.
+   * Gets a farmer given the name.
    *
-   * @param id The farmer id.
+   * @param name The farmer name.
    * @return The corresponding farmer.
    */
-  public static Farmer getFarmer(int id) {
-    return farmerList.get(id);
+  public static Farmer getFarmer(String name) {
+    return farmerList.get(name);
   }
 
   /**
@@ -40,8 +42,7 @@ public class FarmerDB {
    *
    * @return The list of farmers.
    */
-  public static List<Farmer> getFarmers() {
-    return farmerList;
+  public static List<Farmer> getFarmers() {return new ArrayList(farmerList.values());
   }
 
 

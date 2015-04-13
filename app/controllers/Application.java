@@ -1,6 +1,9 @@
 package controllers;
 
 import java.util.Map;
+
+import models.Consumer;
+import models.ConsumerDB;
 import models.Farmer;
 import models.FarmerDB;
 import models.RecipeDB;
@@ -48,17 +51,17 @@ public class Application extends Controller {
    * @return The resulting Friend's profile page.
    */
   public static Result friendsProfile() {
-    return ok(FriendsProfile.render("Welcome to Friend's Profile."));
+    return ok(FriendsProfile.render()));
   }
 
   /**
    * Returns the Farmer's profile page.
    *
-   * @param id The id of the farmer.
+   * @param name The name of the farmer.
    * @return The resulting Farmer's profile page.
    */
-  public static Result farmersProfile(long id) {
-    Farmer farmer = FarmerDB.getFarmer((int) id);
+  public static Result farmersProfile(String name) {
+    Farmer farmer = FarmerDB.getFarmer(name);
     return ok(FarmersProfile.render(farmer));
   }
 
@@ -120,10 +123,10 @@ public class Application extends Controller {
       LoginData data = formData.get();
       System.out.println("OK: " + data.name + " " + data.loginType);
       if (data.loginType.equals("Farmer")) {
-        return ok(FarmersDashboard.render(formData));
+        return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.name)));
       }
       else {
-        return ok(Dashboard.render(formData));
+        return ok(Dashboard.render(ConsumerDB.getConsumer(data.name)));
       }
     }
   }
