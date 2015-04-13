@@ -65,7 +65,7 @@ public class Global extends GlobalSettings {
         IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00"));
     ingredients.add(new TimedIngredient("Ho Farm Tomato", 14, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
         IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "1.00"));
-    Farmer farmer = new Farmer(1, "Nalo LIFE", "Farmer", "41-574 Makakalo Street Waimanalo, HI 96795",
+    Farmer farmer = new Farmer(0, "Nalo LIFE", "Farmer", "41-574 Makakalo Street Waimanalo, HI 96795",
         "Farmers Market at Windward Mall, Honolulu@Night (Neal Blaisdell Concert Hall), "
             + "Kailua@Night (Longs Kailua Parking Structure), Farmers Market @ HMSA,"
             + " Kapiolani Community College Farmers Market, Mililani High School",
@@ -148,7 +148,7 @@ public class Global extends GlobalSettings {
         IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "0.25"));
     ingredients2.add(new TimedIngredient("Curly Kale", 9, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
         IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00"));
-    Farmer farmer2 = new Farmer(2, "Aloun Farms", "Farmer", "91-1440 Farrington Hwy, Kapolei, HI 96707",
+    Farmer farmer2 = new Farmer(1, "Aloun Farms", "Farmer", "91-1440 Farrington Hwy, Kapolei, HI 96707",
         "Kapiolani Community College Farmers Market", "808-677-9516", "images/farmPicture.jpg", ingredients2);
     FarmerDB.addFarmer(farmer2);
 
