@@ -21,11 +21,11 @@ Websites that allow users to enter ingredients they currently have and find reci
 
 One of the most interesting features of our site is the Meal Planner. Farmers are responsible for keeping their online inventory up-to-date, then using this inventory, the Meal Planner search the onlne list of recipes, find the recipes that can be created using all fresh, local ingredients and produce a list. Each item in the list links to the corresponding recipe page.
 
-<img src="meal_planner.png" width="400 px"><br>
+<img src="doc/images/meal_planner.png" width="400 px"><br>
 <i>Main view of the meal planner page.</i>
 
 <br>
-<img src="recipe.png" width="400 px"><br>
+<img src="doc/images/recipe.png" width="400 px"><br>
 <i>Recipe page for "Kale Salad" linked from the Meal Planner.</i>
 
 
