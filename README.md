@@ -3,7 +3,7 @@
 ## Quick Links
 
 <a href="http://www.kalewithfriends.com">Check out KaleWithFriends.com</a><br>
-<a href="#">View the GitHub Pages</a><br>
+<a href="http://kalewithfriends.github.io/KaleWithFriends">View the Homepage</a><br>
 <a href="#">See the User Guide</a><br>
 <a href="#">See the Developer Guide</a><br>
 <a href="#">Contacts</a><br>
