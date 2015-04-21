@@ -1,6 +1,12 @@
 # Kale-With-Friends
 
-<img src="kale-home-image.jpg" width="500px"/>
+## Quick Links
+
+<a href="http://www.kalewithfriends.com">Check out KaleWithFriends.com</a><br>
+<a href="#">View the GitHub Pages</a><br>
+<a href="#">See the User Guide</a><br>
+<a href="#">See the Developer Guide</a><br>
+<a href="#">Contacts</a><br>
 
 ## Overview
 
@@ -9,87 +15,29 @@ Eating local produce is healthy and helps boost the local economy, but knowing w
 Kale With Friends is a social style site intended to connect consumers with local farmers and producers. There are two types of profiles: consumers and farmers. Farmers create their profile to advertise what they have available and where it can be bought. This could be at their own farm or a nearby farmer's market. The consumer profile allows individuals to search nearby events and farms to see what is fresh and available, where to buy it, and even create meals based on what is currently fresh and available nearby. Users can search through a public cookbook, select their favorite recipes and see which ingredients are available locally.
 
 
-## Approach
+## Why Use Kale With Friends
 
-There are two main parts to this project: the social network and the meal planner/cookbook. We plan to split the work into these two sections and have a team of two people focusing on each part. There will be considerable overlap in the backend data between the two parts, so we will have to do design the data structures as a single team. All code and assets will be stored in a single GitHub repository and the site itself will be built using the Play Framework and Twitter Bootstrap. Once complete it will be deployable on Heroku. 
+Websites that allow users to enter ingredients they currently have and find recipes they can make have been done. Kale With Friends takes this idea a step further by enabling people to not only discover new, interesting recipes, but also get the absolute most out of local farms and growers. 
+
+One of the most interesting features of our site is the Meal Planner. Farmers are responsible for keeping their online inventory up-to-date, then using this inventory, the Meal Planner search the onlne list of recipes, find the recipes that can be created using all fresh, local ingredients and produce a list. Each item in the list links to the corresponding recipe page.
+
+<img src="meal_planner.png" width="400 px"><br>
+<i>Main view of the meal planner page.</i>
+
+<br>
+<img src="recipe.png" width="400 px"><br>
+<i>Recipe page for "Kale Salad" linked from the Meal Planner.</i>
+
+
+## Development Approach
+
+There are two main parts to this project: the social network and the meal planner/cookbook. We plan to split the work into these two sections and have a team of two people focusing on each part. There will be considerable overlap in the backend data between the two parts, so we will have to do design the data structures as a single team. All code and assets will be stored in a single GitHub repository and the site itself will be built using the Play Framework and Twitter Bootstrap. Once complete it will be deployable on Heroku and available at <a href="www.kaleiwthfriends.com">www.kalewithfriends.com</a>.
 
 ## Deliverable 1
-Users will be able to sign in, add items to their "fridge", search for recipes, and add them to their cookbook. Farmers will be able to sign in, and add and edit items to their stock. There will be a "local" page which contains a map of nearby places and a list of upcoming events (ex. farmers markets).
+<strike>Users will be able to sign in, add items to their "fridge", search for recipes, and add them to their cookbook. Farmers will be able to sign in, and add and edit items to their stock. There will be a "local" page which contains a map of nearby places and a list of upcoming events (ex. farmers markets).</strike>
 
 ## Deliverable 2
-In addition to the previous deliverable functionality, users will be able to create a social network by adding friends, and communicating with them by sharing recipes. Users will also be able to rate and comment on recipes and farmers. There will be a functioning meal planner that allows users to plan out their meals for upcoming weeks by chosing recipes and placing them on the calendar.
+The main focus of KaleWithFriends has shifted from the social network aspects to a brining local ingredients to consumers more easily. For the second milestone we are working on displaying where to buy local food, how much it costs, and showing what meals can be made purely out of local food. At this point expiration dates and budget are not being taken into account, and only meals that can be made 100% out of local food are displayed. 
 
 ## Deliverable 3
-In addition to the previous deliverable functionality, the stock (in the user's fridge and in the farmer's market) will have expiration dates. There will be a functioning meal planner that can take in a user's food preferences, a budget, their current fridge items, and their location, and automatically generate meals for the upcoming week, with recommendations on where to buy the ingredients that they need.
-
-## Mockup
-Home Page (Desktop)
-
-<img src="doc/images/homePage.jpg" width="700px"/>
-
-Home Page (Mobile)
-
-<img src="doc/images/homePageMobile.png" width="700px"/>
-
-
-Profile Page (Desktop)
-
-<img src="doc/images/profile.jpg" width="700px"/>
-
-Profile Page (Mobile)
-
-<img src="doc/images/profileMobile.png" width="700px"/>
-
-
-Friend's Profile Page (Desktop)
-
-<img src="doc/images/friendsProfile.jpg" width="700px"/>
-
-Friend's Profile Page (Mobile)
-
-<img src="doc/images/friendsProfileMobile.png" width="700px"/>
-
-
-Farmer's Profile Page (Desktop)
-
-<img src="doc/images/farmersProfile.jpg" width="700px"/>
-
-Farmer's Profile Page (Mobile)
-
-<img src="doc/images/farmersProfileMobile.png" width="700px"/>
-
-
-Cookbook Page (Desktop)
-
-<img src="doc/images/cookbook.jpg" width="700px"/>
-
-Cookbook Page (Mobile)
-
-<img src="doc/images/cookbookMobile.png" width="700px"/>
-
-
-Recipe Page (Desktop)
-
-<img src="doc/images/recipe.jpg" width="700px"/>
-
-Recipe Page (Mobile)
-
-<img src="doc/images/recipeMobile.png" width="700px"/>
-
-
-Local Maps Page (Desktop)
-
-<img src="doc/images/local.png" width="700px"/>
-
-Local Maps Page (Mobile)
-
-<img src="doc/images/localMobile.png" width="700px"/>
-
-
-Meal Planner Page (Desktop)
-
-<img src="doc/images/mealPlanner.png" width="700px"/>
-
-Meal Planner Page (Mobile)
-
-<img src="doc/images/mealPlannerMobile.png" width="700px"/>
+In addition to the functionality of the previous two deliverables, the third expand the meal planner to include a budget, expiration dates of food and display recipes that meet some minimum threshold of local ingredients. At this point the farmer, recipe, and available now pages will all link to the local map which will display exactly where to buy the various foods.
