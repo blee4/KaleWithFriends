@@ -1,16 +1,11 @@
 package controllers;
 
-import java.util.Map;
-
 import models.Consumer;
 import models.ConsumerDB;
 import models.Farmer;
 import models.FarmerDB;
-import models.Ingredient;
 import models.RecipeDB;
-import models.TimedIngredient;
 import models.User;
-import play.api.mvc.Security;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -24,11 +19,14 @@ import views.html.Index;
 import views.html.Local;
 import views.html.MealPlanner;
 import views.html.Recipe;
+import views.html.SignUp;
 import views.loginData.LoginData;
 import views.loginData.LoginTypes;
+import views.loginData.SignUpForm;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Provides controllers for this application.
@@ -38,11 +36,11 @@ public class Application extends Controller {
   /**
    * Returns the home page.
    *
+   * @param username the current user if there is one.
    * @return The resulting home page.
    */
   public static Result index(String username) {
-    if(username == null) {
-      System.out.println("NULL FOR SOME REASON");
+    if (username == null) {
       LoginData data = new LoginData();
 
       Form<LoginData> formData = Form.form(LoginData.class).fill(data);
@@ -51,7 +49,6 @@ public class Application extends Controller {
     }
     else {
       User data = User.getUser(username);
-      System.out.println("TYPE: " + data.getType());
       if (data.getType().equals("Farmer")) {
         return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.getName())));
       }
@@ -67,7 +64,6 @@ public class Application extends Controller {
    * @return The appropriate user home page
    */
   public static Result login() {
-    System.out.println("IM HERE!");
     Form<LoginData> formData = Form.form(LoginData.class).bindFromRequest();
     if (formData.hasErrors()) {
       System.out.println("Errors found.");
@@ -75,9 +71,9 @@ public class Application extends Controller {
     }
     else {
       LoginData data = formData.get();
-      System.out.println("OK: " + data.name + " " + data.loginType);
+      System.out.println("OK: " + data.name + " " + data.type);
       session("username", data.name);
-      if (data.loginType.equals("Farmer")) {
+      if (data.type.equals("Farmer")) {
         return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.name)));
       }
       else {
@@ -86,10 +82,54 @@ public class Application extends Controller {
     }
   }
 
+  /**
+   * Logs a user out.
+   * @return The log in home page
+   */
   public static Result logout() {
     session().clear();
     flash("success", "You've been logged out");
     return index(null);
+  }
+
+
+  /**
+   * Returns the sign up page.
+   *
+   * @return The resulting sign up page.
+   */
+  public static Result signUp() {
+    SignUpForm data = new SignUpForm();
+
+    Form<SignUpForm> formData = Form.form(SignUpForm.class).fill(data);
+    Map<String, Boolean> loginTypeMap = LoginTypes.getTypes();
+    return ok(SignUp.render(formData, loginTypeMap));
+  }
+
+  /**
+   * Processes a new user form.
+   *
+   * @return The new user's dashboard.
+   */
+  public static Result postSignUp() {
+    Form<SignUpForm> formData = Form.form(SignUpForm.class).bindFromRequest();
+    if (formData.hasErrors()) {
+      System.out.println("Errors found.");
+      return badRequest(SignUp.render(formData, LoginTypes.getTypes()));
+    }
+    else {
+      SignUpForm data = formData.get();
+      System.out.println("OK: " + data.name + " " + data.type);
+      session("username", data.name);
+      if (data.type.equals("Farmer")) {
+        FarmerDB.addFarmer(new Farmer(data.name, data.type, data.location));
+        return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.name)));
+      }
+      else {
+        ConsumerDB.addConsumer(new Consumer(data.name, data.type, data.location));
+        return ok(Dashboard.render(ConsumerDB.getConsumer(data.name)));
+      }
+    }
   }
 
   /**
@@ -170,7 +210,8 @@ public class Application extends Controller {
 
   /**
    * Deletes the ingredient from the farmer's stock.
-   * @param farmer the current farmer
+   *
+   * @param farmer     the current farmer
    * @param ingredient the ingredient to delete
    * @return Result the resulting page
    */

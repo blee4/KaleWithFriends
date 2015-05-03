@@ -61,6 +61,7 @@ public class RecipeDB {
 
   /**
    * Gets a list of recipes that is currently available with fresh ingredients.
+   *
    * @return The list of recipes that can be made with fresh ingredients.
    */
   public static List<Recipe> getFreshRecipeList() {

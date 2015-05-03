@@ -1,11 +1,8 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-
 /**
  * Model for consumer. Contains a consumer's name, location, and their fridge contents.
- * <p/>
+ * <p>
  * Created by Amy on 4/12/2015.
  */
 public class Consumer extends User {
@@ -14,12 +11,12 @@ public class Consumer extends User {
   private String pictureLocation = "";
 
 
-
   /**
    * Creates a farmer object.
-   * @param id The id of the farmer.
-   * @param name The name of the farmer.
-   * @param type The type of user. (Farmer or Consumer)
+   *
+   * @param id       The id of the farmer.
+   * @param name     The name of the farmer.
+   * @param type     The type of user. (Farmer or Consumer)
    * @param location The location of the farmer.
    */
   public Consumer(long id, String name, String type, String location) {
@@ -29,13 +26,26 @@ public class Consumer extends User {
 
 
   /**
-   * Creates a farmer object with an associated picture location.
-   * @param id The id of the farmer.
-   * @param name The name of the farmer.
-   * @param type The type of user. (Farmer or Consumer)
+   * Creates a farmer object.
+   *
+   * @param name     The name of the farmer.
+   * @param type     The type of user. (Farmer or Consumer)
    * @param location The location of the farmer.
+   */
+  public Consumer(String name, String type, String location) {
+    super(0, name, type);
+    this.location = location;
+  }
+
+
+  /**
+   * Creates a farmer object with an associated picture location.
+   *
+   * @param id              The id of the farmer.
+   * @param name            The name of the farmer.
+   * @param type            The type of user. (Farmer or Consumer)
+   * @param location        The location of the farmer.
    * @param pictureLocation The location of the picture.
-   * @param ingredientList The list of current farmer stock.
    */
   public Consumer(long id, String name, String type, String location, String pictureLocation) {
     super(id, name, type);

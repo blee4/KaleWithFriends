@@ -1,79 +1,79 @@
 @(message: String, farmerInfo: List[String])
 
-@Main("Local") {
+    @Main("Local") {
 
-}
+    }
 
-<html>
-  <head>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-xs-6 col-md-4">
-          <div class="well">
-            <h1>List of Markets/Events</h1>
-              <ol>
-                <li>Campus Center Farmer's Market</li>
-                <li>UHM Dorm Farmer's Market</li>
-                <li>Eat the Streets - Local Produce Only</li>
-                <li>Add more events or farmer's market!</li>
-              </ol>
-          </div>
-        </div>
+    <html>
+        <head>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-6 col-md-4">
+                        <div class="well">
+                            <h1>List of Markets/Events</h1>
+                            <ol>
+                                <li>Campus Center Farmer's Market</li>
+                                <li>UHM Dorm Farmer's Market</li>
+                                <li>Eat the Streets - Local Produce Only</li>
+                                <li>Add more events or farmer's market!</li>
+                            </ol>
+                        </div>
+                    </div>
 
-        <div class="col-xs-12 col-sm-6 col-md-8 map">
-          <script type="text/javascript"
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs-9OW6VqNBsZWzQrLQP1-8vJe4MH-l7w">
+                    <div class="col-xs-12 col-sm-6 col-md-8 map">
+                        <script type="text/javascript"
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBs-9OW6VqNBsZWzQrLQP1-8vJe4MH-l7w">
           </script>
-          <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-          <script>
-          var map;
-          var infowindow;
-          var geocoder;
+                        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+                        <script>
+                        var map ;
+                        var infowindow ;
+                        var geocoder ;
 
-          function initialize ( ) {
-            var honolulu = new google.maps.LatLng ( 21.297, - 157.816 ) ;
-            geocoder = new google.maps.Geocoder ( ) ;
+                        function initialize ( ) {
+                        var honolulu = new google.maps.LatLng ( 21.297, - 157.816 ) ;
+                        geocoder = new google.maps.Geocoder ( ) ;
 
-            map = new google.maps.Map ( document.getElementById ( 'map-canvas' ), {
-              center : honolulu,
-              zoom : 15
-            } ) ;
+                        map = new google.maps.Map ( document.getElementById ( 'map-canvas' ), {
+                        center : honolulu,
+                        zoom : 15
+                        } ) ;
 
-            infowindow = new google.maps.InfoWindow ( ) ;
+                        infowindow = new google.maps.InfoWindow ( ) ;
 
-            @for(info <- farmerInfo) {
-              var nameAddress = '@info.toString() '.split("|");
+                            @for(info <- farmerInfo) {
+                                var nameAddress = ' @info.toString() '.split("|");
 
-              codeAddress(nameAddress[0], nameAddress[1]);
-            }
-          }
+                                codeAddress ( nameAddress[ 0 ], nameAddress[ 1 ] ) ;
+                            }
+                        }
 
-          function codeAddress(name, address) {
-            geocoder.geocode( { 'address': address}, function(results, status) {
-              if (status == google.maps.GeocoderStatus.OK) {
-                map.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                  map: map,
-                  position: results[0].geometry.location,
-                  title: name
-                });
+                        function codeAddress ( name, address ) {
+                        geocoder.geocode ( { 'address' : address }, function ( results, status ) {
+                        if ( status == google.maps.GeocoderStatus.OK ) {
+                        map.setCenter ( results[ 0 ].geometry.location ) ;
+                        var marker = new google.maps.Marker ( {
+                        map : map,
+                        position : results[ 0 ].geometry.location,
+                        title : name
+                        } ) ;
 
-                google.maps.event.addListener ( marker, 'click', function ( ) {
-                  infowindow.setContent ( name + " | " + address) ;
-                  infowindow.open ( map, this ) ;
-                });
-              }
-              else {
-                alert('Geocode was not successful for the following reason: ' + status);
-              }
-            });
-          }
+                        google.maps.event.addListener ( marker, 'click', function ( ) {
+                        infowindow.setContent ( name + " | " + address ) ;
+                        infowindow.open ( map, this ) ;
+                        } ) ;
+                        }
+                        else {
+                        alert ( 'Geocode was not successful for the following reason: ' + status ) ;
+                        }
+                        } ) ;
+                        }
 
-          google.maps.event.addDomListener ( window, 'load', initialize ) ;
-          </script>
-          <div id="map-canvas"></div>
-        </div>
-      </div>
-    </div>
-  </head>
-</html>
+                        google.maps.event.addDomListener ( window, 'load', initialize ) ;
+                        </script>
+                        <div id="map-canvas"></div>
+                    </div>
+                </div>
+            </div>
+        </head>
+    </html>

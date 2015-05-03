@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 /**
  * Model for ingredients with time and price. Subclass of Ingredients.
- * <p/>
+ * <p>
  * Created by Jack on 4/4/2015.
  */
 public class TimedIngredient extends Ingredient {
