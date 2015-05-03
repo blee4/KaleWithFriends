@@ -46,10 +46,17 @@ public class LoginData {
   public List<ValidationError> validate() {
     List<ValidationError> errors = new ArrayList<>();
 
+    if(name == null || !User.isName(name)) {
+      errors.add(new ValidationError("name", "Username is invalid."));
+    }
     if (loginType == null || !LoginTypes.isType(loginType)) {
       errors.add(new ValidationError("loginType", "Login type is invalid."));
     }
       return errors.isEmpty() ? null : errors;
+  }
+
+  public String getName() {
+    return name;
   }
 
 }

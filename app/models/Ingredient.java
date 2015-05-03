@@ -22,7 +22,7 @@ public class Ingredient {
   }
 
   /**
-   * Gets the name of the ingreident.
+   * Gets the name of the ingredient.
    *
    * @return The name.
    */
@@ -37,5 +37,26 @@ public class Ingredient {
    */
   public int getQuantity() {
     return quantity;
+  }
+
+  /**
+   * Adds an amount to the quantity.
+   * @param add The amount of stock to add.
+   */
+  public void addQuantity(int add) {
+    quantity = quantity + add;
+  }
+
+  /**
+   * Subtracts an amount from the quantity
+   * @param sub The amount of stock to subtract.
+   */
+  public void subtractQuantity(int sub) {
+    if(quantity - sub >= 0) {
+      quantity = quantity - sub;
+    }
+    else {
+      throw new RuntimeException("You cannot have a negative amount of stock.");
+    }
   }
 }
