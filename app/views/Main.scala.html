@@ -7,7 +7,7 @@
         <title>@page (Kale With Friends)</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.2/darkly/bootstrap.min.css">
-
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
             <!--  Load site-specific customizations after bootstrap. -->
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
@@ -48,8 +48,10 @@
                             <a href="@routes.Application.local()">Local</a></li>
                         <li class="@("active".when(page == "Meal Planner"))">
                             <a href="@routes.Application.mealPlanner()">Meal Planner</a></li>
-                      <li class="@("active".when(page == "Available Now"))">
-                        <a href="@routes.Application.availableNow()">Available Now</a></li>
+                        <li class="@("active".when(page == "Available Now"))">
+                            <a href="@routes.Application.availableNow()">Available Now</a></li>
+                        <li>
+                            <a href="@routes.Application.logout()">Logout</a></li>
                     </ul>
                 </div>
             </div>

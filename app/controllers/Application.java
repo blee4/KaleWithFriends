@@ -6,7 +6,11 @@ import models.Consumer;
 import models.ConsumerDB;
 import models.Farmer;
 import models.FarmerDB;
+import models.Ingredient;
 import models.RecipeDB;
+import models.TimedIngredient;
+import models.User;
+import play.api.mvc.Security;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -36,14 +40,57 @@ public class Application extends Controller {
    *
    * @return The resulting home page.
    */
-  public static Result index() {
-    LoginData data = new LoginData();
+  public static Result index(String username) {
+    if(username == null) {
+      System.out.println("NULL FOR SOME REASON");
+      LoginData data = new LoginData();
 
-    Form<LoginData> formData = Form.form(LoginData.class).fill(data);
-    Map<String, Boolean> loginTypeMap = LoginTypes.getTypes();
-    return ok(Index.render(formData, loginTypeMap));
+      Form<LoginData> formData = Form.form(LoginData.class).fill(data);
+      Map<String, Boolean> loginTypeMap = LoginTypes.getTypes();
+      return ok(Index.render(formData, loginTypeMap));
+    }
+    else {
+      User data = User.getUser(username);
+      System.out.println("TYPE: " + data.getType());
+      if (data.getType().equals("Farmer")) {
+        return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.getName())));
+      }
+      else {
+        return ok(Dashboard.render(ConsumerDB.getConsumer(data.getName())));
+      }
+    }
   }
 
+  /**
+   * Processes the form submitted from the Login page.
+   *
+   * @return The appropriate user home page
+   */
+  public static Result login() {
+    System.out.println("IM HERE!");
+    Form<LoginData> formData = Form.form(LoginData.class).bindFromRequest();
+    if (formData.hasErrors()) {
+      System.out.println("Errors found.");
+      return badRequest(Index.render(formData, LoginTypes.getTypes()));
+    }
+    else {
+      LoginData data = formData.get();
+      System.out.println("OK: " + data.name + " " + data.loginType);
+      session("username", data.name);
+      if (data.loginType.equals("Farmer")) {
+        return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.name)));
+      }
+      else {
+        return ok(Dashboard.render(ConsumerDB.getConsumer(data.name)));
+      }
+    }
+  }
+
+  public static Result logout() {
+    session().clear();
+    flash("success", "You've been logged out");
+    return index(null);
+  }
 
   /**
    * Returns the Friend's profile page.
@@ -111,29 +158,6 @@ public class Application extends Controller {
     return ok(MealPlanner.render("Welcome to Meal Planner.", RecipeDB.getFreshRecipeList()));
   }
 
-  /**
-   * Processes the form submitted from the Login page.
-   *
-   * @return The appropriate user home page
-   */
-  public static Result login() {
-    Form<LoginData> formData = Form.form(LoginData.class).bindFromRequest();
-
-    if (formData.hasErrors()) {
-      System.out.println("Errors found.");
-      return badRequest(Index.render(formData, LoginTypes.getTypes()));
-    }
-    else {
-      LoginData data = formData.get();
-      System.out.println("OK: " + data.name + " " + data.loginType);
-      if (data.loginType.equals("Farmer")) {
-        return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.name)));
-      }
-      else {
-        return ok(Dashboard.render(ConsumerDB.getConsumer(data.name)));
-      }
-    }
-  }
 
   /**
    * Returns the available now page.
@@ -142,5 +166,16 @@ public class Application extends Controller {
    */
   public static Result availableNow() {
     return ok(AvailableNow.render(FarmerDB.getFarmers()));
+  }
+
+  /**
+   * Deletes the ingredient from the farmer's stock.
+   * @param farmer the current farmer
+   * @param ingredient the ingredient to delete
+   * @return Result the resulting page
+   */
+  public static Result deleteIngredient(String farmer, String ingredient) {
+    Farmer.deleteIngredient(farmer, ingredient);
+    return ok(FarmersDashboard.render(Farmer.findFarmer(farmer)));
   }
 }

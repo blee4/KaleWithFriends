@@ -77,11 +77,25 @@ public class User {
   }
 
   public static boolean isName(String name) {
-    if((ConsumerDB.getConsumer(name) == null) || (FarmerDB.getFarmer(name) == null)) {
+    if((ConsumerDB.getConsumer(name) == null) && (FarmerDB.getFarmer(name) == null)) {
       return false;
     }
     else {
       return true;
+    }
+  }
+
+  public static User getUser(String name) {
+    if(isName(name)) {
+      if(ConsumerDB.getConsumer(name) != null) {
+        return ConsumerDB.getConsumer(name);
+      }
+      else {
+        return FarmerDB.getFarmer(name);
+      }
+    }
+    else {
+      return null;
     }
   }
 }
