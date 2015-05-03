@@ -13,6 +13,10 @@ h1 {
   text-align: center;
 }
 
+h3 {
+  text-align: center;
+}
+
 /* all map containers must be full height */
 html, body, .container-fluid, .row, .map {
   height: 100%
@@ -113,4 +117,8 @@ html, body, .container-fluid, .row, .map {
 
 .fa-times {
   color: red;
+}
+
+.login-form {
+  margin-left: 30px;
 }
