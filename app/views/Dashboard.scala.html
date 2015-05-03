@@ -19,18 +19,6 @@
                                     </ul>
                                 </div><!-- /btn-group -->
                             </div><!-- /input-group -->
-
-                    <div class="well">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item active">
-                                My fridge
-                            </a>
-                            @for(ingredient <- consumer.getIngredientList) {
-                                <a href="#" class="list-group-item"><span class="badge">@ingredient.getQuantity()</span>
-                                    @ingredient.getName()</a>
-                            }
-                        </div>
-                    </div>
                 </div>
 
                 <div class="col-sm-8">

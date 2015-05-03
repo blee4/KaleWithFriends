@@ -11,7 +11,6 @@ import java.util.Calendar;
 public class Consumer extends User {
 
   private String location;
-  private ArrayList<Ingredient> ingredientList;
   private String pictureLocation = "";
 
 
@@ -22,12 +21,10 @@ public class Consumer extends User {
    * @param name The name of the farmer.
    * @param type The type of user. (Farmer or Consumer)
    * @param location The location of the farmer.
-   * @param ingredientList The list of current farmer stock.
    */
-  public Consumer(long id, String name, String type, String location, ArrayList<Ingredient> ingredientList) {
+  public Consumer(long id, String name, String type, String location) {
     super(id, name, type);
     this.location = location;
-    this.ingredientList = ingredientList;
   }
 
 
@@ -40,10 +37,9 @@ public class Consumer extends User {
    * @param pictureLocation The location of the picture.
    * @param ingredientList The list of current farmer stock.
    */
-  public Consumer(long id, String name, String type, String location, String pictureLocation, ArrayList<Ingredient> ingredientList) {
+  public Consumer(long id, String name, String type, String location, String pictureLocation) {
     super(id, name, type);
     this.location = location;
-    this.ingredientList = ingredientList;
     this.pictureLocation = pictureLocation;
   }
 
@@ -65,14 +61,6 @@ public class Consumer extends User {
     return location;
   }
 
-  /**
-   * Gets the current stock of the farmer.
-   *
-   * @return The list of farmer's produce.
-   */
-  public ArrayList<Ingredient> getIngredientList() {
-    return ingredientList;
-  }
 
   /**
    * Gets the location for the logo/picture for the farmer.
