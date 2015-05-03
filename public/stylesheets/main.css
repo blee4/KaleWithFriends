@@ -110,3 +110,7 @@ html, body, .container-fluid, .row, .map {
 .gm-style-iw {
   color: #000000;
 }
+
+.fa-times {
+  color: red;
+}

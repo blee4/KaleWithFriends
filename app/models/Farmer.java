@@ -129,4 +129,65 @@ public class Farmer extends User {
     }
     return freshIngredients;
   }
+
+  /**
+   * Finds and returns a Farmer based on a name. Null if not found.
+   * @param farmer the Farmer name.
+   * @return f the Farmer object
+   */
+  public static Farmer findFarmer(String farmer) {
+    for (Farmer f : FarmerDB.getFarmers()) {
+      if(f.getName().equals(farmer)) {
+        return f;
+      }
+    }
+    return null;
+  }
+
+  /**
+   * Finds and returns a Farmer's TimedIngredient based on a name. Null if not found.
+   * @param ingredient the Ingredient name
+   * @return i the Ingredient object
+   */
+  public TimedIngredient findIngredient(String ingredient) {
+    for (TimedIngredient i : ingredientList) {
+      if (i.getName().equals(ingredient)) {
+        return i;
+      }
+    }
+    return null;
+  }
+
+  /**
+   * Deletes an ingredient from this farmer's ingredient list.
+   * @param ingredient the ingredient to delete
+   */
+  public static void deleteIngredient(String farmer, String ingredient) {
+    Farmer f = findFarmer(farmer);
+    if (f == null) {
+      throw new RuntimeException("Farmer cannot be found.");
+    }
+    TimedIngredient i = f.findIngredient(ingredient);
+    if (i == null) {
+      throw new RuntimeException("Ingredient cannot be found.");
+    }
+    f.ingredientList.remove(i);
+  }
+
+  /**
+   * Adds an ingredient to this farmer's ingredient list.
+   * @param ingredient
+   */
+  public void addIngredient(String ingredient) {
+    TimedIngredient i = findIngredient(ingredient);
+    if (i == null) {
+      throw new RuntimeException("Ingredient cannot be found.");
+    }
+    if(!ingredientList.contains(i)) {
+      ingredientList.add(i);
+    }
+    else {
+      throw new RuntimeException("Ingredient already exists in farmer's ingredient list.");
+    }
+  }
 }
