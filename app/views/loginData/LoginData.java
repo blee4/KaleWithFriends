@@ -18,7 +18,7 @@ public class LoginData {
   /**
    * Login type field.
    */
-  public String type;
+  public String loginType;
 
 
   /**
@@ -33,7 +33,7 @@ public class LoginData {
    * @param user existing contact
    */
   public LoginData(User user) {
-    this.type = user.getType();
+    this.loginType = user.getType();
     this.name = user.getName();
   }
 
@@ -46,19 +46,15 @@ public class LoginData {
   public List<ValidationError> validate() {
     List<ValidationError> errors = new ArrayList<>();
 
-    if (name == null || !User.isName(name)) {
+    if(name == null || !User.isName(name)) {
       errors.add(new ValidationError("name", "Username is invalid."));
     }
-    if (type == null || !LoginTypes.isType(type)) {
+    if (loginType == null || !LoginTypes.isType(loginType)) {
       errors.add(new ValidationError("loginType", "Login type is invalid."));
     }
-    return errors.isEmpty() ? null : errors;
+      return errors.isEmpty() ? null : errors;
   }
 
-  /**
-   * Gets the users name.
-   * @return the users name
-   */
   public String getName() {
     return name;
   }
