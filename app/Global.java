@@ -184,7 +184,7 @@ public class Global extends GlobalSettings {
     stirFryChoySumProcedure.add("Add oil and heat until it shimmers and is about to start smoking.");
     stirFryChoySumProcedure.add("Add ginger and garlic, stir fry until very fragrant, about forty seconds");
     stirFryChoySumProcedure.add("Add choy sum, string beans, and eggplant all at once, and stir fry"
-        + " very vigorously; water will escape from the greens immediately.");
+       + " very vigorously; water will escape from the greens immediately.");
     stirFryChoySumProcedure.add("Stir and fry until the leaves are wilted and the stems are just starting to wilt");
     stirFryChoySumProcedure.add("Immediately remove from heat and "
         + "scrape into a heated serving platter and serve right away.");
