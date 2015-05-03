@@ -10,6 +10,7 @@ import java.util.Map;
 public class LoginTypes {
   /**
    * Returns a map of all login types.
+   *
    * @return a map of all login types.
    */
   public static Map<String, Boolean> getTypes() {
@@ -21,6 +22,7 @@ public class LoginTypes {
 
   /**
    * Checks if a string is a legal login type.
+   *
    * @param type a string type.
    * @return true or false.
    */
@@ -30,6 +32,7 @@ public class LoginTypes {
 
   /**
    * Returns a map of all login types, setting type to true.
+   *
    * @param type the login type to set to true.
    * @return a map of all login types.
    */

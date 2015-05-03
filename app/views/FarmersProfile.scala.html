@@ -1,37 +1,37 @@
 @(farmer: Farmer)
 
-@Main("Farmer's Dashboard") {
-    <div class="container">
-        <div class="col-md-6">
-          <div class="well">
-            <img src="@routes.Assets.at(farmer.getPictureLocation())" id="farmerPicture">
-            <h2>@farmer.getName()</h2>
-              <h4>Farm location: </h4>  @farmer.getLocation()<br><br>
-              <h4>Market locations:</h4> @farmer.getMarkets()<br><br>
-                <h4>Phone Number: </h4>@farmer.getPhone()<br><br>
-          </div>
+    @Main("Farmer's Dashboard") {
+        <div class="container">
+            <div class="col-md-6">
+                <div class="well">
+                    <img src="@routes.Assets.at(farmer.getPictureLocation())" id="farmerPicture">
+                    <h2>@farmer.getName()</h2>
+                    <h4>Farm location: </h4>  @farmer.getLocation()<br><br>
+                    <h4>Market locations:</h4> @farmer.getMarkets()<br><br>
+                    <h4>Phone Number: </h4>@farmer.getPhone()<br><br>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="well">
+                    <h2>Inventory</h2>
+                    <table class="table table-striped table-bordered">
+                        <tr>
+                            <th>Item</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+
+                        </tr>
+
+                        @for(ingredient <- farmer.getIngredientList) {
+                            <tr>
+                                <td>@ingredient.getName()</td>
+                                <td>$@ingredient.getPrice() per lb.</td>
+                                <td>@ingredient.getQuantity</td>
+                                }
+                    </tr>
+                    </table>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6">
-          <div class="well">
-            <h2>Inventory</h2>
-            <table class="table table-striped table-bordered">
-              <tr>
-                <th>Item</th>
-                <th>Price</th>
-                <th>Stock</th>
 
-              </tr>
-
-              @for(ingredient <- farmer.getIngredientList) {
-                <tr>
-                  <td>@ingredient.getName()</td>
-                  <td>$@ingredient.getPrice() per lb.</td>
-                  <td>@ingredient.getQuantity</td>
-                  }
-            </tr>
-            </table>
-          </div>
-        </div>
-      </div>
-
-}
+    }

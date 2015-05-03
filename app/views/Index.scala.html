@@ -1,44 +1,47 @@
-@(contactForm: Form[views.loginData.LoginData], loginTypeMap: Map[String, Boolean])
-
-@import views.html.helper._
 @import views.html.bootstrap3._
+@import views.html.helper._p: Map[String, Boolean])
+
+    @import views.html.helper._
+    @import views.html.bootstrap3._
 
 
-@Main("Home") {
-    <div class="row">
+    @Main("Home") {
+        <div class="row">
 
-    <div class = "col-sm-4">
-        <div class = "login-form">
-        <h3> <i class="fa fa-leaf"></i> Login</h3>
-        @form(routes.Application.login(), 'class -> "form-horizontal") {
-        <input type ="hidden" name="@contactForm("id").name" id="@contactForm("id").id" value="@contactForm("id").value">
+            <div class = "col-sm-4">
+                <div class = "login-form">
+                    <h3> <i class="fa fa-leaf"></i> Login</h3>
+                    @form(routes.Application.login(), 'class -> "form-horizontal") {
+                        <input type ="hidden" name="@contactForm("id").name" id="@contactForm("id").id" value="@contactForm("id").value">
 
-            <!-- Name -->
-        @text(contactForm("name"),
-            label = "Username",
-            placeholder = "Username",
-            help = "")
+                            <!-- Name -->
+                        @text(contactForm("name"),
+                            label = "Username",
+                            placeholder = "Username",
+                            help = "")
 
-            <!-- UserType -->
-        @bootstrap3.select(contactForm("loginType"),
-            label = "Login",
-            optionMap = loginTypeMap,
-            isMultiple = false,
-            help = "")
+                            <!-- UserType -->
+                        @bootstrap3.select(contactForm("loginType"),
+                            label = "Login",
+                            optionMap = loginTypeMap,
+                            isMultiple = false,
+                            help = "")
 
-            <button class="btn btn-md btn-block btn-success" type="submit">Login</button>
-            <a class="btn btn-md btn-block btn-success" style="margin-top:10px;" type="button" href="@routes.Application.availableNow()">Not a member yet? Sign up now!</a>
-        }</div>
-    </div>
+                        <button class="btn btn-md btn-block btn-success" type="submit">
+                            Login</button> <a class="btn btn-md btn-block btn-success" style="margin-top : 10 px ;" type="button" href="@routes.Application.signUp()">
+                            Not a member yet? Sign up now!</a>
+                    }</div>
+            </div>
 
-        <div class="col-sm-8">
-            <img style="height:200px; float:left; padding-right:15px;" src="@routes.Assets.at("images/kale.jpg")">
-            <h2>Welcome to Kale With Friends!</h2><br>
-            <p style="margin-right: 30px;">Eating local produce is healthy, often tastier, and helps boost the local economy, but knowing what is available and getting it when it's at its at its freshest can be a challenge. Kale With Friends is a hot new app that solves this problem by connecting consumers and producers. Through KWF, everyone is aware of what is available nearby, where to buy it and how much it costs. If you grow produce, whether in a backyard garden or on a large scale commercial farm, and are interested in selling it, KWF will bring the local consumers to you. If you are a consumer just looking for local produce, we will make shopping much easier for you.
-            Farmers can easily update their produce stock to let their consumers know what is currently available and where they will be selling them. Consumers can easily find nearby events and farms to see what is fresh and available, where to buy it, and even create meals based on what is currently fresh and available nearby. All users can search through a public cookbook, and select and share their favorite recipes. To join in on the fun, sign up for Kale With Friends today!</p>
+            <div class="col-sm-8">
+                <img style="height : 200 px ; float : left ; padding-right : 15 px ;" src="@routes.Assets.at("images/kale.jpg")">
+                <h2>Welcome to Kale With Friends!</h2><br>
+                <p style="margin-right : 30 px ;">
+                    Eating local produce is healthy, often tastier, and helps boost the local economy, but knowing what is available and getting it when it's at its at its freshest can be a challenge. Kale With Friends is a hot new app that solves this problem by connecting consumers and producers. Through KWF, everyone is aware of what is available nearby, where to buy it and how much it costs. If you grow produce, whether in a backyard garden or on a large scale commercial farm, and are interested in selling it, KWF will bring the local consumers to you. If you are a consumer just looking for local produce, we will make shopping much easier for you.
+                    Farmers can easily update their produce stock to let their consumers know what is currently available and where they will be selling them. Consumers can easily find nearby events and farms to see what is fresh and available, where to buy it, and even create meals based on what is currently fresh and available nearby. All users can search through a public cookbook, and select and share their favorite recipes. To join in on the fun, sign up for Kale With Friends today!</p>
+            </div>
         </div>
-    </div>
-}
+    }
 
 
 

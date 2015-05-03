@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * Static class to find a list of recipes a user can cook given a list of ingredients that the users have.
- * <p/>
+ * <p>
  * Created by Jack on 4/8/2015.
  */
 public class IngredientsToRecipe {
