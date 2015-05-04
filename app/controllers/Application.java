@@ -1,16 +1,11 @@
 package controllers;
 
-import java.util.Map;
-
 import models.Consumer;
 import models.ConsumerDB;
 import models.Farmer;
 import models.FarmerDB;
-import models.Ingredient;
 import models.RecipeDB;
-import models.TimedIngredient;
 import models.User;
-import play.api.mvc.Security;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -31,6 +26,7 @@ import views.loginData.SignUpForm;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Provides controllers for this application.
@@ -40,10 +36,11 @@ public class Application extends Controller {
   /**
    * Returns the home page.
    *
+   * @param username the current user, if there is one
    * @return The resulting home page.
    */
   public static Result index(String username) {
-    if(username == null) {
+    if (username == null) {
       LoginData data = new LoginData();
 
       Form<LoginData> formData = Form.form(LoginData.class).fill(data);
@@ -85,6 +82,10 @@ public class Application extends Controller {
     }
   }
 
+  /**
+   * Logs the current user out.
+   * @return The login page
+   */
   public static Result logout() {
     session().clear();
     flash("success", "You've been logged out");

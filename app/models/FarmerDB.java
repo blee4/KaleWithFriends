@@ -42,7 +42,8 @@ public class FarmerDB {
    *
    * @return The list of farmers.
    */
-  public static List<Farmer> getFarmers() {return new ArrayList(farmerList.values());
+  public static List<Farmer> getFarmers() {
+     return new ArrayList(farmerList.values());
   }
 
 

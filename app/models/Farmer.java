@@ -148,7 +148,7 @@ public class Farmer extends User {
    */
   public static Farmer findFarmer(String farmer) {
     for (Farmer f : FarmerDB.getFarmers()) {
-      if(f.getName().equals(farmer)) {
+      if (f.getName().equals(farmer)) {
         return f;
       }
     }
@@ -171,6 +171,7 @@ public class Farmer extends User {
 
   /**
    * Deletes an ingredient from this farmer's ingredient list.
+   * @param farmer the farmer whose ingredient is being deleted
    * @param ingredient the ingredient to delete
    */
   public static void deleteIngredient(String farmer, String ingredient) {
@@ -187,14 +188,14 @@ public class Farmer extends User {
 
   /**
    * Adds an ingredient to this farmer's ingredient list.
-   * @param ingredient
+   * @param ingredient the ingredient to delete
    */
   public void addIngredient(String ingredient) {
     TimedIngredient i = findIngredient(ingredient);
     if (i == null) {
       throw new RuntimeException("Ingredient cannot be found.");
     }
-    if(!ingredientList.contains(i)) {
+    if (!ingredientList.contains(i)) {
       ingredientList.add(i);
     }
     else {

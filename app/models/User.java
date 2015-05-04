@@ -76,8 +76,13 @@ public class User {
     this.id = id;
   }
 
+  /**
+   * Checks if a user with a specified name exists.
+   * @param name The username to check for
+   * @return true or false if the name exists
+   */
   public static boolean isName(String name) {
-    if((ConsumerDB.getConsumer(name) == null) && (FarmerDB.getFarmer(name) == null)) {
+    if ((ConsumerDB.getConsumer(name) == null) && (FarmerDB.getFarmer(name) == null)) {
       return false;
     }
     else {
@@ -85,9 +90,14 @@ public class User {
     }
   }
 
+  /**
+   * Gets a user given its name.
+   * @param name The name of the user
+   * @return The user object
+   */
   public static User getUser(String name) {
-    if(isName(name)) {
-      if(ConsumerDB.getConsumer(name) != null) {
+    if (isName(name)) {
+      if (ConsumerDB.getConsumer(name) != null) {
         return ConsumerDB.getConsumer(name);
       }
       else {

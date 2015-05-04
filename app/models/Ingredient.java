@@ -48,11 +48,11 @@ public class Ingredient {
   }
 
   /**
-   * Subtracts an amount from the quantity
+   * Subtracts an amount from the quantity.
    * @param sub The amount of stock to subtract.
    */
   public void subtractQuantity(int sub) {
-    if(quantity - sub >= 0) {
+    if (quantity - sub >= 0) {
       quantity = quantity - sub;
     }
     else {

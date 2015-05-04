@@ -46,7 +46,7 @@ public class LoginData {
   public List<ValidationError> validate() {
     List<ValidationError> errors = new ArrayList<>();
 
-    if(name == null || !User.isName(name)) {
+    if (name == null || !User.isName(name)) {
       errors.add(new ValidationError("name", "Username is invalid."));
     }
     if (type == null || !LoginTypes.isType(type)) {
@@ -55,6 +55,10 @@ public class LoginData {
       return errors.isEmpty() ? null : errors;
   }
 
+  /**
+   * Gets the current user's name.
+   * @return The user's name
+   */
   public String getName() {
     return name;
   }

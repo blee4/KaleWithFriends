@@ -1,8 +1,5 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-
 /**
  * Model for consumer. Contains a consumer's name, location, and their fridge contents.
  * <p/>
@@ -47,7 +44,6 @@ public class Consumer extends User {
    * @param type The type of user. (Farmer or Consumer)
    * @param location The location of the farmer.
    * @param pictureLocation The location of the picture.
-   * @param ingredientList The list of current farmer stock.
    */
   public Consumer(long id, String name, String type, String location, String pictureLocation) {
     super(id, name, type);

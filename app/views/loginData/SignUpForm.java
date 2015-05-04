@@ -1,6 +1,5 @@
 package views.loginData;
 
-import models.User;
 import play.data.validation.ValidationError;
 
 import java.util.ArrayList;
@@ -40,7 +39,7 @@ public class SignUpForm {
   public List<ValidationError> validate() {
     List<ValidationError> errors = new ArrayList<>();
 
-    if(name == null) {
+    if (name == null) {
       errors.add(new ValidationError("name", "Please enter a username."));
     }
     if (type == null || !LoginTypes.isType(type)) {
@@ -49,6 +48,10 @@ public class SignUpForm {
       return errors.isEmpty() ? null : errors;
   }
 
+  /**
+   * Gets the current user's name.
+   * @return the user's name
+   */
   public String getName() {
     return name;
   }
