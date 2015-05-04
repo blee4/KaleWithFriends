@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Model for a recipe.
- * <p>
+ * <p/>
  * Created by Jack on 4/4/2015.
  */
 public class Recipe {
