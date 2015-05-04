@@ -42,6 +42,12 @@ html, body, .container-fluid, .row, .map {
   padding-right: 25px;
 }
 
+.produce_image {
+  height: 100px;
+  display: block;
+  padding-right: 25px;
+}
+
 .recipe_well {
   margin-bottom: 100px;
 }
