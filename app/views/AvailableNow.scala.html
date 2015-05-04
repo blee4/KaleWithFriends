@@ -11,7 +11,7 @@
       <div class="col-md-4">
         <div class="well">
 
-          <a href="@routes.Application.farmersProfile(farmer.getName)"> <img src="@routes.Assets.at("images/kale-farm.jpg")" class="produce_image"></a>
+          <a href="@routes.Application.farmersProfile(farmer.getName)"> <img src="@routes.Assets.at(ingredient.getImage())" class="produce_image"></a>
           <ul class="list-unstyled">
             <li>@ingredient.getName()</li>
             <li>$@ingredient.getPrice() per lb.</li>
