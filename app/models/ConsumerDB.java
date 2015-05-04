@@ -41,7 +41,9 @@ public class ConsumerDB {
    *
    * @return The list of consumers.
    */
-  public static ArrayList<Consumer> getConsumers() { return new ArrayList(consumerList.values()); }
+  public static ArrayList<Consumer> getConsumers() {
+    return new ArrayList(consumerList.values());
+  }
 
 
 }

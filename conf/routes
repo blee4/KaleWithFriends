@@ -6,8 +6,8 @@
 
 GET         /                        controllers.Application.index(username: String ?= null)
 POST        /                        controllers.Application.login()
-GET         /signUp                  controllers.Application.signUp()
-POST        /signUp                  controllers.Application.postSignUp()
+GET         /signup                  controllers.Application.signUp()
+POST        /signup                  controllers.Application.postSignUp()
 GET         /logout                  controllers.Application.logout()
 GET         /profile                 controllers.Application.index(username: String ?= null)
 GET         /friendsprofile          controllers.Application.friendsProfile()

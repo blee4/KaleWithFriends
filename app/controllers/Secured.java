@@ -4,9 +4,6 @@ import play.mvc.Http.Context;
 import play.mvc.Result;
 import play.mvc.Security;
 
-
-
-
 /**
  * The security class for user authenticaiton.
  * Created by Amy on 5/3/2015
