@@ -4,6 +4,7 @@ import models.Consumer;
 import models.ConsumerDB;
 import models.Farmer;
 import models.FarmerDB;
+import models.Ingredient;
 import models.RecipeDB;
 import models.User;
 import play.data.Form;
@@ -215,6 +216,33 @@ public class Application extends Controller {
    */
   public static Result deleteIngredient(String farmer, String ingredient) {
     Farmer.deleteIngredient(farmer, ingredient);
+    return ok(FarmersDashboard.render(Farmer.findFarmer(farmer)));
+  }
+
+  //public static Result editStock(Ingredient ingredient) {
+
+  //
+  // }
+
+  /**
+   * Adds just one quantity to the ingredient.
+   * @param farmer the current farmer name
+   * @param ingredient the ingredient to increment
+   * @return the Dashboard with the new ingredient amount
+   */
+  public static Result addOne(String farmer, String ingredient) {
+    Farmer.findFarmer(farmer).findIngredient(ingredient).addQuantity(1);
+    return ok(FarmersDashboard.render(Farmer.findFarmer(farmer)));
+  }
+
+  /**
+   * Subtracts just one quantity from the ingredient.
+   * @param farmer the current farmer name
+   * @param ingredient the ingredient to subtract
+   * @return the Dashboard with the new ingredient amount
+   */
+  public static Result subOne(String farmer, String ingredient) {
+    Farmer.findFarmer(farmer).findIngredient(ingredient).subtractQuantity(1);
     return ok(FarmersDashboard.render(Farmer.findFarmer(farmer)));
   }
 }

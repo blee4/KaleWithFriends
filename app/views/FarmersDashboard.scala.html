@@ -4,10 +4,6 @@
         <div id="homepage">
             <div class="row">
                 <div class="col-sm-4">
-                    <button class="btn btn-lg btn-block btn-success" type="button">
-                        <a href="@routes.Application.availableNow()">Edit Stock</a></button>
-
-
                     <div class="well">
                         <img src="@routes.Assets.at(farmer.getPictureLocation())" id="farmerPicture">
                         <h2>@farmer.getName()</h2>
@@ -24,6 +20,8 @@
                                 <th>Item</th>
                                 <th>Price</th>
                                 <th>Stock</th>
+                                <th></th>
+                                <th></th>
 
                             </tr>
 
@@ -34,6 +32,9 @@
                                     <td>@ingredient.getName()</td>
                                     <td>$@ingredient.getPrice() per lb.</td>
                                     <td>@ingredient.getQuantity</td>
+                                    <td><table><tr><td><a href="@routes.Application.addOne(farmer.getName(), ingredient.getName())"><i class="fa fa-plus"></i></a></td></tr>
+                                        <tr><td><a href="@routes.Application.subOne(farmer.getName(), ingredient.getName())"><i class="fa fa-minus"></i></a></td></tr></table></td>
+                                    <td><a href="#">Edit</a></td>
                                     }
                         </tr>
                         </table>

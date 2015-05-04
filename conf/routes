@@ -18,9 +18,10 @@ GET         /mealplanner             controllers.Application.mealPlanner()
 GET         /dashboard               controllers.Application.login()
 GET         /local                   controllers.Application.local()
 GET         /availablenow            controllers.Application.availableNow()
-GET         /farmersdashboard        controllers.Application.deleteIngredient(farmer: String ?= "", ingredient : String ?= "")
+GET         /farmersdashboard/delete controllers.Application.deleteIngredient(farmer: String ?= "", ingredient : String ?= "")
 GET         /farmersdashboard        controllers.Application.login()
-
+GET         /farmersdashboard/addOne controllers.Application.addOne(farmer: String ?= "", ingredient : String ?= "")
+GET         /farmersdashboard/subOne controllers.Application.subOne(farmer: String ?= "", ingredient : String ?= "")
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file            controllers.Assets.at(path="/public", file)
