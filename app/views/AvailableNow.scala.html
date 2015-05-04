@@ -4,26 +4,32 @@
 
 
   <div class="container">
-    @for(farmer <- farmerList) {
-      @for(ingredient <- farmer.getFreshIngredientList) {
+  @for(farmer <- farmerList) {
+    @for(ingredient <- farmer.getFreshIngredientList) {
 
 
-          <div class="col-md-4">
+      <div class="col-md-4">
         <div class="well">
 
-
           <a href="@routes.Application.farmersProfile(farmer.getName)"> <img src="@routes.Assets.at("images/kale-farm.jpg")" class="produce_image"></a>
-          <p>@ingredient.getName()</p>
-          <p><a href="@routes.Application.farmersProfile(farmer.getName)">@farmer.getName()</a></p>
-          <p>$@ingredient.getPrice() per lb.</p>
-          <p>Quantity:
-          @for(a <- 1 until ingredient.getQuantity/2) {
-            <i class="fa fa-certificate"></i>
-          }</p>
+          <ul class="list-unstyled">
+            <li>@ingredient.getName()</li>
+            <li>$@ingredient.getPrice() per lb.</li>
+            <li><a href="@routes.Application.farmersProfile(farmer.getName)">@farmer.getName()</a></li>
+            <li>Quantity:
+              @if(ingredient.getQuantity / 2 < 2) {
+                <i class="fa fa-sun-o"></i>
+              } else {
+                @for(a <- 1 until ingredient.getQuantity / 2) {
+                  <i class="fa fa-certificate"></i>
+                }
+              }
+            </li>
+          </ul>
         </div>
-            </div>
+      </div>
 
-      }
     }
+  }
   </div>
 }
