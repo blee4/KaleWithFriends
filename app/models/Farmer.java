@@ -12,7 +12,7 @@ public class Farmer extends User {
 
   private String location;
   private ArrayList<TimedIngredient> ingredientList;
-  private String pictureLocation = "";
+  private String pictureLocation = "images/farmPicture.jpg";
   private String markets;
   private String phone;
 
