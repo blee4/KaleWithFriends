@@ -4,16 +4,13 @@
         <div id="homepage">
             <div class="row">
                 <div class="col-sm-4">
-                    <button class="btn btn-lg btn-block btn-success" type="button">
-                        <a href="@routes.Application.availableNow()">Edit Stock</a></button>
-
-
                     <div class="well">
                         <img src="@routes.Assets.at(farmer.getPictureLocation())" id="farmerPicture">
                         <h2>@farmer.getName()</h2>
                         <h4>Farm location: </h4>  @farmer.getLocation()<br><br>
                         <h4>Market locations:</h4> @farmer.getMarkets()<br><br>
                         <h4>Phone Number: </h4>@farmer.getPhone()<br><br>
+                        <p><a href="#">Edit Profile</a></p>
                     </div>
 
                     <div class="well">
@@ -24,9 +21,11 @@
                                 <th>Item</th>
                                 <th>Price</th>
                                 <th>Stock</th>
-
+                                <th></th>
+                                <th></th>
                             </tr>
 
+                                @if(farmer.getIngredientList != null) {
                             @for(ingredient <- farmer.getIngredientList) {
                                 <tr>
                                     <td><a href="@routes.Application.deleteIngredient(farmer.getName(), ingredient.getName())">
@@ -34,9 +33,19 @@
                                     <td>@ingredient.getName()</td>
                                     <td>$@ingredient.getPrice() per lb.</td>
                                     <td>@ingredient.getQuantity</td>
+                                    <td><table><tr><td><a href="@routes.Application.addOne(farmer.getName(), ingredient.getName())"><i class="fa fa-plus"></i></a></td></tr>
+                                        <tr><td><a href="@routes.Application.subOne(farmer.getName(), ingredient.getName())"><i class="fa fa-minus"></i></a></td></tr></table></td>
+                                    <td><a href="#">Edit</a></td>
                                     }
                         </tr>
                         </table>
+
+                        } else {
+                        </tr>
+                        </table> No stock available
+
+                    }
+                        <a href="#"><i class="fa fa-plus"></i> Add new stock item</a>
                     </div>
                 </div>
 
