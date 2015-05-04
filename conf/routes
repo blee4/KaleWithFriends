@@ -16,10 +16,11 @@ GET         /cookbook                controllers.Application.cookbook()
 GET         /recipe                  controllers.Application.recipe(id: Long ?= 0)
 GET         /mealplanner             controllers.Application.mealPlanner()
 GET         /dashboard               controllers.Application.login()
-GET         /farmersdashboard        controllers.Application.login()
 GET         /local                   controllers.Application.local()
 GET         /availablenow            controllers.Application.availableNow()
 GET         /farmersdashboard        controllers.Application.deleteIngredient(farmer: String ?= "", ingredient : String ?= "")
+GET         /farmersdashboard        controllers.Application.login()
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file            controllers.Assets.at(path="/public", file)
