@@ -17,6 +17,18 @@ public class Farmer extends User {
   private String phone;
 
 
+
+  /**
+   * Creates a farmer object.
+   * @param name The name of the farmer.
+   * @param type The type of user. (Farmer or Consumer)
+   * @param location The location of the farmer.
+   */
+  public Farmer(String name, String type, String location) {
+    super(0, name, type);
+    this.location = location;
+  }
+
   /**
    * Creates a farmer object.
    * @param id The id of the farmer.
@@ -34,7 +46,6 @@ public class Farmer extends User {
     this.markets = markets;
     this.phone = phone;
     this.ingredientList = ingredientList;
-    this.pictureLocation = pictureLocation;
   }
 
 
@@ -160,6 +171,7 @@ public class Farmer extends User {
 
   /**
    * Deletes an ingredient from this farmer's ingredient list.
+   * @param farmer the farmer whose ingredient is being deleted
    * @param ingredient the ingredient to delete
    */
   public static void deleteIngredient(String farmer, String ingredient) {
@@ -177,6 +189,7 @@ public class Farmer extends User {
   /**
    * Adds an ingredient to this farmer's ingredient list.
    * @param ingredient
+   * @param ingredient the ingredient to delete
    */
   public void addIngredient(String ingredient) {
     TimedIngredient i = findIngredient(ingredient);

@@ -26,6 +26,8 @@ import views.html.MealPlanner;
 import views.html.Recipe;
 import views.loginData.LoginData;
 import views.loginData.LoginTypes;
+import views.loginData.SignUpForm;
+import views.html.SignUp;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +40,7 @@ public class Application extends Controller {
   /**
    * Returns the home page.
    *
+   * @param username the current user, if there is one
    * @return The resulting home page.
    */
   public static Result index(String username) {
@@ -86,10 +89,54 @@ public class Application extends Controller {
     }
   }
 
+
+  /**
+   * Logs the current user out.
+   * @return The login page
+   */
   public static Result logout() {
     session().clear();
     flash("success", "You've been logged out");
     return index(null);
+  }
+
+
+  /**
+   * Returns the sign up page.
+   *
+   * @return The resulting sign up page.
+   */
+  public static Result signUp() {
+      SignUpForm data = new SignUpForm();
+
+      Form<SignUpForm> formData = Form.form(SignUpForm.class).fill(data);
+      Map<String, Boolean> loginTypeMap = LoginTypes.getTypes();
+      return ok(SignUp.render(formData, loginTypeMap));
+  }
+
+  /**
+   * Processes a new user form.
+   * @return The new user's dashboard.
+   */
+  public static Result postSignUp() {
+    Form<SignUpForm> formData = Form.form(SignUpForm.class).bindFromRequest();
+    if (formData.hasErrors()) {
+      System.out.println("Errors found.");
+      return badRequest(SignUp.render(formData, LoginTypes.getTypes()));
+    }
+    else {
+      SignUpForm data = formData.get();
+      System.out.println("OK: " + data.name + " " + data.type);
+      session("username", data.name);
+      if (data.type.equals("Farmer")) {
+        FarmerDB.addFarmer(new Farmer(data.name, data.type, data.location));
+        return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.name)));
+      }
+      else {
+        ConsumerDB.addConsumer(new Consumer(data.name, data.type, data.location));
+        return ok(Dashboard.render(ConsumerDB.getConsumer(data.name)));
+      }
+    }
   }
 
   /**

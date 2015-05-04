@@ -29,6 +29,21 @@ public class Consumer extends User {
 
 
   /**
+<<<<<<< HEAD
+=======
+   * Creates a farmer object.
+   * @param name The name of the farmer.
+   * @param type The type of user. (Farmer or Consumer)
+   * @param location The location of the farmer.
+   */
+  public Consumer(String name, String type, String location) {
+    super(0, name, type);
+    this.location = location;
+  }
+
+
+  /**
+>>>>>>> new-home-page
    * Creates a farmer object with an associated picture location.
    * @param id The id of the farmer.
    * @param name The name of the farmer.

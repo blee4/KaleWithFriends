@@ -1,12 +1,16 @@
 package controllers;
 
-import play.*;
-import play.mvc.*;
-import play.mvc.Http.*;
+import play.mvc.Http.Context;
+import play.mvc.Result;
+import play.mvc.Security;
 
-import models.*;
-import views.html.Index;
 
+
+
+/**
+ * The security class for user authenticaiton.
+ * Created by Amy on 5/3/2015
+ */
 public class Secured extends Security.Authenticator {
 
   @Override

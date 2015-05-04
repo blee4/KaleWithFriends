@@ -1,15 +1,14 @@
 package views.loginData;
 
-import models.User;
 import play.data.validation.ValidationError;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by amytakayesu on 4/6/15.
+ * Created by amytakayesu on 5/3/15.
  */
-public class LoginData {
+public class SignUpForm {
   /**
    * User name field.
    */
@@ -18,23 +17,17 @@ public class LoginData {
   /**
    * Login type field.
    */
-  public String loginType;
+  public String type;
 
+  /**
+   * Location field.
+   */
+  public String location;
 
   /**
    * Default constructor.
    */
-  public LoginData() {
-  }
-
-  /**
-   * Constructor using existing login.
-   *
-   * @param user existing contact
-   */
-  public LoginData(User user) {
-    this.loginType = user.getType();
-    this.name = user.getName();
+  public SignUpForm() {
   }
 
 
@@ -46,19 +39,18 @@ public class LoginData {
   public List<ValidationError> validate() {
     List<ValidationError> errors = new ArrayList<>();
 
-    if(name == null || !User.isName(name)) {
-      errors.add(new ValidationError("name", "Username is invalid."));
+    if (name == null) {
+      errors.add(new ValidationError("name", "Please enter a username."));
     }
-    if (loginType == null || !LoginTypes.isType(loginType)) {
+    if (type == null || !LoginTypes.isType(type)) {
       errors.add(new ValidationError("loginType", "Login type is invalid."));
     }
       return errors.isEmpty() ? null : errors;
   }
 
-
   /**
    * Gets the current user's name.
-   * @return The user's name
+   * @return the user's name
    */
   public String getName() {
     return name;
