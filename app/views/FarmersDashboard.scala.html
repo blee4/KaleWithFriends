@@ -22,9 +22,9 @@
                                 <th>Stock</th>
                                 <th></th>
                                 <th></th>
-
                             </tr>
 
+                                @if(farmer.getIngredientList != null) {
                             @for(ingredient <- farmer.getIngredientList) {
                                 <tr>
                                     <td><a href="@routes.Application.deleteIngredient(farmer.getName(), ingredient.getName())">
@@ -38,6 +38,12 @@
                                     }
                         </tr>
                         </table>
+
+                        } else {
+                        </tr>
+                        </table> No stock available
+
+                    }
                     </div>
                 </div>
 
