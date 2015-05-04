@@ -25,49 +25,49 @@ public class Global extends GlobalSettings {
 
     ArrayList<TimedIngredient> ingredients = new ArrayList<TimedIngredient>();
     ingredients.add(new TimedIngredient("Nalo Greens", 20, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "6.00"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "6.00", "images/ingredient/nalo_greens.jpg"));
     ingredients.add(new TimedIngredient("Dandelion Greens", 15, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "6.00"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "6.00", "images/ingredient/dandelion_greens.jpg"));
     ingredients.add(new TimedIngredient("Braising Greens", 13, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "6.00"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "6.00","images/ingredient/braising_greens.jpg"));
     ingredients.add(new TimedIngredient("Baby Kale", 21, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00", "images/ingredient/baby_kale.jpg"));
     ingredients.add(new TimedIngredient("Baby Swiss Chard", 9, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00", "images/ingredient/baby_swiss_chard.png"));
     ingredients.add(new TimedIngredient("Tat Soi", 7, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00", "images/ingredient/tat_soi.jpg"));
     ingredients.add(new TimedIngredient("Purslane", 5, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00", "images/ingredient/purslane.jpg"));
     ingredients.add(new TimedIngredient("Okra", 5, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.50"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.50", "images/ingredient/okra.jpg"));
     ingredients.add(new TimedIngredient("Baby Eggplant", 7, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00", "images/ingredient/baby_eggplant.jpg"));
     ingredients.add(new TimedIngredient("Sweet Basil", 9, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.25"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.25", "images/ingredient/sweet_basil.jpg"));
     ingredients.add(new TimedIngredient("Italian Parsley", 5, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.75"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.75", "images/ingredient/italian_parsley.jpg"));
     ingredients.add(new TimedIngredient("American Parsley", 6, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.25"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.25", "images/ingredient/american_parsley.jpg"));
     ingredients.add(new TimedIngredient("Mint", 6, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00", "images/ingredient/mint.jpg"));
     ingredients.add(new TimedIngredient("Cilantro", 6, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.25"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.25", "images/ingredient/cilantro.jpg"));
     ingredients.add(new TimedIngredient("Morimoto Tomato (Small)", 13,
         IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00", "images/ingredient/morimoto_tomato.jpg"));
     ingredients.add(new TimedIngredient("Nalo Tomato (Large)", 10, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "1.50"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "1.50", "images/ingredient/nalo_tomato.jpg"));
     ingredients.add(new TimedIngredient("Sumida Watercress", 4, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00", "images/ingredient/sumida_watercress.jpg"));
     ingredients.add(new TimedIngredient("Kamiya Papaya", 10, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "3.00"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "3.00", "images/ingredient/kamiya_papaya.jpg"));
     ingredients.add(new TimedIngredient("Fat Law Baby Cucumber", 9,
         IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00", "images/ingredient/fat_law_baby_cucumber.jpg"));
     ingredients.add(new TimedIngredient("Nozawa Corn", 10, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "2.00", "images/ingredient/nozawa_corn.jpg"));
     ingredients.add(new TimedIngredient("Ho Farm Tomato", 14, IngredientDate.makeCalendar(2015, Calendar.APRIL, 5),
-        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "1.00"));
+        IngredientDate.makeCalendar(2016, Calendar.MAY, 30), "1.00", "images/ingredient/ho_farm_tomato.jpg"));
     Farmer farmer = new Farmer(0, "Nalo LIFE", "Farmer", "41-574 Makakalo Street Waimanalo, HI 96795",
         "Farmers Market at Windward Mall, Honolulu@Night (Neal Blaisdell Concert Hall), "
             + "Kailua@Night (Longs Kailua Parking Structure), Farmers Market @ HMSA,"
