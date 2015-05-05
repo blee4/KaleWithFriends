@@ -23,7 +23,7 @@ public class Recipe {
   /**
    * The list of ingredients.
    */
-  private ArrayList<Ingredient> ingredientList;
+  private ArrayList<TimedIngredient> ingredientList;
   /**
    * The steps to make the dish.
    */
@@ -44,7 +44,7 @@ public class Recipe {
    * @param procedure      The directions to create the recipe.
    * @param imagePath      The file name for the image. Defaults to place holder image.
    */
-  public Recipe(long id, String name, String description, ArrayList<Ingredient> ingredientList,
+  public Recipe(long id, String name, String description, ArrayList<TimedIngredient> ingredientList,
                 ArrayList<String> procedure, String imagePath) {
     this.id = id;
     this.name = name;
@@ -77,7 +77,7 @@ public class Recipe {
    *
    * @return The list of ingredients.
    */
-  public ArrayList<Ingredient> getIngredientList() {
+  public ArrayList<TimedIngredient> getIngredientList() {
     return ingredientList;
   }
 

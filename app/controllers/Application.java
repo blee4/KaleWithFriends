@@ -182,7 +182,7 @@ public class Application extends Controller {
     return ok(FarmersDashboard.render(Farmer.findFarmer(farmer)));
   }
 
-  //public static Result editStock(Ingredient ingredient) {
+  //public static Result editStock(TimedIngredient ingredient) {
 
   //
   // }

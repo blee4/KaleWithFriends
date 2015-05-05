@@ -1,7 +1,6 @@
 
 import models.Farmer;
 import models.FarmerDB;
-import models.Ingredient;
 import assets.TimeStamp;
 import models.Recipe;
 import models.RecipeDB;
@@ -155,10 +154,10 @@ public class Global extends GlobalSettings {
     FarmerDB.addFarmer(farmer2);
 
 
-    ArrayList<Ingredient> saladIngredients = new ArrayList<Ingredient>();
-    saladIngredients.add(new Ingredient("Baby Kale", 2));
-    saladIngredients.add(new Ingredient("Cantaloupe", 1));
-    saladIngredients.add(new Ingredient("Nalo Greens", 2));
+    ArrayList<TimedIngredient> saladIngredients = new ArrayList<TimedIngredient>();
+    saladIngredients.add(new TimedIngredient("Baby Kale", 2));
+    saladIngredients.add(new TimedIngredient("Cantaloupe", 1));
+    saladIngredients.add(new TimedIngredient("Nalo Greens", 2));
     ArrayList<String> saladProcedure = new ArrayList<String>();
     saladProcedure.add("Chop Cantaloupe, Kale, and Nalo Greens");
     saladProcedure.add("Mix chopped Kale, Cantaloupe, and Nalo Greens");
@@ -169,10 +168,10 @@ public class Global extends GlobalSettings {
     RecipeDB.addRecipe(kaleSalad);
 
 
-    ArrayList<Ingredient> stirFryChoySumIngredients = new ArrayList<Ingredient>();
-    stirFryChoySumIngredients.add(new Ingredient("Choy Sum", 2));
-    stirFryChoySumIngredients.add(new Ingredient("Baby Eggplant", 2));
-    stirFryChoySumIngredients.add(new Ingredient("String Beans", 1));
+    ArrayList<TimedIngredient> stirFryChoySumIngredients = new ArrayList<TimedIngredient>();
+    stirFryChoySumIngredients.add(new TimedIngredient("Choy Sum", 2));
+    stirFryChoySumIngredients.add(new TimedIngredient("Baby Eggplant", 2));
+    stirFryChoySumIngredients.add(new TimedIngredient("String Beans", 1));
     ArrayList<String> stirFryChoySumProcedure = new ArrayList<String>();
     stirFryChoySumProcedure.add("Heat wok until it smokes.");
     stirFryChoySumProcedure.add("Add oil and heat until it shimmers and is about to start smoking.");
@@ -187,8 +186,8 @@ public class Global extends GlobalSettings {
         stirFryChoySumIngredients, stirFryChoySumProcedure, "images/stirFryChoySum.jpg");
     RecipeDB.addRecipe(stirFryChoySum);
 
-    ArrayList<Ingredient> orangeIngredients = new ArrayList<Ingredient>();
-    orangeIngredients.add(new Ingredient("Orange", 1));
+    ArrayList<TimedIngredient> orangeIngredients = new ArrayList<TimedIngredient>();
+    orangeIngredients.add(new TimedIngredient("Orange", 1));
     ArrayList<String> orangeProcedure = new ArrayList<String>();
     orangeProcedure.add("Peel skin and eat.");
     Recipe orange = new Recipe(RecipeDB.getCurrentId(), "Orange", "Just an orange.", orangeIngredients,
@@ -196,8 +195,8 @@ public class Global extends GlobalSettings {
     RecipeDB.addRecipe(orange);
 
 
-    ArrayList<Ingredient> cornIngredients = new ArrayList<Ingredient>();
-    cornIngredients.add(new Ingredient("Sweet Corn", 1));
+    ArrayList<TimedIngredient> cornIngredients = new ArrayList<TimedIngredient>();
+    cornIngredients.add(new TimedIngredient("Sweet Corn", 1));
     ArrayList<String> cornProcedure = new ArrayList<String>();
     cornProcedure.add("Husk the corn.");
     cornProcedure.add("Rinse the corn.");
@@ -210,8 +209,8 @@ public class Global extends GlobalSettings {
         cornProcedure, "images/cornOnTheCob.jpg");
     RecipeDB.addRecipe(corn);
 
-    ArrayList<Ingredient> mintTeaIngredients = new ArrayList<Ingredient>();
-    mintTeaIngredients.add(new Ingredient("Mint", 1));
+    ArrayList<TimedIngredient> mintTeaIngredients = new ArrayList<TimedIngredient>();
+    mintTeaIngredients.add(new TimedIngredient("Mint", 1));
     ArrayList<String> mintTeaProcedure = new ArrayList<String>();
     mintTeaProcedure.add("Put 2 cups of water into a cooking bowl.");
     mintTeaProcedure.add("Rinse the mint under clean water and mix into bowl.");

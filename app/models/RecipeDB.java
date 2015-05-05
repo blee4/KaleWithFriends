@@ -64,11 +64,11 @@ public class RecipeDB {
    * @return The list of recipes that can be made with fresh ingredients.
    */
   public static List<Recipe> getFreshRecipeList() {
-    ArrayList<Ingredient> freshIngredients = new ArrayList<Ingredient>();
+    ArrayList<TimedIngredient> freshIngredients = new ArrayList<TimedIngredient>();
     ArrayList<Recipe> freshRecipeList;
 
     for (Farmer farmer : FarmerDB.getFarmers()) {
-      for (Ingredient ingredient : farmer.getFreshIngredientList()) {
+      for (TimedIngredient ingredient : farmer.getFreshIngredientList()) {
         freshIngredients.add(ingredient);
       }
     }

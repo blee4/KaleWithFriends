@@ -14,7 +14,6 @@ GET         /farmersprofile          controllers.Application.farmersProfile(name
 GET         /cookbook                controllers.Application.cookbook()
 GET         /recipe                  controllers.Application.recipe(id: Long ?= 0)
 GET         /mealplanner             controllers.Application.mealPlanner()
-GET         /dashboard               controllers.Application.login()
 GET         /local                   controllers.Application.local()
 GET         /availablenow            controllers.Application.availableNow()
 GET         /farmersdashboard/delete controllers.Application.deleteIngredient(farmer: String ?= "", ingredient : String ?= "")

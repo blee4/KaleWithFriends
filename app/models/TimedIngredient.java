@@ -7,13 +7,20 @@ import java.util.Calendar;
  * <p/>
  * Created by Jack on 4/4/2015.
  */
-public class TimedIngredient extends Ingredient {
+public class TimedIngredient {
 
   private Calendar startDate;
   private Calendar endDate;
   private String price;
   private String image;
+  protected String name;
+  protected int quantity;
 
+
+  public TimedIngredient(String name, int quantity) {
+    this.name = name;
+    this.quantity = quantity;
+  }
   /**
    * Creates an ingredient object that also contains the time (freshness) and price.
    *
@@ -24,7 +31,8 @@ public class TimedIngredient extends Ingredient {
    * @param price     The price.
    */
   public TimedIngredient(String name, int quantity, Calendar startDate, Calendar endDate, String price) {
-    super(name, quantity);
+    this.name = name;
+    this.quantity = quantity;
     this.startDate = startDate;
     this.endDate = endDate;
     this.price = price;
@@ -42,7 +50,8 @@ public class TimedIngredient extends Ingredient {
    * @param image     The image location.
    */
   public TimedIngredient(String name, int quantity, Calendar startDate, Calendar endDate, String price, String image) {
-    super(name, quantity);
+    this.name = name;
+    this.quantity = quantity;
     this.startDate = startDate;
     this.endDate = endDate;
     this.price = price;
@@ -85,4 +94,46 @@ public class TimedIngredient extends Ingredient {
   public String getImage() {
     return image;
   }
+
+  /**
+   * Gets the name of the ingredient.
+   *
+   * @return The name.
+   */
+  public String getName() {
+    return name;
+  }
+
+  /**
+   * Gets the quantity of the ingredient.
+   *
+   * @return The quantity.
+   */
+  public int getQuantity() {
+    return quantity;
+  }
+
+  /**
+   * Adds an amount to the quantity.
+   * @param add The amount of stock to add.
+   */
+  public void addQuantity(int add) {
+    quantity = quantity + add;
+  }
+
+  /**
+   * Subtracts an amount from the quantity.
+   * @param sub The amount of stock to subtract.
+   */
+  public void subtractQuantity(int sub) {
+    if (quantity - sub >= 0) {
+      quantity = quantity - sub;
+    }
+    else {
+      throw new RuntimeException("You cannot have a negative amount of stock.");
+    }
+  }
+
 }
+
+

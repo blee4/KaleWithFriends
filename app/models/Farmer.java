@@ -169,8 +169,8 @@ public class Farmer {
 
   /**
    * Finds and returns a Farmer's TimedIngredient based on a name. Null if not found.
-   * @param ingredient the Ingredient name
-   * @return i the Ingredient object
+   * @param ingredient the TimedIngredient name
+   * @return i the TimedIngredient object
    */
   public TimedIngredient findIngredient(String ingredient) {
     for (TimedIngredient i : ingredientList) {
@@ -193,7 +193,7 @@ public class Farmer {
     }
     TimedIngredient i = f.findIngredient(ingredient);
     if (i == null) {
-      throw new RuntimeException("Ingredient cannot be found.");
+      throw new RuntimeException("TimedIngredient cannot be found.");
     }
     f.ingredientList.remove(i);
   }
@@ -212,7 +212,7 @@ public class Farmer {
       ingredientList.add(i);
     }
     else {
-      throw new RuntimeException("Ingredient already exists in farmer's ingredient list.");
+      throw new RuntimeException("TimedIngredient already exists in farmer's ingredient list.");
     }
   }
 

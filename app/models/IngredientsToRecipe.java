@@ -17,14 +17,14 @@ public class IngredientsToRecipe {
    * @param ingredientList The list of ingredients.
    * @return Recipes the user can cook.
    */
-  public static ArrayList<Recipe> getRecipesFromIngredients(ArrayList<Ingredient> ingredientList) {
+  public static ArrayList<Recipe> getRecipesFromIngredients(ArrayList<TimedIngredient> ingredientList) {
     List<Recipe> listFromRecipeDB = RecipeDB.getRecipe();
     ArrayList<Recipe> returnRecipeList = new ArrayList<Recipe>();
 
     for (Recipe recipe : listFromRecipeDB) {
-      ArrayList<Ingredient> recipeIngredientList = recipe.getIngredientList();
+      ArrayList<TimedIngredient> recipeIngredientList = recipe.getIngredientList();
       boolean flag = false;
-      for (Ingredient ingredient : recipeIngredientList) {
+      for (TimedIngredient ingredient : recipeIngredientList) {
         flag = false;
         for (int i = 0; i < ingredientList.size(); i++) {
           if (ingredient.getName().equals(ingredientList.get(i).getName())) {
