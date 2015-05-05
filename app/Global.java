@@ -3,7 +3,7 @@ import models.ConsumerDB;
 import models.Farmer;
 import models.FarmerDB;
 import models.Ingredient;
-import models.TimeStamp;
+import assets.TimeStamp;
 import models.Recipe;
 import models.RecipeDB;
 import models.TimedIngredient;
