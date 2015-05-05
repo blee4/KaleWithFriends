@@ -33,46 +33,100 @@ public class Feed extends Model {
     return new Finder<Long, Feed>(Long.class, Feed.class);
   }
 
+  /**
+   * Feed that consist of time, farmer and the message.
+   *
+   * @param time   The time.
+   * @param entry  The message.
+   * @param farmer The farmer.
+   */
   public Feed(Calendar time, String entry, Farmer farmer) {
     this.time = time;
     this.entry = entry;
     this.farmer = farmer;
   }
 
+  /**
+   * Constructs a message with the farmer.
+   *
+   * @param entry  The message.
+   * @param farmer The farmer.
+   */
   public Feed(String entry, Farmer farmer) {
     time = Calendar.getInstance();
     this.entry = entry;
     this.farmer = farmer;
   }
 
+  /**
+   * Gets the timestamp.
+   *
+   * @return The time.
+   */
   public Calendar getTime() {
     return time;
   }
 
+  /**
+   * Sets the time.
+   *
+   * @param time The time to set.
+   */
   public void setTime(Calendar time) {
     this.time = time;
   }
 
+  /**
+   * Gets the message entry.
+   *
+   * @return The message.
+   */
   public String getEntry() {
     return entry;
   }
 
+  /**
+   * Sets the message.
+   *
+   * @param entry The message.
+   */
   public void setEntry(String entry) {
     this.entry = entry;
   }
 
+  /**
+   * Gets the farmer.
+   *
+   * @return The farmer.
+   */
   public Farmer getFarmer() {
     return farmer;
   }
 
+  /**
+   * Sets the farmer.
+   *
+   * @param farmer The farmer to set.
+   */
   public void setFarmer(Farmer farmer) {
     this.farmer = farmer;
   }
 
+
+  /**
+   * Gets the id.
+   *
+   * @return The id.
+   */
   public long getId() {
     return id;
   }
 
+  /**
+   * Sets the id.
+   *
+   * @param id The id to set.
+   */
   public void setId(long id) {
     this.id = id;
   }

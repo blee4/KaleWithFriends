@@ -1,8 +1,5 @@
 package models;
 
-import assets.IngredientsToRecipe;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +14,6 @@ public class ProcedureDB {
    * Adds a recipe to the database.
    *
    * @param procedure The procedure to be added.
-   * @return The index of the item added. This should be saved for future reference.
    */
   public static void addProcedure(Procedure procedure) {
     procedure.save();
@@ -36,6 +32,7 @@ public class ProcedureDB {
   /**
    * Gets a list of procedures for a given recipe.
    *
+   * @param recipe The recipe name.
    * @return The list of procedures.
    */
   public static List<Procedure> getProcedureForRecipe(String recipe) {

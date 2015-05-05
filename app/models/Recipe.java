@@ -58,7 +58,7 @@ public class Recipe extends Model {
 
 
   /**
- /*  * Creates a recipe object.
+   /*  * Creates a recipe object.
    *
    * @param id             The ID of the recipe.
    * @param name           The name of the recipe.
@@ -112,7 +112,6 @@ public class Recipe extends Model {
     this.procedure = procedure;
     this.imagePath = imagePath;
   }
-
 
 
   /**
@@ -182,27 +181,57 @@ public class Recipe extends Model {
     this.id = id;
   }
 
+  /**
+   * Sets the name.
+   *
+   * @param name The name.
+   */
   public void setName(String name) {
     this.name = name;
   }
 
+  /**
+   * Sets the description.
+   *
+   * @param description The description.
+   */
   public void setDescription(String description) {
     this.description = description;
   }
 
+  /**
+   * Sets the ingredient list.
+   *
+   * @param ingredientList The ingredient list.
+   */
   public void setIngredientList(ArrayList<TimedIngredient> ingredientList) {
     this.ingredientList = ingredientList;
   }
 
+  /**
+   * Sets the procedure's list.
+   *
+   * @param procedure The list of procedures.
+   */
   public void setProcedure(List<Procedure> procedure) {
     this.procedure = procedure;
   }
 
+  /**
+   * Sets the image path.
+   *
+   * @param imagePath The image path as a string.
+   */
   public void setImagePath(String imagePath) {
     this.imagePath = imagePath;
   }
 
 
+  /**
+   * Sets the ingreident list.
+   *
+   * @param ingredientList The ingredientlist.
+   */
   public void setIngredientList(List<TimedIngredient> ingredientList) {
     this.ingredientList = ingredientList;
   }

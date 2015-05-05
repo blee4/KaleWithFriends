@@ -28,13 +28,13 @@
                                 @if(farmer.getIngredientList != null) {
                             @for(ingredient <- farmer.getIngredientList) {
                                 <tr>
-                                    <td><a href="@routes.Application.deleteIngredient(farmer.getName(), ingredient.getName())">
+                                    <td><a href="@routes.Application.deleteIngredient(farmer.getName(), ingredient.getId())">
                                         <i class="fa fa-times"></i></a></td>
                                     <td>@ingredient.getName()</td>
                                     <td>$@ingredient.getPrice() per lb.</td>
                                     <td>@ingredient.getQuantity</td>
-                                    <td><table><tr><td><a href="@routes.Application.addOne(farmer.getName(), ingredient.getName())"><i class="fa fa-plus"></i></a></td></tr>
-                                        <tr><td><a href="@routes.Application.subOne(farmer.getName(), ingredient.getName())"><i class="fa fa-minus"></i></a></td></tr></table></td>
+                                    <td><table><tr><td><a href="@routes.Application.addOne(farmer.getName(), ingredient.getId())"><i class="fa fa-plus"></i></a></td></tr>
+                                        <tr><td><a href="@routes.Application.subOne(farmer.getName(), ingredient.getId())"><i class="fa fa-minus"></i></a></td></tr></table></td>
                                     <td><a href="#">Edit</a></td>
                                     }
                         </tr>

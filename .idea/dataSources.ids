@@ -1537,7 +1537,7 @@
       <column name="name" sqlType="varchar" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="pk_farmer" columns="id"/>
       <exported-key name="fk_feed_farmer_1" table="feed" schema="public" catalog="kale_with_friends" columns="farmer_id"/>
-      <exported-key name="fk_timed_ingredient_farmer_2" table="timed_ingredient" schema="public" catalog="kale_with_friends" columns="farmer_id"/>
+      <exported-key name="fk_timed_ingredient_farmer_3" table="timed_ingredient" schema="public" catalog="kale_with_friends" columns="farmer_id"/>
     </table>
     <table name="farmer_seq" schema="public" catalog="kale_with_friends" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -1588,7 +1588,7 @@
       <column name="description" sqlType="varchar" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="image_path" sqlType="varchar" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="pk_recipe" columns="id"/>
-      <exported-key name="fk_timed_ingredient_recipe_3" table="timed_ingredient" schema="public" catalog="kale_with_friends" columns="recipe_id"/>
+      <exported-key name="fk_timed_ingredient_recipe_4" table="timed_ingredient" schema="public" catalog="kale_with_friends" columns="recipe_id"/>
     </table>
     <table name="recipe_seq" schema="public" catalog="kale_with_friends" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -1613,10 +1613,10 @@
       <column name="farmer_id" sqlType="int8" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <column name="recipe_id" sqlType="int8" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <primary-key name="pk_timed_ingredient" columns="id"/>
-      <foreign-key name="fk_timed_ingredient_farmer_2" columns="farmer_id" ref-table="farmer" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="fk_timed_ingredient_recipe_3" columns="recipe_id" ref-table="recipe" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <index name="ix_timed_ingredient_farmer_2" unique="false" columns="farmer_id"/>
-      <index name="ix_timed_ingredient_recipe_3" unique="false" columns="recipe_id"/>
+      <foreign-key name="fk_timed_ingredient_farmer_3" columns="farmer_id" ref-table="farmer" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_timed_ingredient_recipe_4" columns="recipe_id" ref-table="recipe" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="ix_timed_ingredient_farmer_3" unique="false" columns="farmer_id"/>
+      <index name="ix_timed_ingredient_recipe_4" unique="false" columns="recipe_id"/>
     </table>
     <table name="timed_ingredient_seq" schema="public" catalog="kale_with_friends" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>

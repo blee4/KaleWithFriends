@@ -64,6 +64,7 @@ public class Application extends Controller {
 
   /**
    * Logs the current user out.
+   *
    * @return The login page
    */
   public static Result logout() {
@@ -79,14 +80,15 @@ public class Application extends Controller {
    * @return The resulting sign up page.
    */
   public static Result signUp() {
-      SignUpForm data = new SignUpForm();
+    SignUpForm data = new SignUpForm();
 
-      Form<SignUpForm> formData = Form.form(SignUpForm.class).fill(data);
-      return ok(SignUp.render(formData));
+    Form<SignUpForm> formData = Form.form(SignUpForm.class).fill(data);
+    return ok(SignUp.render(formData));
   }
 
   /**
    * Processes a new user form.
+   *
    * @return The new user's dashboard.
    */
   public static Result postSignUp() {
@@ -95,11 +97,11 @@ public class Application extends Controller {
       System.out.println("Errors found.");
       return badRequest(SignUp.render(formData));
     }
-      SignUpForm data = formData.get();
-      System.out.println("OK: " + data.name + " " + data.password);
-      session("username", data.name);
-      FarmerDB.addFarmer(new Farmer(data.name, data.location));
-      return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.name)));
+    SignUpForm data = formData.get();
+    System.out.println("OK: " + data.name + " " + data.password);
+    session("username", data.name);
+    FarmerDB.addFarmer(new Farmer(data.name, data.location));
+    return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.name)));
 
   }
 
@@ -122,7 +124,7 @@ public class Application extends Controller {
    */
   public static Result cookbook() {
     //return ok(Cookbook.render(RecipeDB.getRecipe()));
-    return ok(Cookbook.render(RecipeDB.getFreshRecipeList()));
+    return ok(Cookbook.render(RecipeDB.getRecipe()));
   }
 
   /**
@@ -174,11 +176,12 @@ public class Application extends Controller {
 
   /**
    * Deletes the ingredient from the farmer's stock.
-   * @param farmer the current farmer
+   *
+   * @param farmer     the current farmer
    * @param ingredient the ingredient to delete
    * @return Result the resulting page
    */
-  public static Result deleteIngredient(String farmer, String ingredient) {
+  public static Result deleteIngredient(String farmer, long ingredient) {
     Farmer.deleteIngredient(farmer, ingredient);
     return ok(FarmersDashboard.render(Farmer.findFarmer(farmer)));
   }
@@ -190,23 +193,26 @@ public class Application extends Controller {
 
   /**
    * Adds just one quantity to the ingredient.
-   * @param farmer the current farmer name
+   *
+   * @param farmer     the current farmer name
    * @param ingredient the ingredient to increment
    * @return the Dashboard with the new ingredient amount
    */
-  public static Result addOne(String farmer, String ingredient) {
-    Farmer.findFarmer(farmer).findIngredient(ingredient).addQuantity(1);
+  public static Result addOne(String farmer, long ingredient) {
+
+    Farmer.addOneToIngredient(farmer, ingredient);
     return ok(FarmersDashboard.render(Farmer.findFarmer(farmer)));
   }
 
   /**
    * Subtracts just one quantity from the ingredient.
-   * @param farmer the current farmer name
+   *
+   * @param farmer     the current farmer name
    * @param ingredient the ingredient to subtract
    * @return the Dashboard with the new ingredient amount
    */
-  public static Result subOne(String farmer, String ingredient) {
-    Farmer.findFarmer(farmer).findIngredient(ingredient).subtractQuantity(1);
+  public static Result subOne(String farmer, long ingredient) {
+    Farmer.subtractOneToIngredient(farmer, ingredient);
     return ok(FarmersDashboard.render(Farmer.findFarmer(farmer)));
   }
 }

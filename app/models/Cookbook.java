@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Cookbook database to hold all the recipes.
- * <p/>
+ * <p>
  * Created by Jack on 4/4/2015.
  */
 

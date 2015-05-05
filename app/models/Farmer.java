@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -113,7 +114,7 @@ public class Farmer extends Model {
    * @param pictureLocation The location of the picture.
    * @param ingredientList  The list of current farmer stock.
    */
-  public Farmer( String name, String location,
+  public Farmer(String name, String location,
                 String markets, String phone, String pictureLocation, ArrayList<TimedIngredient> ingredientList) {
     this.id = id;
     this.name = name;
@@ -123,6 +124,7 @@ public class Farmer extends Model {
     this.ingredientList = ingredientList;
     this.pictureLocation = pictureLocation;
   }
+
   public String getPassword() {
     return password;
   }
@@ -174,6 +176,7 @@ public class Farmer extends Model {
    * @return The list of farmer's produce.
    */
   public List<TimedIngredient> getIngredientList() {
+    Collections.sort(ingredientList);
     return ingredientList;
   }
 
@@ -210,12 +213,7 @@ public class Farmer extends Model {
    * @return f the Farmer object
    */
   public static Farmer findFarmer(String farmer) {
-    for (Farmer f : FarmerDB.getFarmers()) {
-      if (f.getName().equals(farmer)) {
-        return f;
-      }
-    }
-    return null;
+    return FarmerDB.getFarmer(farmer);
   }
 
   /**
@@ -225,12 +223,18 @@ public class Farmer extends Model {
    * @return i the TimedIngredient object
    */
   public TimedIngredient findIngredient(String ingredient) {
-    for (TimedIngredient i : ingredientList) {
-      if (i.getName().equals(ingredient)) {
-        return i;
-      }
-    }
-    return null;
+    return TimedIngredient.find().where().eq("name", ingredient).findUnique();
+  }
+
+
+  /**
+   * Finds and returns a Farmer's TimedIngredient based on a name. Null if not found.
+   *
+   * @param ingredient the TimedIngredient id.
+   * @return i the TimedIngredient object
+   */
+  public TimedIngredient findIngredient(Long ingredient) {
+    return TimedIngredient.find().byId(ingredient);
   }
 
   /**
@@ -239,16 +243,9 @@ public class Farmer extends Model {
    * @param farmer     the farmer whose ingredient is being deleted
    * @param ingredient the ingredient to delete
    */
-  public static void deleteIngredient(String farmer, String ingredient) {
-    Farmer f = findFarmer(farmer);
-    if (f == null) {
-      throw new RuntimeException("Farmer cannot be found.");
-    }
-    TimedIngredient i = f.findIngredient(ingredient);
-    if (i == null) {
-      throw new RuntimeException("TimedIngredient cannot be found.");
-    }
-    f.ingredientList.remove(i);
+  public static void deleteIngredient(String farmer, long ingredient) {
+
+    TimedIngredient.find().byId(ingredient).delete();
   }
 
   /**
@@ -258,15 +255,31 @@ public class Farmer extends Model {
    * @param amount     the amount of ingredient to add
    * @param start      the start date of the ingredient to add
    * @param end        the end date of the ingredient to add
+   * @param price      the price of the ingredient.
    */
   public void addIngredient(String ingredient, int amount, Calendar start, Calendar end, String price) {
     TimedIngredient i = new TimedIngredient(ingredient, amount, start, end, price);
-    if (!ingredientList.contains(i)) {
-      ingredientList.add(i);
-    }
-    else {
-      throw new RuntimeException("TimedIngredient already exists in farmer's ingredient list.");
-    }
+    ingredientList.add(i);
+  }
+
+  /**
+   * Adds one stock to the ingredient.
+   *
+   * @param farmer     The ingredient's owner (farmer).
+   * @param ingredient The ingredient.
+   */
+  public static void addOneToIngredient(String farmer, long ingredient) {
+    TimedIngredient.find().byId(ingredient).addQuantity(1);
+  }
+
+  /**
+   * Subtracts one stock from the ingredient.
+   *
+   * @param farmer     The ingredient's owner (farmer).
+   * @param ingredient The ingredient.
+   */
+  public static void subtractOneToIngredient(String farmer, long ingredient) {
+    TimedIngredient.find().byId(ingredient).subtractQuantity(1);
   }
 
   //methods below are originally from the obsolete class
@@ -329,30 +342,65 @@ public class Farmer extends Model {
     }
   }
 
+  /**
+   * Sets the location.
+   *
+   * @param location The location.
+   */
   public void setLocation(String location) {
     this.location = location;
   }
 
+  /**
+   * Sets the ingredient list.
+   *
+   * @param ingredientList The ingredient list.
+   */
   public void setIngredientList(ArrayList<TimedIngredient> ingredientList) {
     this.ingredientList = ingredientList;
   }
 
+  /**
+   * Sets the picture lcoation.
+   *
+   * @param pictureLocation The picture location.
+   */
   public void setPictureLocation(String pictureLocation) {
     this.pictureLocation = pictureLocation;
   }
 
+  /**
+   * Sets the market.
+   *
+   * @param markets The market.
+   */
   public void setMarkets(String markets) {
     this.markets = markets;
   }
 
+  /**
+   * Sets the phone number.
+   *
+   * @param phone The phone number.
+   */
   public void setPhone(String phone) {
     this.phone = phone;
   }
 
+  /**
+   * Gets the feed of the farmer.
+   *
+   * @return The feed.
+   */
   public List<Feed> getFeedList() {
     return feedList;
   }
 
+  /**
+   * Sets the feed list.
+   *
+   * @param feedList The feed list.
+   */
   public void setFeedList(ArrayList<Feed> feedList) {
     this.feedList = feedList;
   }
