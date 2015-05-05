@@ -1,4 +1,4 @@
-@(contactForm: Form[views.loginData.SignUpForm], loginTypeMap: Map[String, Boolean])
+@(contactForm: Form[views.loginData.SignUpForm])
 
 @import views.html.helper._
 @import views.html.bootstrap3._
@@ -17,11 +17,10 @@
                 placeholder = "Username",
                 help = "")
 
-                <!-- UserType -->
-            @bootstrap3.select(contactForm("type"),
-                label = "Login",
-                optionMap = loginTypeMap,
-                isMultiple = false,
+                <!-- Password -->
+            @text(contactForm("password"),
+                label = "Password",
+                placeholder = "Password",
                 help = "")
 
             <button class="btn btn-lg btn-block btn-success" type="submit">Sign up</button>

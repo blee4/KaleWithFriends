@@ -8,24 +8,27 @@ import java.util.Calendar;
  * <p/>
  * Created by Jack on 4/4/2015.
  */
-public class Farmer extends User {
+public class Farmer {
 
   private String location;
   private ArrayList<TimedIngredient> ingredientList;
   private String pictureLocation = "images/farmPicture.jpg";
   private String markets;
   private String phone;
+  private String password;
+  private String name;
+  private long id;
 
 
 
   /**
-   * Creates a farmer object.
+   * Creates a farmer object with default id.
    * @param name The name of the farmer.
-   * @param type The type of user. (Farmer or Consumer)
    * @param location The location of the farmer.
    */
-  public Farmer(String name, String type, String location) {
-    super(0, name, type);
+  public Farmer(String name, String location) {
+    this.id = 0;
+    this.name = name;
     this.location = location;
   }
 
@@ -33,15 +36,15 @@ public class Farmer extends User {
    * Creates a farmer object.
    * @param id The id of the farmer.
    * @param name The name of the farmer.
-   * @param type The type of user. (Farmer or Consumer)
    * @param markets The location of the farmers markets.
    * @param phone The phone number of the farmer.
    * @param location The location of the farmer.
    * @param ingredientList The list of current farmer stock.
    */
-  public Farmer(long id, String name, String type, String location,
+  public Farmer(long id, String name, String location,
                 String markets, String phone, ArrayList<TimedIngredient> ingredientList) {
-    super(id, name, type);
+    this.id = id;
+    this.name = name;
     this.location = location;
     this.markets = markets;
     this.phone = phone;
@@ -53,22 +56,31 @@ public class Farmer extends User {
    * Creates a farmer object with an associated picture location.
    * @param id The id of the farmer.
    * @param name The name of the farmer.
-   * @param type The type of user. (Farmer or Consumer)
    * @param markets The location of the farmers markets.
    * @param phone The phone number of the farmer.
    * @param location The location of the farmer.
    * @param pictureLocation The location of the picture.
    * @param ingredientList The list of current farmer stock.
    */
-  public Farmer(long id, String name, String type, String location,
+  public Farmer(long id, String name, String location,
                 String markets, String phone, String pictureLocation, ArrayList<TimedIngredient> ingredientList) {
-    super(id, name, type);
+    this.id = id;
+    this.name = name;
     this.location = location;
     this.markets = markets;
     this.phone = phone;
     this.ingredientList = ingredientList;
     this.pictureLocation = pictureLocation;
   }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
 
   /**
    * Gets the name of the farmer.
@@ -188,18 +200,77 @@ public class Farmer extends User {
 
   /**
    * Adds an ingredient to this farmer's ingredient list.
-   * @param ingredient the ingredient to delete
+   * @param ingredient the ingredient to add
+   * @param amount the amount of ingredient to add
+   * @param start the start date of the ingredient to add
+   * @param end the end date of the ingredient to add
+   *
    */
-  public void addIngredient(String ingredient) {
-    TimedIngredient i = findIngredient(ingredient);
-    if (i == null) {
-      throw new RuntimeException("Ingredient cannot be found.");
-    }
+  public void addIngredient(String ingredient, int amount, Calendar start, Calendar end, String price) {
+    TimedIngredient i = new TimedIngredient(ingredient,amount,start,end,price);
     if (!ingredientList.contains(i)) {
       ingredientList.add(i);
     }
     else {
       throw new RuntimeException("Ingredient already exists in farmer's ingredient list.");
+    }
+  }
+
+  //methods below are originally from the obsolete class
+
+  /**
+   * Sets the user name.
+   *
+   * @param name the user name
+   */
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
+  /**
+   * Gets the user id.
+   *
+   * @return the user id
+   */
+  public long getId() {
+    return id;
+  }
+
+  /**
+   * Sets the user id.
+   *
+   * @param id the user id.
+   */
+  public void setId(long id) {
+    this.id = id;
+  }
+
+  /**
+   * Checks if a user with a specified name exists.
+   * @param name The username to check for
+   * @return true or false if the name exists
+   */
+  public static boolean isName(String name) {
+    if ((FarmerDB.getFarmer(name) == null)) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
+  /**
+   * Gets a user given its name.
+   * @param name The name of the user
+   * @return The user object
+   */
+  public static Farmer getFarmer(String name) {
+    if (isName(name)) {
+      return FarmerDB.getFarmer(name);
+    }
+    else {
+      return null;
     }
   }
 }

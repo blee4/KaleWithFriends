@@ -1,5 +1,4 @@
-import models.Consumer;
-import models.ConsumerDB;
+
 import models.Farmer;
 import models.FarmerDB;
 import models.Ingredient;
@@ -68,7 +67,7 @@ public class Global extends GlobalSettings {
         TimeStamp.makeCalendar(2016, Calendar.MAY, 30), "2.00", "images/ingredient/nozawa_corn.jpg"));
     ingredients.add(new TimedIngredient("Ho Farm Tomato", 14, TimeStamp.makeCalendar(2015, Calendar.APRIL, 5),
         TimeStamp.makeCalendar(2016, Calendar.MAY, 30), "1.00", "images/ingredient/ho_farm_tomato.jpg"));
-    Farmer farmer = new Farmer(0, "Nalo LIFE", "Farmer", "41-574 Makakalo Street Waimanalo, HI 96795",
+    Farmer farmer = new Farmer(0, "Nalo LIFE", "41-574 Makakalo Street Waimanalo, HI 96795",
         "Farmers Market at Windward Mall, Honolulu@Night (Neal Blaisdell Concert Hall), "
             + "Kailua@Night (Longs Kailua Parking Structure), Farmers Market @ HMSA,"
             + " Kapiolani Community College Farmers Market, Mililani High School",
@@ -151,15 +150,10 @@ public class Global extends GlobalSettings {
         TimeStamp.makeCalendar(2016, Calendar.MAY, 30), "0.25", "images/ingredient/thai_watermelon.jpg"));
     ingredients2.add(new TimedIngredient("Curly Kale", 9, TimeStamp.makeCalendar(2015, Calendar.APRIL, 5),
         TimeStamp.makeCalendar(2016, Calendar.MAY, 30), "2.00", "images/ingredient/curly_kale.jpg"));
-    Farmer farmer2 = new Farmer(1, "Aloun Farms", "Farmer", "91-1440 Farrington Hwy, Kapolei, HI 96707",
+    Farmer farmer2 = new Farmer(1, "Aloun Farms", "91-1440 Farrington Hwy, Kapolei, HI 96707",
         "Kapiolani Community College Farmers Market", "808-677-9516", "images/farmPicture.jpg", ingredients2);
     FarmerDB.addFarmer(farmer2);
 
-    Consumer consumer1 = new Consumer(1, "Kale Lover", "Consumer", "2500 Campus Road, Honolulu, HI 96822");
-    ConsumerDB.addConsumer(consumer1);
-
-    Consumer consumer2 = new Consumer(2, "Kale Friend", "Consumer", "3071 Pualei Circle 96815");
-    ConsumerDB.addConsumer(consumer2);
 
     ArrayList<Ingredient> saladIngredients = new ArrayList<Ingredient>();
     saladIngredients.add(new Ingredient("Baby Kale", 2));

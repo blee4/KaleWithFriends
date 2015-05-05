@@ -2,9 +2,7 @@ package views.forms;
 
 import models.Farmer;
 import models.Feed;
-import models.User;
 import play.data.validation.ValidationError;
-import views.loginData.LoginTypes;
 
 import java.util.ArrayList;
 import java.util.Calendar;

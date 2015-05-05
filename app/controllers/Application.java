@@ -1,33 +1,25 @@
 package controllers;
 
-import models.Consumer;
-import models.ConsumerDB;
 import models.Farmer;
 import models.FarmerDB;
-import models.Ingredient;
 import models.RecipeDB;
-import models.User;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.AvailableNow;
 import views.html.Cookbook;
-import views.html.Dashboard;
 import views.html.FarmersDashboard;
 import views.html.FarmersProfile;
-import views.html.FriendsProfile;
 import views.html.Index;
 import views.html.Local;
 import views.html.MealPlanner;
 import views.html.Recipe;
 import views.html.SignUp;
 import views.loginData.LoginData;
-import views.loginData.LoginTypes;
 import views.loginData.SignUpForm;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Provides controllers for this application.
@@ -45,18 +37,12 @@ public class Application extends Controller {
       LoginData data = new LoginData();
 
       Form<LoginData> formData = Form.form(LoginData.class).fill(data);
-      Map<String, Boolean> loginTypeMap = LoginTypes.getTypes();
-      return ok(Index.render(formData, loginTypeMap));
+      return ok(Index.render(formData));
     }
-    else {
-      User data = User.getUser(username);
-      if (data.getType().equals("Farmer")) {
-        return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.getName())));
-      }
-      else {
-        return ok(Dashboard.render(ConsumerDB.getConsumer(data.getName())));
-      }
-    }
+    Farmer data = Farmer.getFarmer(username);
+    return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.getName())));
+
+
   }
 
   /**
@@ -68,19 +54,12 @@ public class Application extends Controller {
     Form<LoginData> formData = Form.form(LoginData.class).bindFromRequest();
     if (formData.hasErrors()) {
       System.out.println("Errors found.");
-      return badRequest(Index.render(formData, LoginTypes.getTypes()));
+      return badRequest(Index.render(formData));
     }
-    else {
-      LoginData data = formData.get();
-      System.out.println("OK: " + data.name + " " + data.type);
-      session("username", data.name);
-      if (data.type.equals("Farmer")) {
-        return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.name)));
-      }
-      else {
-        return ok(Dashboard.render(ConsumerDB.getConsumer(data.name)));
-      }
-    }
+    LoginData data = formData.get();
+    System.out.println("OK: " + data.name + " " + data.password);
+    session("username", data.name);
+    return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.name)));
   }
 
   /**
@@ -103,8 +82,7 @@ public class Application extends Controller {
       SignUpForm data = new SignUpForm();
 
       Form<SignUpForm> formData = Form.form(SignUpForm.class).fill(data);
-      Map<String, Boolean> loginTypeMap = LoginTypes.getTypes();
-      return ok(SignUp.render(formData, loginTypeMap));
+      return ok(SignUp.render(formData));
   }
 
   /**
@@ -115,31 +93,16 @@ public class Application extends Controller {
     Form<SignUpForm> formData = Form.form(SignUpForm.class).bindFromRequest();
     if (formData.hasErrors()) {
       System.out.println("Errors found.");
-      return badRequest(SignUp.render(formData, LoginTypes.getTypes()));
+      return badRequest(SignUp.render(formData));
     }
-    else {
       SignUpForm data = formData.get();
-      System.out.println("OK: " + data.name + " " + data.type);
+      System.out.println("OK: " + data.name + " " + data.password);
       session("username", data.name);
-      if (data.type.equals("Farmer")) {
-        FarmerDB.addFarmer(new Farmer(data.name, data.type, data.location));
-        return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.name)));
-      }
-      else {
-        ConsumerDB.addConsumer(new Consumer(data.name, data.type, data.location));
-        return ok(Dashboard.render(ConsumerDB.getConsumer(data.name)));
-      }
-    }
+      FarmerDB.addFarmer(new Farmer(data.name, data.location));
+      return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.name)));
+
   }
 
-  /**
-   * Returns the Friend's profile page.
-   *
-   * @return The resulting Friend's profile page.
-   */
-  public static Result friendsProfile() {
-    return ok(FriendsProfile.render("Welcome to friend profile."));
-  }
 
   /**
    * Returns the Farmer's profile page.
