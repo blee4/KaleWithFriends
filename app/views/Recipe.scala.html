@@ -23,8 +23,8 @@
       <div class="well">
         <h2>Directions</h2>
         <ol>
-          @for(procedure <- recipe.getProcedure){
-            <li><p>@procedure</p></li>
+          @for(procedure <- recipe.getProcedure()){
+            <li><p>@procedure.getProcedure()</p></li>
           }
             <!-- Source: https://uscgwifey.wordpress.com/tag/kalua-pig/ -->
         </ol>

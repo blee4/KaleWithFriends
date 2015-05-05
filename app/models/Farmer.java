@@ -1,29 +1,56 @@
 package models;
 
+import play.db.ebean.Model;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Model for farmers. Contains a farmer's name, location, and their produces.
- * <p/>
+ * <p>
  * Created by Jack on 4/4/2015.
  */
-public class Farmer {
+@Entity
+public class Farmer extends Model {
 
   private String location;
-  private ArrayList<TimedIngredient> ingredientList;
+
   private String pictureLocation = "images/farmPicture.jpg";
   private String markets;
   private String phone;
   private String password;
   private String name;
+
+  @Id
   private long id;
 
+  @OneToMany(mappedBy = "farmer", cascade = CascadeType.PERSIST)
+  private List<TimedIngredient> ingredientList;
+
+
+  @OneToMany(mappedBy = "farmer", cascade = CascadeType.PERSIST)
+  private List<Feed> feedList;
+
+
+  /**
+   * The EBean ORM finder method for database queries.
+   *
+   * @return The finder method.
+   */
+  public static Finder<Long, Farmer> find() {
+    return new Finder<Long, Farmer>(Long.class, Farmer.class);
+  }
 
 
   /**
    * Creates a farmer object with default id.
-   * @param name The name of the farmer.
+   *
+   * @param name     The name of the farmer.
    * @param location The location of the farmer.
    */
   public Farmer(String name, String location) {
@@ -34,11 +61,12 @@ public class Farmer {
 
   /**
    * Creates a farmer object.
-   * @param id The id of the farmer.
-   * @param name The name of the farmer.
-   * @param markets The location of the farmers markets.
-   * @param phone The phone number of the farmer.
-   * @param location The location of the farmer.
+   *
+   * @param id             The id of the farmer.
+   * @param name           The name of the farmer.
+   * @param markets        The location of the farmers markets.
+   * @param phone          The phone number of the farmer.
+   * @param location       The location of the farmer.
    * @param ingredientList The list of current farmer stock.
    */
   public Farmer(long id, String name, String location,
@@ -54,13 +82,14 @@ public class Farmer {
 
   /**
    * Creates a farmer object with an associated picture location.
-   * @param id The id of the farmer.
-   * @param name The name of the farmer.
-   * @param markets The location of the farmers markets.
-   * @param phone The phone number of the farmer.
-   * @param location The location of the farmer.
+   *
+   * @param id              The id of the farmer.
+   * @param name            The name of the farmer.
+   * @param markets         The location of the farmers markets.
+   * @param phone           The phone number of the farmer.
+   * @param location        The location of the farmer.
    * @param pictureLocation The location of the picture.
-   * @param ingredientList The list of current farmer stock.
+   * @param ingredientList  The list of current farmer stock.
    */
   public Farmer(long id, String name, String location,
                 String markets, String phone, String pictureLocation, ArrayList<TimedIngredient> ingredientList) {
@@ -73,6 +102,27 @@ public class Farmer {
     this.pictureLocation = pictureLocation;
   }
 
+
+  /**
+   * Creates a farmer object with an associated picture location without the id.
+   *
+   * @param name            The name of the farmer.
+   * @param markets         The location of the farmers markets.
+   * @param phone           The phone number of the farmer.
+   * @param location        The location of the farmer.
+   * @param pictureLocation The location of the picture.
+   * @param ingredientList  The list of current farmer stock.
+   */
+  public Farmer( String name, String location,
+                String markets, String phone, String pictureLocation, ArrayList<TimedIngredient> ingredientList) {
+    this.id = id;
+    this.name = name;
+    this.location = location;
+    this.markets = markets;
+    this.phone = phone;
+    this.ingredientList = ingredientList;
+    this.pictureLocation = pictureLocation;
+  }
   public String getPassword() {
     return password;
   }
@@ -123,7 +173,7 @@ public class Farmer {
    *
    * @return The list of farmer's produce.
    */
-  public ArrayList<TimedIngredient> getIngredientList() {
+  public List<TimedIngredient> getIngredientList() {
     return ingredientList;
   }
 
@@ -155,6 +205,7 @@ public class Farmer {
 
   /**
    * Finds and returns a Farmer based on a name. Null if not found.
+   *
    * @param farmer the Farmer name.
    * @return f the Farmer object
    */
@@ -169,6 +220,7 @@ public class Farmer {
 
   /**
    * Finds and returns a Farmer's TimedIngredient based on a name. Null if not found.
+   *
    * @param ingredient the TimedIngredient name
    * @return i the TimedIngredient object
    */
@@ -183,7 +235,8 @@ public class Farmer {
 
   /**
    * Deletes an ingredient from this farmer's ingredient list.
-   * @param farmer the farmer whose ingredient is being deleted
+   *
+   * @param farmer     the farmer whose ingredient is being deleted
    * @param ingredient the ingredient to delete
    */
   public static void deleteIngredient(String farmer, String ingredient) {
@@ -200,14 +253,14 @@ public class Farmer {
 
   /**
    * Adds an ingredient to this farmer's ingredient list.
-   * @param ingredient the ingredient to add
-   * @param amount the amount of ingredient to add
-   * @param start the start date of the ingredient to add
-   * @param end the end date of the ingredient to add
    *
+   * @param ingredient the ingredient to add
+   * @param amount     the amount of ingredient to add
+   * @param start      the start date of the ingredient to add
+   * @param end        the end date of the ingredient to add
    */
   public void addIngredient(String ingredient, int amount, Calendar start, Calendar end, String price) {
-    TimedIngredient i = new TimedIngredient(ingredient,amount,start,end,price);
+    TimedIngredient i = new TimedIngredient(ingredient, amount, start, end, price);
     if (!ingredientList.contains(i)) {
       ingredientList.add(i);
     }
@@ -248,6 +301,7 @@ public class Farmer {
 
   /**
    * Checks if a user with a specified name exists.
+   *
    * @param name The username to check for
    * @return true or false if the name exists
    */
@@ -262,6 +316,7 @@ public class Farmer {
 
   /**
    * Gets a user given its name.
+   *
    * @param name The name of the user
    * @return The user object
    */
@@ -272,5 +327,33 @@ public class Farmer {
     else {
       return null;
     }
+  }
+
+  public void setLocation(String location) {
+    this.location = location;
+  }
+
+  public void setIngredientList(ArrayList<TimedIngredient> ingredientList) {
+    this.ingredientList = ingredientList;
+  }
+
+  public void setPictureLocation(String pictureLocation) {
+    this.pictureLocation = pictureLocation;
+  }
+
+  public void setMarkets(String markets) {
+    this.markets = markets;
+  }
+
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
+
+  public List<Feed> getFeedList() {
+    return feedList;
+  }
+
+  public void setFeedList(ArrayList<Feed> feedList) {
+    this.feedList = feedList;
   }
 }

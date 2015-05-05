@@ -1,17 +1,25 @@
 package models;
 
+import play.db.ebean.Model;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Model for a recipe.
- * <p/>
+ * <p>
  * Created by Jack on 4/4/2015.
  */
-public class Recipe {
-  /**
-   * The recipe ID.
-   */
+@Entity
+public class Recipe extends Model {
+
+  @Id
   private long id;
+
   /**
    * The name of the recipe.
    */
@@ -23,11 +31,16 @@ public class Recipe {
   /**
    * The list of ingredients.
    */
-  private ArrayList<TimedIngredient> ingredientList;
+
+  @OneToMany(mappedBy = "recipe", cascade = CascadeType.PERSIST)
+  private List<TimedIngredient> ingredientList;
+
+
   /**
    * The steps to make the dish.
    */
-  private ArrayList<String> procedure;
+  @OneToMany(mappedBy = "recipe", cascade = CascadeType.PERSIST)
+  private List<Procedure> procedure;
   /**
    * The image file name.
    */
@@ -35,7 +48,17 @@ public class Recipe {
 
 
   /**
-   * Creates a recipe object.
+   * The EBean ORM finder method for database queries.
+   *
+   * @return The finder method.
+   */
+  public static Finder<Long, Recipe> find() {
+    return new Finder<Long, Recipe>(Long.class, Recipe.class);
+  }
+
+
+  /**
+ /*  * Creates a recipe object.
    *
    * @param id             The ID of the recipe.
    * @param name           The name of the recipe.
@@ -43,7 +66,7 @@ public class Recipe {
    * @param ingredientList The list of ingredients needed for the recipe.
    * @param procedure      The directions to create the recipe.
    * @param imagePath      The file name for the image. Defaults to place holder image.
-   */
+   *//*
   public Recipe(long id, String name, String description, ArrayList<TimedIngredient> ingredientList,
                 ArrayList<String> procedure, String imagePath) {
     this.id = id;
@@ -52,7 +75,45 @@ public class Recipe {
     this.ingredientList = ingredientList;
     this.procedure = procedure;
     this.imagePath = imagePath;
+  }*/
+
+ /* *//**
+   * Creates a recipe object without id. Used for debugging purposes.
+   *
+   * @param name           The name of the recipe.
+   * @param description    The description of the recipe.
+   * @param ingredientList The list of ingredients needed for the recipe.
+   * @param procedure      The directions to create the recipe.
+   * @param imagePath      The file name for the image. Defaults to place holder image.
+   *//*
+  public Recipe(String name, String description, ArrayList<TimedIngredient> ingredientList,
+                ArrayList<String> procedure, String imagePath) {
+    this.name = name;
+    this.description = description;
+    this.ingredientList = ingredientList;
+    this.procedure = procedure;
+    this.imagePath = imagePath;
+  }*/
+
+  /**
+   * Creates a recipe object without id. Used for debugging purposes.
+   *
+   * @param name           The name of the recipe.
+   * @param description    The description of the recipe.
+   * @param ingredientList The list of ingredients needed for the recipe.
+   * @param procedure      The directions to create the recipe.
+   * @param imagePath      The file name for the image. Defaults to place holder image.
+   */
+  public Recipe(String name, String description, ArrayList<TimedIngredient> ingredientList,
+                List<Procedure> procedure, String imagePath) {
+    this.name = name;
+    this.description = description;
+    this.ingredientList = ingredientList;
+    this.procedure = procedure;
+    this.imagePath = imagePath;
   }
+
+
 
   /**
    * Gets te name of the recipe.
@@ -77,17 +138,21 @@ public class Recipe {
    *
    * @return The list of ingredients.
    */
-  public ArrayList<TimedIngredient> getIngredientList() {
+  public List<TimedIngredient> getIngredientList() {
     return ingredientList;
   }
+
 
   /**
    * Gets the directions to cook the recipe.
    *
    * @return The procedure.
    */
-  public ArrayList<String> getProcedure() {
+
+  public List<Procedure> getProcedure() {
+
     return procedure;
+
   }
 
   /**
@@ -117,5 +182,28 @@ public class Recipe {
     this.id = id;
   }
 
+  public void setName(String name) {
+    this.name = name;
+  }
 
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public void setIngredientList(ArrayList<TimedIngredient> ingredientList) {
+    this.ingredientList = ingredientList;
+  }
+
+  public void setProcedure(List<Procedure> procedure) {
+    this.procedure = procedure;
+  }
+
+  public void setImagePath(String imagePath) {
+    this.imagePath = imagePath;
+  }
+
+
+  public void setIngredientList(List<TimedIngredient> ingredientList) {
+    this.ingredientList = ingredientList;
+  }
 }

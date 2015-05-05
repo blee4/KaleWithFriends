@@ -121,7 +121,8 @@ public class Application extends Controller {
    * @return The resulting cookbook page.
    */
   public static Result cookbook() {
-    return ok(Cookbook.render(RecipeDB.getRecipe()));
+    //return ok(Cookbook.render(RecipeDB.getRecipe()));
+    return ok(Cookbook.render(RecipeDB.getFreshRecipeList()));
   }
 
   /**

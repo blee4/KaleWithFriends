@@ -13,10 +13,6 @@ import java.util.Map;
 
 public class FarmerDB {
 
-  /**
-   * The list that contains all the farmers.
-   */
-  public static Map<String, Farmer> farmerList = new HashMap<>();
 
   /**
    * Adds a farmer to the database.
@@ -24,7 +20,7 @@ public class FarmerDB {
    * @param farmer The farmer.
    */
   public static void addFarmer(Farmer farmer) {
-    farmerList.put(farmer.getName(), farmer);
+    farmer.save();
   }
 
   /**
@@ -34,7 +30,18 @@ public class FarmerDB {
    * @return The corresponding farmer.
    */
   public static Farmer getFarmer(String name) {
-    return farmerList.get(name);
+    return Farmer.find().where().eq("name", name).findUnique();
+
+  }
+
+  /**
+   * Gets a farmer given the id.
+   *
+   * @param id The farmer name.
+   * @return The corresponding farmer.
+   */
+  public static Farmer getFarmer(long id) {
+    return Farmer.find().byId(id);
   }
 
   /**
@@ -43,7 +50,8 @@ public class FarmerDB {
    * @return The list of farmers.
    */
   public static List<Farmer> getFarmers() {
-     return new ArrayList(farmerList.values());
+
+    return Farmer.find().findList();
   }
 
 

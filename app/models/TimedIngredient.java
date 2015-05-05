@@ -1,5 +1,11 @@
 package models;
 
+import play.db.ebean.Model;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import java.util.Calendar;
 
 /**
@@ -7,15 +13,33 @@ import java.util.Calendar;
  * <p/>
  * Created by Jack on 4/4/2015.
  */
-public class TimedIngredient {
+@Entity
+public class TimedIngredient extends Model {
 
   private Calendar startDate;
   private Calendar endDate;
   private String price;
   private String image;
-  protected String name;
-  protected int quantity;
+  private String name;
+  private int quantity;
 
+  @ManyToOne
+  private Farmer farmer;
+
+
+  @ManyToOne
+  private Recipe recipe;
+
+  @Id
+  private long id;
+
+  /**
+   * The EBean ORM finder method for database queries.
+   * @return The finder method.
+   */
+  public static Finder<Long, TimedIngredient> find() {
+    return new Finder<Long, TimedIngredient>(Long.class, TimedIngredient.class);
+  }
 
   public TimedIngredient(String name, int quantity) {
     this.name = name;
@@ -134,6 +158,45 @@ public class TimedIngredient {
     }
   }
 
+  public void setStartDate(Calendar startDate) {
+    this.startDate = startDate;
+  }
+
+  public void setEndDate(Calendar endDate) {
+    this.endDate = endDate;
+  }
+
+  public void setPrice(String price) {
+    this.price = price;
+  }
+
+  public void setImage(String image) {
+    this.image = image;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setQuantity(int quantity) {
+    this.quantity = quantity;
+  }
+
+  public long getId() {
+    return id;
+  }
+
+  public void setId(long id) {
+    this.id = id;
+  }
+
+  public Recipe getRecipe() {
+    return recipe;
+  }
+
+  public void setRecipe(Recipe recipe) {
+    this.recipe = recipe;
+  }
 }
 
 

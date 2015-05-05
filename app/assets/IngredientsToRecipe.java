@@ -1,4 +1,8 @@
-package models;
+package assets;
+
+import models.Recipe;
+import models.RecipeDB;
+import models.TimedIngredient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +21,12 @@ public class IngredientsToRecipe {
    * @param ingredientList The list of ingredients.
    * @return Recipes the user can cook.
    */
-  public static ArrayList<Recipe> getRecipesFromIngredients(ArrayList<TimedIngredient> ingredientList) {
+  public static List<Recipe> getRecipesFromIngredients(List<TimedIngredient> ingredientList) {
     List<Recipe> listFromRecipeDB = RecipeDB.getRecipe();
-    ArrayList<Recipe> returnRecipeList = new ArrayList<Recipe>();
+    List<Recipe> returnRecipeList = new ArrayList<Recipe>();
 
     for (Recipe recipe : listFromRecipeDB) {
-      ArrayList<TimedIngredient> recipeIngredientList = recipe.getIngredientList();
+      List<TimedIngredient> recipeIngredientList = recipe.getIngredientList();
       boolean flag = false;
       for (TimedIngredient ingredient : recipeIngredientList) {
         flag = false;
