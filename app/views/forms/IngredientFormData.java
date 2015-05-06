@@ -54,11 +54,11 @@ public class IngredientFormData {
     /**
      * Creates a model of a contact without the id. Method used for testing purposes.
      *
-     * @param firstName     The first name.
-     * @param lastName      the last name.
-     * @param telephone     The telephone number.
-     * @param telephoneType The telephone type.
-     * @param dietTypes     The diet types.
+     * @param name
+     * @param price
+     * @param quantity
+     * @param image
+     * @param startDate
      */
     public IngredientFormData(String name, String price, int quantity, String image, Calendar startDate, Calendar endDate) {
       this.name = name;
@@ -83,6 +83,13 @@ public class IngredientFormData {
       }
 
 
+      if (price == null || price.length() == 0) {
+        errors.add(new ValidationError("price", "price is required."));
+      }
+
+      if (quantity == 0 ) {
+        errors.add(new ValidationError("quantity", "quantity is required."));
+      }
 
       return errors.isEmpty() ? null : errors;
     }

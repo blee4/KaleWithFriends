@@ -352,7 +352,8 @@ public class Farmer extends Model {
     timedIngredient.setStartDate(TimeStamp.makeCalendar(2015, 5, 5));
     timedIngredient.setEndDate(TimeStamp.makeCalendar(2016, 5, 5));
     timedIngredient.setFarmer(Farmer.findFarmer(name));
-    timedIngredient.save();
+
+    IngredientDB.addIngredient(timedIngredient);
 
   }
 

@@ -1,9 +1,9 @@
-@(ingredientForm: Form[views.forms.IngredientFormData], farmer: Farmer)
+@(ingredientForm: Form[views.forms.IngredientFormData], isLoggedIn: Boolean, farmer: Farmer)
 
 @import bootstrap3._
 @import helper._
 
-@Main("New Ingredient") {
+@Main("New Ingredient", isLoggedIn, farmer) {
   <div class="container">
   @form(routes.Application.postIngredient(), 'class -> "form-horizontal") {
     <input type = "hidden"

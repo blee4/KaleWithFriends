@@ -3,15 +3,11 @@ package controllers;
 import models.Farmer;
 import models.FarmerDB;
 import models.RecipeDB;
-import models.TimedIngredient;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-<<<<<<< HEAD
-import views.forms.IngredientFormData;
-=======
 import play.mvc.Security;
->>>>>>> origin/master
+import views.forms.IngredientFormData;
 import views.html.AvailableNow;
 import views.html.Cookbook;
 import views.html.FarmersDashboard;
@@ -40,7 +36,7 @@ public class Application extends Controller {
    * @return The resulting home page.
    */
   public static Result index() {
-      return ok(Index.render("Index", Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
+    return ok(Index.render("Index", Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
 
   }
 
@@ -121,6 +117,7 @@ public class Application extends Controller {
 
   /**
    * Provides the Profile page (only to authenticated users).
+   *
    * @return The Profile page.
    */
   @Security.Authenticated(Secured.class)
@@ -242,23 +239,26 @@ public class Application extends Controller {
   }
 
 
-
-  public static Result newIngredient(String farmer){
-    Form<IngredientFormData> formData = Form.form(IngredientFormData.class);
-    return ok(NewIngredient.render(formData, Farmer.findFarmer(farmer)));
+  @Security.Authenticated(Secured.class)
+  public static Result newIngredient(String farmer) {
+    IngredientFormData data = new IngredientFormData();
+    Form<IngredientFormData> formData = Form.form(IngredientFormData.class).fill(data);
+    return ok(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
   }
 
-  public static Result postIngredient(String farmer){
-    System.out.println("In post Contact.");
+  @Security.Authenticated(Secured.class)
+  public static Result postIngredient(String farmer) {
+    System.out.println("In post Ingredient.");
     Form<IngredientFormData> formData = Form.form(IngredientFormData.class).bindFromRequest();
     if (formData.hasErrors()) {
       System.out.println("Form has errors.");
-      return badRequest(NewIngredient.render(formData, Farmer.findFarmer(farmer)));
+      return badRequest(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
     }
     else {
       IngredientFormData data = formData.get();
+      System.out.println("Trying to add ingredient");
       Farmer.findFarmer(farmer).addIngredient(data);
-      return ok(NewIngredient.render(formData, Farmer.findFarmer(farmer)));
+      return ok(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
     }
   }
 }
