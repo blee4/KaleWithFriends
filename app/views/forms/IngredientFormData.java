@@ -21,7 +21,7 @@ public class IngredientFormData {
 
     public String name;
 
-    public int quantity;
+    public String quantity;
 
 
     public Calendar startDate;
@@ -47,7 +47,7 @@ public class IngredientFormData {
       this.endDate = ingredient.getEndDate();
       this.startDate = ingredient.getStartDate();
       this.id = ingredient.getId();
-      this.quantity = ingredient.getQuantity();
+      this.quantity = Integer.toString(ingredient.getQuantity());
       this.image = ingredient.getImage();
     }
 
@@ -60,7 +60,7 @@ public class IngredientFormData {
      * @param image
      * @param startDate
      */
-    public IngredientFormData(String name, String price, int quantity, String image, Calendar startDate, Calendar endDate) {
+    public IngredientFormData(String name, String price, String quantity, String image, Calendar startDate, Calendar endDate) {
       this.name = name;
       this.price = price;
       this.quantity = quantity;
@@ -87,7 +87,7 @@ public class IngredientFormData {
         errors.add(new ValidationError("price", "price is required."));
       }
 
-      if (quantity == 0 ) {
+      if (quantity == null || quantity.length() == 0 ) {
         errors.add(new ValidationError("quantity", "quantity is required."));
       }
 
