@@ -262,7 +262,6 @@ public class Application extends Controller {
    */
   @Security.Authenticated(Secured.class)
   public static Result newIngredient(String farmer) {
-    System.out.println("LOOK HERE PLZ " + farmer);
     IngredientFormData data = new IngredientFormData();
     Form<IngredientFormData> formData = Form.form(IngredientFormData.class).fill(data);
     return ok(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
@@ -271,22 +270,41 @@ public class Application extends Controller {
   /**
    *
    * Sends a post request to add the new ingredient using the form.
-   * @param farmer the current farmer name.
-   * @return the new ingredient page.
+\   * @return the new ingredient page.
    */
   @Security.Authenticated(Secured.class)
-  public static Result postIngredient(String farmer) {
+  public static Result postIngredient() {
     System.out.println("In post Ingredient.");
     Form<IngredientFormData> formData = Form.form(IngredientFormData.class).bindFromRequest();
     if (formData.hasErrors()) {
       System.out.println("Form has errors.");
-      return badRequest(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
+      return badRequest(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), (Secured.getFarmer(ctx()))));
     }
     else {
       IngredientFormData data = formData.get();
-      System.out.println("Trying to add ingredient " + farmer);
-      Secured.getFarmer(ctx()).addIngredient(data);
-      return ok(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
+      if ((Secured.getFarmer(ctx())).findIngredient(data.getId()) == null) {
+        Secured.getFarmer(ctx()).addIngredient(data);
+      }
+      else {
+        Secured.getFarmer(ctx()).findIngredient(data.getId()).setName(data.name);
+        Secured.getFarmer(ctx()).findIngredient(data.getId()).setQuantity(Integer.parseInt(data.quantity));
+        Secured.getFarmer(ctx()).findIngredient(data.getId()).setPrice(data.price);
+        Secured.getFarmer(ctx()).findIngredient(data.getId()).save();
+        Secured.getFarmer(ctx()).save();
+      }
     }
+    return redirect(routes.Application.farmersDashboard());
+  }
+
+  /**
+   *  Retrieves the new ingredient page for a user to edit ingredient.
+   * @param farmer the current farmer name.
+   * @return edit ingredient page.
+   */
+  @Security.Authenticated(Secured.class)
+  public static Result editIngredient(String farmer, long ingredient) {
+    IngredientFormData data = new IngredientFormData(Farmer.findFarmer(farmer).findIngredient(ingredient));
+    Form<IngredientFormData> formData = Form.form(IngredientFormData.class).fill(data);
+    return ok(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
   }
 }

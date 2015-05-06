@@ -35,7 +35,7 @@
                                     <td>@ingredient.getQuantity</td>
                                     <td><table><tr><td><a href="@routes.Application.addOne(farmer.getName(), ingredient.getId())"><i class="fa fa-plus"></i></a></td></tr>
                                         <tr><td><a href="@routes.Application.subOne(farmer.getName(), ingredient.getId())"><i class="fa fa-minus"></i></a></td></tr></table></td>
-                                    <td><a href="#">Edit</a></td>
+                                    <td><a href="@routes.Application.editIngredient(farmer.getName, ingredient.getId())">Edit</a></td>
                                     }
                         </tr>
                         </table>

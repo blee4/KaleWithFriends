@@ -22,11 +22,11 @@ GET         /farmersdashboard/delete        controllers.Application.deleteIngred
 GET         /farmersdashboard               controllers.Application.farmersDashboard()
 GET         /farmersdashboard/addOne        controllers.Application.addOne(farmer: String ?= "", ingredient : Long ?= 0)
 GET         /farmersdashboard/subOne        controllers.Application.subOne(farmer: String ?= "", ingredient : Long ?= 0)
-POST        /newingredient                  controllers.Application.postIngredient(farmer: String ?= "")
+POST        /newingredient                  controllers.Application.postIngredient()
 GET         /newingredient                  controllers.Application.newIngredient(farmer: String ?= "")
 GET         /editFarmer                     controllers.Application.editFarmer(farmer: String ?= "")
 POST        /editFarmer                     controllers.Application.postEditFarmer(farmer: String ?= "")
-
+GET         /editIngredient                 controllers.Application.editIngredient(farmer: String ?= "", ingredient : Long ?= 0)
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                   controllers.Assets.at(path="/public", file)

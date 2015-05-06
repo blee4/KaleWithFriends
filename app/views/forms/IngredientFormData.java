@@ -27,8 +27,17 @@ public class IngredientFormData {
 
     public Calendar startDate;
     public Calendar endDate;
-
     public long id;
+
+
+  public long getId() {
+    return id;
+  }
+
+  public void setId(long id) {
+    this.id = id;
+  }
+
 
 
     /**
@@ -50,6 +59,7 @@ public class IngredientFormData {
       this.id = ingredient.getId();
       this.quantity = Integer.toString(ingredient.getQuantity());
       this.image = ingredient.getImage();
+      this.name = ingredient.getName();
     }
 
     /**
