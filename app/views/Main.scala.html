@@ -1,4 +1,4 @@
-@(page: String)(content: Html)
+@(page: String, isLoggedIn: Boolean, farmer: Farmer)(content: Html)
 
 <!DOCTYPE html>
 
@@ -49,6 +49,10 @@
             <li class="@("active".when(page == "Available Now"))">
               <a href="@routes.Application.availableNow()">Available Now</a></li>
             <li>
+              <a href="@routes.Application.login()">Login</a></li>
+              <li>
+              <a href="@routes.Application.signUp()">Sign Up</a></li>
+              <li>
               <a href="@routes.Application.logout()">Logout</a></li>
           </ul>
         </div>

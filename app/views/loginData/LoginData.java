@@ -45,11 +45,13 @@ public class LoginData {
    */
   public List<ValidationError> validate() {
     List<ValidationError> errors = new ArrayList<>();
-
     if (name == null || !Farmer.isName(name)) {
       errors.add(new ValidationError("name", "Username is invalid."));
     }
-      return errors.isEmpty() ? null : errors;
+    if (!password.equals(Farmer.getFarmer(name).getPassword())) {
+      errors.add(new ValidationError("password", "Password is invalid."));
+    }
+    return errors.isEmpty() ? null : errors;
   }
 
   /**

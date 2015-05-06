@@ -45,6 +45,9 @@ public class SignUpForm {
       errors.add(new ValidationError("name", "Please enter a username."));
     }
 
+    if (password == null) {
+      errors.add(new ValidationError("password", "Please enter a password."));
+    }
       return errors.isEmpty() ? null : errors;
   }
 

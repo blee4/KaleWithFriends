@@ -73,7 +73,7 @@ public class Global extends GlobalSettings {
           "Farmers Market at Windward Mall, Honolulu@Night (Neal Blaisdell Concert Hall), "
               + "Kailua@Night (Longs Kailua Parking Structure), Farmers Market @ HMSA,"
               + " Kapiolani Community College Farmers Market, Mililani High School",
-          "808-259-7698", "images/farmPicture.jpg", ingredients);
+          "808-259-7698", "images/farmPicture.jpg", ingredients, "password");
       FarmerDB.addFarmer(farmer);
 
       ArrayList<TimedIngredient> ingredients2 = new ArrayList<TimedIngredient>();
@@ -153,7 +153,7 @@ public class Global extends GlobalSettings {
       ingredients2.add(new TimedIngredient("Curly Kale", 9, TimeStamp.makeCalendar(2015, Calendar.APRIL, 5),
           TimeStamp.makeCalendar(2016, Calendar.MAY, 30), "2.00", "images/ingredient/curly_kale.jpg"));
       Farmer farmer2 = new Farmer("Aloun Farms", "91-1440 Farrington Hwy, Kapolei, HI 96707",
-          "Kapiolani Community College Farmers Market", "808-677-9516", "images/farmPicture.jpg", ingredients2);
+          "Kapiolani Community College Farmers Market", "808-677-9516", "images/farmPicture.jpg", ingredients2, "password");
       FarmerDB.addFarmer(farmer2);
     }
 
