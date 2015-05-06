@@ -1,4 +1,4 @@
-name := """Kale With Friends"""
+name := """Kale-With-Friends"""
 
 version := "1.0-SNAPSHOT"
 
