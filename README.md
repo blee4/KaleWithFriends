@@ -21,11 +21,11 @@ Websites that allow users to enter ingredients they currently have and find reci
 
 One of the most interesting features of our site is the Meal Planner. Farmers are responsible for keeping their online inventory up-to-date, then using this inventory, the Meal Planner search the onlne list of recipes, find the recipes that can be created using all fresh, local ingredients and produce a list. Each item in the list links to the corresponding recipe page.
 
-<img src="doc/images/meal_planner.png" width="400 px"><br>
+<img src="doc/images/meal_planner.jpg" width="400 px"><br>
 <i>Main view of the meal planner page.</i>
 
 <br>
-<img src="doc/images/recipe.png" width="400 px"><br>
+<img src="doc/images/recipe.jpg" width="400 px"><br>
 <i>Recipe page for "Kale Salad" linked from the Meal Planner.</i>
 
 
@@ -37,7 +37,7 @@ There are two main parts to this project: the social network and the meal planne
 <strike>Users will be able to sign in, add items to their "fridge", search for recipes, and add them to their cookbook. Farmers will be able to sign in, and add and edit items to their stock. There will be a "local" page which contains a map of nearby places and a list of upcoming events (ex. farmers markets).</strike>
 
 ## Deliverable 2
-The main focus of KaleWithFriends has shifted from the social network aspects to a brining local ingredients to consumers more easily. For the second milestone we are working on displaying where to buy local food, how much it costs, and showing what meals can be made purely out of local food. At this point expiration dates and budget are not being taken into account, and only meals that can be made 100% out of local food are displayed. 
+The main focus of KaleWithFriends has shifted from the social network aspects to a bringing local ingredients to consumers more easily. For the second milestone we are working on allow farmers to easily update their stock and add new produce to their inventory. In addition, individual user sessions will be implemented to allow unique profiles. Site will also be redesigned so it'll be easier to navigate.
 
 ## Deliverable 3
 In addition to the functionality of the previous two deliverables, the third expand the meal planner to include a budget, expiration dates of food and display recipes that meet some minimum threshold of local ingredients. At this point the farmer, recipe, and available now pages will all link to the local map which will display exactly where to buy the various foods.
