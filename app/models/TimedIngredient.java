@@ -165,8 +165,10 @@ public class TimedIngredient extends Model implements Comparable<TimedIngredient
       quantity = quantity - sub;
       this.save();
     }
+    //you cannot have a negative quantity
     else {
-      throw new RuntimeException("You cannot have a negative amount of stock.");
+      quantity = 0;
+      this.save();
     }
   }
 

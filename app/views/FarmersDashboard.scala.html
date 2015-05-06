@@ -3,7 +3,7 @@
 @Main("Page1", isLoggedIn, farmer) {
         <div id="homepage">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-8">
                     <div class="well">
                         <img src="@routes.Assets.at(farmer.getPictureLocation())" id="farmerPicture">
                         <h2>@farmer.getName()</h2>
@@ -35,7 +35,7 @@
                                     <td>@ingredient.getQuantity</td>
                                     <td><table><tr><td><a href="@routes.Application.addOne(farmer.getName(), ingredient.getId())"><i class="fa fa-plus"></i></a></td></tr>
                                         <tr><td><a href="@routes.Application.subOne(farmer.getName(), ingredient.getId())"><i class="fa fa-minus"></i></a></td></tr></table></td>
-                                    <td><a href="#">Edit</a></td>
+                                    <td><a href="@routes.Application.editIngredient(farmer.getName(), ingredient.getId())">Edit</a></td>
                                     }
                         </tr>
                         </table>

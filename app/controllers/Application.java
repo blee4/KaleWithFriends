@@ -286,7 +286,20 @@ public class Application extends Controller {
       IngredientFormData data = formData.get();
       System.out.println("Trying to add ingredient " + farmer);
       Secured.getFarmer(ctx()).addIngredient(data);
-      return ok(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
+      return redirect(routes.Application.farmersDashboard());
     }
   }
+
+  /**
+   *  Retrieves the new ingredient page for a user to edit ingredient.
+   * @param farmer the current farmer name.
+   * @return edit ingredient page.
+   */
+  @Security.Authenticated(Secured.class)
+  public static Result editIngredient(String farmer, long ingredient) {
+    IngredientFormData data = new IngredientFormData(Farmer.findFarmer(farmer).findIngredient(ingredient));
+    Form<IngredientFormData> formData = Form.form(IngredientFormData.class).fill(data);
+    return ok(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
+  }
+
 }

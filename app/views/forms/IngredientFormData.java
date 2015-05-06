@@ -50,6 +50,7 @@ public class IngredientFormData {
       this.id = ingredient.getId();
       this.quantity = Integer.toString(ingredient.getQuantity());
       this.image = ingredient.getImage();
+      this.name = ingredient.getName();
     }
 
     /**
