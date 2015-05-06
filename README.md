@@ -25,8 +25,8 @@ One of the most interesting features of our site is the Meal Planner. Farmers ar
 <i>Main view of the dashboard page.</i>
 
 <br>
-<img src="doc/images/recipe.jpg" width="400 px"><br>
-<i>Recipe page for "Kale Salad" linked from the Meal Planner.</i>
+<img src="doc/images/availableNow.jpg" width="400 px"><br>
+<i>Available Now page.</i>
 
 
 ## Development Approach
