@@ -7,13 +7,18 @@ import models.TimedIngredient;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+<<<<<<< HEAD
 import views.forms.IngredientFormData;
+=======
+import play.mvc.Security;
+>>>>>>> origin/master
 import views.html.AvailableNow;
 import views.html.Cookbook;
 import views.html.FarmersDashboard;
 import views.html.FarmersProfile;
 import views.html.Index;
 import views.html.Local;
+import views.html.Login;
 import views.html.MealPlanner;
 import views.html.NewIngredient;
 import views.html.Recipe;
@@ -32,50 +37,56 @@ public class Application extends Controller {
   /**
    * Returns the home page.
    *
-   * @param username the current user, if there is one
    * @return The resulting home page.
    */
-  public static Result index(String username) {
-    if (username == null) {
-      LoginData data = new LoginData();
-
-      Form<LoginData> formData = Form.form(LoginData.class).fill(data);
-      return ok(Index.render(formData));
-    }
-    Farmer data = Farmer.getFarmer(username);
-    return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.getName())));
-
+  public static Result index() {
+      return ok(Index.render("Index", Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
 
   }
 
-  /**
-   * Processes the form submitted from the Login page.
-   *
-   * @return The appropriate user home page
-   */
-  public static Result login() {
-    Form<LoginData> formData = Form.form(LoginData.class).bindFromRequest();
-    if (formData.hasErrors()) {
-      System.out.println("Errors found.");
-      return badRequest(Index.render(formData));
-    }
-    LoginData data = formData.get();
-    System.out.println("OK: " + data.name + " " + data.password);
-    session("username", data.name);
-    return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.name)));
-  }
 
   /**
    * Logs the current user out.
    *
    * @return The login page
    */
+  @Security.Authenticated(Secured.class)
   public static Result logout() {
     session().clear();
     flash("success", "You've been logged out");
-    return index(null);
+    return index();
   }
 
+
+  /**
+   * Returns the login page.
+   *
+   * @return The resulting sign up page.
+   */
+  public static Result login() {
+    LoginData data = new LoginData();
+
+    Form<LoginData> formData = Form.form(LoginData.class).fill(data);
+    return ok(Login.render(formData, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
+  }
+
+  /**
+   * Processes a login form.
+   *
+   * @return The user's dashboard.
+   */
+  public static Result postLogin() {
+    Form<LoginData> formData = Form.form(LoginData.class).bindFromRequest();
+    if (formData.hasErrors()) {
+      System.out.println("Errors found.");
+      return badRequest(Login.render(formData, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
+    }
+    LoginData data = formData.get();
+    System.out.println("OK: " + data.name + " " + data.password);
+    session("username", data.name);
+    return redirect(routes.Application.farmersDashboard());
+
+  }
 
   /**
    * Returns the sign up page.
@@ -86,7 +97,7 @@ public class Application extends Controller {
     SignUpForm data = new SignUpForm();
 
     Form<SignUpForm> formData = Form.form(SignUpForm.class).fill(data);
-    return ok(SignUp.render(formData));
+    return ok(SignUp.render(formData, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
   }
 
   /**
@@ -98,16 +109,24 @@ public class Application extends Controller {
     Form<SignUpForm> formData = Form.form(SignUpForm.class).bindFromRequest();
     if (formData.hasErrors()) {
       System.out.println("Errors found.");
-      return badRequest(SignUp.render(formData));
+      return badRequest(SignUp.render(formData, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
     }
     SignUpForm data = formData.get();
     System.out.println("OK: " + data.name + " " + data.password);
     session("username", data.name);
     FarmerDB.addFarmer(new Farmer(data.name, data.location));
-    return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.name)));
+    return redirect(routes.Application.farmersDashboard());
 
   }
 
+  /**
+   * Provides the Profile page (only to authenticated users).
+   * @return The Profile page.
+   */
+  @Security.Authenticated(Secured.class)
+  public static Result farmersDashboard() {
+    return ok(FarmersDashboard.render(Secured.getFarmer(ctx()), Secured.isLoggedIn(ctx())));
+  }
 
   /**
    * Returns the Farmer's profile page.
@@ -117,7 +136,7 @@ public class Application extends Controller {
    */
   public static Result farmersProfile(String name) {
     Farmer farmer = FarmerDB.getFarmer(name);
-    return ok(FarmersProfile.render(farmer));
+    return ok(FarmersProfile.render(farmer, Secured.isLoggedIn(ctx())));
   }
 
   /**
@@ -127,7 +146,7 @@ public class Application extends Controller {
    */
   public static Result cookbook() {
     //return ok(Cookbook.render(RecipeDB.getRecipe()));
-    return ok(Cookbook.render(RecipeDB.getRecipe()));
+    return ok(Cookbook.render(RecipeDB.getRecipe(), Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
   }
 
   /**
@@ -140,7 +159,7 @@ public class Application extends Controller {
     ArrayList<models.Recipe> r = new ArrayList<>();
     r.add(RecipeDB.getRecipe(id));
 
-    return ok(Recipe.render(r));
+    return ok(Recipe.render(r, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
   }
 
   /**
@@ -155,7 +174,7 @@ public class Application extends Controller {
       addresses.add(f.getName() + "|" + f.getLocation());
     }
 
-    return ok(Local.render("Welcome to local.", addresses));
+    return ok(Local.render("Welcome to local.", addresses, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
   }
 
   /**
@@ -164,7 +183,7 @@ public class Application extends Controller {
    * @return The resulting Meal Planner page.
    */
   public static Result mealPlanner() {
-    return ok(MealPlanner.render("Welcome to Meal Planner.", RecipeDB.getFreshRecipeList()));
+    return ok(MealPlanner.render("Welcome to Meal Planner.", RecipeDB.getFreshRecipeList(), Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
   }
 
 
@@ -174,7 +193,7 @@ public class Application extends Controller {
    * @return The resulting available now page.
    */
   public static Result availableNow() {
-    return ok(AvailableNow.render(FarmerDB.getFarmers()));
+    return ok(AvailableNow.render(FarmerDB.getFarmers(), Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
   }
 
   /**
@@ -184,9 +203,10 @@ public class Application extends Controller {
    * @param ingredient the ingredient to delete
    * @return Result the resulting page
    */
+  @Security.Authenticated(Secured.class)
   public static Result deleteIngredient(String farmer, long ingredient) {
     Farmer.deleteIngredient(farmer, ingredient);
-    return ok(FarmersDashboard.render(Farmer.findFarmer(farmer)));
+    return ok(FarmersDashboard.render(Farmer.findFarmer(farmer), Secured.isLoggedIn(ctx())));
   }
 
   //public static Result editStock(TimedIngredient ingredient) {
@@ -201,10 +221,11 @@ public class Application extends Controller {
    * @param ingredient the ingredient to increment
    * @return the Dashboard with the new ingredient amount
    */
+  @Security.Authenticated(Secured.class)
   public static Result addOne(String farmer, long ingredient) {
 
     Farmer.addOneToIngredient(farmer, ingredient);
-    return ok(FarmersDashboard.render(Farmer.findFarmer(farmer)));
+    return ok(FarmersDashboard.render(Farmer.findFarmer(farmer), Secured.isLoggedIn(ctx())));
   }
 
   /**
@@ -214,9 +235,10 @@ public class Application extends Controller {
    * @param ingredient the ingredient to subtract
    * @return the Dashboard with the new ingredient amount
    */
+  @Security.Authenticated(Secured.class)
   public static Result subOne(String farmer, long ingredient) {
     Farmer.subtractOneToIngredient(farmer, ingredient);
-    return ok(FarmersDashboard.render(Farmer.findFarmer(farmer)));
+    return ok(FarmersDashboard.render(Farmer.findFarmer(farmer), Secured.isLoggedIn(ctx())));
   }
 
 

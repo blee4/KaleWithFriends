@@ -1,6 +1,6 @@
-@(farmerList: List[Farmer])
+@(farmerList: List[Farmer], isLoggedIn: Boolean, farmer: Farmer)
 
-@Main("Available Now") {
+@Main("Available Now", isLoggedIn, farmer) {
 
 
   <div class="container">

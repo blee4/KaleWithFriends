@@ -1,35 +1,13 @@
-@(contactForm: Form[views.loginData.LoginData])
+@(page: String, isLoggedIn: Boolean, farmer: Farmer)
 
 @import views.html.helper._
 @import views.html.bootstrap3._
 
 
-@Main("Home") {
+@Main("Home", isLoggedIn, farmer) {
     <div class="row">
 
     <div class = "col-sm-4">
-        <div class = "login-form">
-        <h3> <i class="fa fa-leaf"></i> Login</h3>
-        @form(routes.Application.login(), 'class -> "form-horizontal") {
-        <input type ="hidden" name="@contactForm("id").name" id="@contactForm("id").id" value="@contactForm("id").value">
-
-            <!-- Name -->
-        @text(contactForm("name"),
-            label = "Username",
-            placeholder = "Username",
-            help = "")
-
-                <!-- Password -->
-            @text(contactForm("password"),
-                label = "Password",
-                placeholder = "Password",
-                help = "")
-
-            <button class="btn btn-md btn-block btn-success" type="submit">Login</button><a class="btn btn-md btn-block btn-success" style="margin-top:10px;" type="button" href="@routes.Application.signUp()">Not a member yet? Sign up now!</a>
-        }</div>
-    </div>
-
-        <div class="col-sm-8">
             <div class="input-group">
                 <input type="text" class="form-control" aria-label="...">
                 <div class="input-group-btn">

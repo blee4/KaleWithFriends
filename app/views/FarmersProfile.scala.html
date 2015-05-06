@@ -1,6 +1,6 @@
-@(farmer: Farmer)
+@(farmer: Farmer, isLoggedIn: Boolean)
 
-@Main("Farmer's Dashboard") {
+@Main("Farmer's Dashboard", isLoggedIn, farmer) {
     <div class="container">
         <div class="col-md-6">
           <div class="well">
