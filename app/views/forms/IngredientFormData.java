@@ -71,7 +71,17 @@ public class IngredientFormData {
 
     }
 
-    /**
+
+  /**
+   * Checks if a string is a number.
+   * @param s the string to check
+   * @return true or false if number or not
+   */
+  public boolean isNumeric(String s) {
+    return s.matches("[-+]?\\d*\\.?\\d+");
+  }
+
+  /**
      * Validates the form's fields.
      *
      * @return null if valid, list of errors if there are any.
@@ -85,11 +95,19 @@ public class IngredientFormData {
 
 
       if (price == null || price.length() == 0) {
-        errors.add(new ValidationError("price", "price is required."));
+        errors.add(new ValidationError("price", "Price is required."));
       }
 
-      if (quantity == null || quantity.length() == 0 ) {
-        errors.add(new ValidationError("quantity", "quantity is required."));
+      if (!isNumeric(price)) {
+        errors.add(new ValidationError("price", "Price must contain only numbers or decimals."));
+      }
+
+      if (quantity == null || quantity.length() == 0 || !isNumeric(quantity)) {
+        errors.add(new ValidationError("quantity", "Quantity is required."));
+      }
+
+      if (!isNumeric(quantity)) {
+        errors.add(new ValidationError("price", "Quantity must contain only numbers or decimals."));
       }
 
       return errors.isEmpty() ? null : errors;
