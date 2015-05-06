@@ -4,24 +4,24 @@
 @Main("Recipe", isLoggedIn, farmer) {
   @for(recipe <- recipeList){
   <div class="container">
-    <div class="col-md-6">
       <div class="well">
 
-        <h2>@recipe.getName</h2>
+        <h1>@recipe.getName</h1>
 
         <img src="@routes.Assets.at(recipe.getImagePath)" class="recipe_image">
 
-        <h2>Ingredients</h2>
+          <h3><div class="recipe_header">INGREDIENTS</div></h3>
+          <hr>
         <ul>
           @for(ingredient <- recipe.getIngredientList){
             <li>@ingredient.getName()</li>
           }
         </ul>
       </div>
-    </div>
-    <div class="col-md-6">
+
       <div class="well">
-        <h2>Directions</h2>
+        <h3><div class="recipe_header">DIRECTIONS</div></h3>
+          <hr>
         <ol>
           @for(procedure <- recipe.getProcedure()){
             <li><p>@procedure.getProcedure()</p></li>
@@ -30,12 +30,5 @@
         </ol>
       </div>
     </div>
-
-    <div class="col-md-12">
-      <h2>Reviews</h2>
-      <div class="well">
-      </div>
-    </div>
-  </div>
   }
 }
