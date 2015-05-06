@@ -7,9 +7,11 @@ import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
+import views.forms.EditFarmerData;
 import views.forms.IngredientFormData;
 import views.html.AvailableNow;
 import views.html.Cookbook;
+import views.html.EditFarmer;
 import views.html.FarmersDashboard;
 import views.html.FarmersProfile;
 import views.html.Index;
@@ -206,10 +208,28 @@ public class Application extends Controller {
     return ok(FarmersDashboard.render(Farmer.findFarmer(farmer), Secured.isLoggedIn(ctx())));
   }
 
-  //public static Result editStock(TimedIngredient ingredient) {
+  public static Result editFarmer(String farmer) {
+    Farmer f = Farmer.findFarmer(farmer);
+    EditFarmerData data = new EditFarmerData(f);
+    Form<EditFarmerData> formData = Form.form(EditFarmerData.class).fill(data);
+    return ok(EditFarmer.render(formData, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
+   }
 
-  //
-  // }
+  public static Result postEditFarmer(String farmer) {
+    Form<EditFarmerData> formData = Form.form(EditFarmerData.class).bindFromRequest();
+    if (formData.hasErrors()) {
+      System.out.println("Errors found.");
+      return badRequest(EditFarmer.render(formData, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
+    }
+    EditFarmerData data = formData.get();
+    session("username", data.getName());
+    FarmerDB.getFarmer(data.getName()).setLocation(data.getLocation());
+    FarmerDB.getFarmer(data.getName()).setPassword(data.getPassword());
+    FarmerDB.getFarmer(data.getName()).setMarkets(data.getMarkets());
+    FarmerDB.getFarmer(data.getName()).setPhone(data.getPhone());
+    FarmerDB.getFarmer(data.getName()).setName(data.getName());
+    return redirect(routes.Application.farmersDashboard());
+  }
 
   /**
    * Adds just one quantity to the ingredient.

@@ -1,0 +1,43 @@
+@(farmerForm: Form[views.forms.EditFarmerData], isLoggedIn: Boolean, farmer: Farmer)
+
+@import bootstrap3._
+@import helper._
+
+@Main("Edit Farmer", isLoggedIn, farmer) {
+  <div class="container">
+  @form(routes.Application.postEditFarmer(), 'class -> "form-horizontal") {
+    <input type = "hidden"
+    name = "@farmerForm("id").name"
+    id = "@farmerForm("id").id"
+    value = "@farmerForm("id").value" >
+
+
+    @text(farmerForm("name"),
+      label = "Name",
+      placeholder = "Name",
+      help = "")
+
+    @password(farmerForm("password"),
+      label = "Password",
+      placeholder = "Password",
+      help = "")
+
+    @text(farmerForm("location"),
+      label = "Farm Location",
+      placeholder = "Location",
+      help = "")
+
+      @text(farmerForm("markets"),
+          label = "Markets",
+          placeholder = "Markets",
+          help = "")
+      @text(farmerForm("phone"),
+          label = "Phone Number",
+          placeholder = "Phone",
+          help = "")
+
+
+    <button id="submit" type="submit" class="btn btn-default">Submit</button>
+  }
+  </div>
+}
