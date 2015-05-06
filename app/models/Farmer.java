@@ -351,6 +351,7 @@ public class Farmer extends Model {
    * @param formData The form data.
    */
   public void addIngredient(IngredientFormData formData){
+    System.out.println("MOOOOOO");
     TimedIngredient timedIngredient = new TimedIngredient( formData.name, Integer.parseInt(formData.quantity));
     timedIngredient.setPrice(formData.price);
     timedIngredient.setImage("images/farmPicture.jpg");

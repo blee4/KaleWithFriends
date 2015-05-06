@@ -246,13 +246,13 @@ public class Application extends Controller {
    */
   @Security.Authenticated(Secured.class)
   public static Result newIngredient(String farmer) {
+    System.out.println("LOOK HERE PLZ " + farmer);
     IngredientFormData data = new IngredientFormData();
     Form<IngredientFormData> formData = Form.form(IngredientFormData.class).fill(data);
     return ok(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
   }
 
   /**
-   * CURRENTLY BUGGED, farmer is hard coded
    *
    * Sends a post request to add the new ingredient using the form.
    * @param farmer the current farmer name.
@@ -268,8 +268,8 @@ public class Application extends Controller {
     }
     else {
       IngredientFormData data = formData.get();
-      System.out.println("Trying to add ingredient");
-      Farmer.findFarmer("Aloun Farms").addIngredient(data);
+      System.out.println("Trying to add ingredient " + farmer);
+      Secured.getFarmer(ctx()).addIngredient(data);
       return ok(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
     }
   }
