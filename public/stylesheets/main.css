@@ -13,6 +13,14 @@ h1 {
   text-align: center;
 }
 
+h2 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
 /* all map containers must be full height */
 html, body, .container-fluid, .row, .map {
   height: 100%
@@ -29,6 +37,20 @@ html, body, .container-fluid, .row, .map {
 }
 
 .recipe_image {
+  width: 600px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+}
+
+.fresh_image {
+  width: 100px;
+  display: block;
+  padding-right: 25px;
+}
+
+.produce_image {
   height: 100px;
   display: block;
   padding-right: 25px;
@@ -48,6 +70,11 @@ html, body, .container-fluid, .row, .map {
 .recipe h2 {
   padding-bottom: 25px;
 }
+
+.recipe_header {
+  text-align: left;
+}
+
 .recipe img {
   background-image: url("../images/recipe-1.jpg");
   width: 150px;
@@ -112,5 +139,11 @@ html, body, .container-fluid, .row, .map {
 }
 
 .fa-times {
-  color: red;
 }
+
+.login-form {
+  margin-left: 30px;
+}
+
+
+

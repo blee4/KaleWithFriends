@@ -1,16 +1,16 @@
-@(message: String, farmerInfo: List[String])
+@(message: String, farmerInfo: List[String], isLoggedIn: Boolean, farmer: Farmer)
 
-@Main("Local") {
+@Main("Local", isLoggedIn, farmer) {
 
 }
 
 <html>
   <head>
     <div class="container-fluid">
-      <div class="row">
+        <div class="well"><h1>Where To Find Local Produce Nearby</h1></div>
+        <div class="row">
         <div class="col-xs-6 col-md-4">
           <div class="well">
-            <h1>List of Markets/Events</h1>
               <ol>
                 <li>Campus Center Farmer's Market</li>
                 <li>UHM Dorm Farmer's Market</li>

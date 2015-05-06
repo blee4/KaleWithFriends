@@ -1,9 +1,9 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import controllers.Secured;
+import views.forms.EditFarmerData;
+import play.mvc.Security;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Farmer database to hold all the farmers.
@@ -13,10 +13,6 @@ import java.util.Map;
 
 public class FarmerDB {
 
-  /**
-   * The list that contains all the farmers.
-   */
-  public static Map<String, Farmer> farmerList = new HashMap<>();
 
   /**
    * Adds a farmer to the database.
@@ -24,7 +20,23 @@ public class FarmerDB {
    * @param farmer The farmer.
    */
   public static void addFarmer(Farmer farmer) {
-    farmerList.put(farmer.getName(), farmer);
+    farmer.save();
+  }
+
+  /**
+   * Add a contact to the list database.
+   *
+   * @param form the filled out contact form
+   */
+  public static void editFarmer(EditFarmerData data) {
+    long idVal = data.getId();
+    Farmer f = getFarmer(data.getName());
+    f.setLocation(data.getLocation());
+    f.setPassword(data.getPassword());
+    f.setMarkets(data.getMarkets());
+    f.setPhone(data.getPhone());
+    f.setName(data.getName());
+    f.save();
   }
 
   /**
@@ -34,7 +46,18 @@ public class FarmerDB {
    * @return The corresponding farmer.
    */
   public static Farmer getFarmer(String name) {
-    return farmerList.get(name);
+    return Farmer.find().where().eq("name", name).findUnique();
+
+  }
+
+  /**
+   * Gets a farmer given the id.
+   *
+   * @param id The farmer name.
+   * @return The corresponding farmer.
+   */
+  public static Farmer getFarmer(long id) {
+    return Farmer.find().byId(id);
   }
 
   /**
@@ -42,8 +65,25 @@ public class FarmerDB {
    *
    * @return The list of farmers.
    */
-  public static List<Farmer> getFarmers() {return new ArrayList(farmerList.values());
+  public static List<Farmer> getFarmers() {
+
+    return Farmer.find().findList();
   }
 
+  /**
+   * Returns true if username and password are valid credentials.
+   * @param username The username.
+   * @param password The password.
+   * @return True if username is a valid user email and password is valid for that username.
+   */
+  public static boolean isValid(String username, String password) {
+    return ((username != null)
+        &&
+        (password != null)
+        &&
+        (getFarmer(username) != null)
+        &&
+        getFarmer(username).getPassword().equals(password));
+  }
 
 }

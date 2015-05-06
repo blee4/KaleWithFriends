@@ -1,6 +1,7 @@
 package views.loginData;
 
-import models.User;
+import models.Farmer;
+import models.FarmerDB;
 import play.data.validation.ValidationError;
 
 import java.util.ArrayList;
@@ -11,14 +12,14 @@ import java.util.List;
  */
 public class LoginData {
   /**
-   * User name field.
+   * Farmer name field.
    */
   public String name;
 
   /**
    * Login type field.
    */
-  public String loginType;
+  public String password;
 
 
   /**
@@ -30,31 +31,37 @@ public class LoginData {
   /**
    * Constructor using existing login.
    *
-   * @param user existing contact
+   * @param farmer existing contact
    */
-  public LoginData(User user) {
-    this.loginType = user.getType();
-    this.name = user.getName();
+  public LoginData(Farmer farmer) {
+    this.name = farmer.getName();
+    this.password = farmer.getPassword();
   }
+
 
 
   /**
-   * Checks for field validations.
-   *
-   * @return List of errors or null if there are no errors
+   * Validates Form
+   * Called automatically in the controller by bindFromRequest().
+   * Checks to see that email and password are valid credentials.
+   * @return Null if valid, or a List[ValidationError] if problems found.
    */
   public List<ValidationError> validate() {
+
     List<ValidationError> errors = new ArrayList<>();
 
-    if(name == null || !User.isName(name)) {
-      errors.add(new ValidationError("name", "Username is invalid."));
+    if (!FarmerDB.isValid(name, password)) {
+      errors.add(new ValidationError("name", "Invalid"));
+      errors.add(new ValidationError("password", "Invalid"));
     }
-    if (loginType == null || !LoginTypes.isType(loginType)) {
-      errors.add(new ValidationError("loginType", "Login type is invalid."));
-    }
-      return errors.isEmpty() ? null : errors;
+
+    return (errors.size() > 0) ? errors : null;
   }
 
+  /**
+   * Gets the current user's name.
+   * @return The user's name
+   */
   public String getName() {
     return name;
   }

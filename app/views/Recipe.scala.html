@@ -1,48 +1,34 @@
-@(recipeList: List[Recipe])
+@(recipeList: List[Recipe], isLoggedIn: Boolean, farmer: Farmer)
 
 
-@Main("Recipe") {
+@Main("Recipe", isLoggedIn, farmer) {
   @for(recipe <- recipeList){
   <div class="container">
-    <div class="col-md-6">
       <div class="well">
 
-        <h2>@recipe.getName</h2>
+        <h1>@recipe.getName</h1>
 
         <img src="@routes.Assets.at(recipe.getImagePath)" class="recipe_image">
 
-        <h2>Ingredients</h2>
+          <h3><div class="recipe_header">INGREDIENTS</div></h3>
+          <hr>
         <ul>
           @for(ingredient <- recipe.getIngredientList){
             <li>@ingredient.getName()</li>
           }
         </ul>
       </div>
-    </div>
-    <div class="col-md-6">
+
       <div class="well">
-        <h2>Directions</h2>
+        <h3><div class="recipe_header">DIRECTIONS</div></h3>
+          <hr>
         <ol>
-          @for(procedure <- recipe.getProcedure){
-            <li><p>@procedure</p></li>
+          @for(procedure <- recipe.getProcedure()){
+            <li><p>@procedure.getProcedure()</p></li>
           }
             <!-- Source: https://uscgwifey.wordpress.com/tag/kalua-pig/ -->
         </ol>
       </div>
     </div>
-
-    <div class="col-md-12">
-      <h2>Reviews</h2>
-      <div class="well">
-        <p>Bob says: This recipe is awesome!</p>
-      </div>
-      <div class="well">
-        <p>Alex says: Easy to cook and tastes amazing. What's not to like?</p>
-      </div>
-      <div class="well">
-        <p>Max says: 5 stars.</p>
-      </div>
-    </div>
-  </div>
   }
 }
