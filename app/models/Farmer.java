@@ -350,7 +350,7 @@ public class Farmer extends Model {
     timedIngredient.setImage("images/farmPicture.jpg");
     timedIngredient.setStartDate(TimeStamp.makeCalendar(2015, 5, 5));
     timedIngredient.setEndDate(TimeStamp.makeCalendar(2016, 5, 5));
-    timedIngredient.setFarmer(this);
+    timedIngredient.setFarmer(Farmer.findFarmer(name));
     timedIngredient.save();
 
   }
