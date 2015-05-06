@@ -51,5 +51,20 @@ public class FarmerDB {
     return Farmer.find().findList();
   }
 
+  /**
+   * Returns true if username and password are valid credentials.
+   * @param username The username.
+   * @param password The password.
+   * @return True if username is a valid user email and password is valid for that username.
+   */
+  public static boolean isValid(String username, String password) {
+    return ((username != null)
+        &&
+        (password != null)
+        &&
+        (getFarmer(username) != null)
+        &&
+        getFarmer(username).getPassword().equals(password));
+  }
 
 }
