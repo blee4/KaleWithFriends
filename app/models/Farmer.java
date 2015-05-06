@@ -342,6 +342,10 @@ public class Farmer extends Model {
     }
   }
 
+  public void addNewIngredient(TimedIngredient timedIngredient){
+    this.ingredientList.add(timedIngredient);
+  }
+
   /**
    * Sets the location.
    *

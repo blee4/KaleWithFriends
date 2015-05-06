@@ -6,6 +6,7 @@ import models.RecipeDB;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.forms.IngredientFormData;
 import views.html.AvailableNow;
 import views.html.Cookbook;
 import views.html.FarmersDashboard;
@@ -13,6 +14,7 @@ import views.html.FarmersProfile;
 import views.html.Index;
 import views.html.Local;
 import views.html.MealPlanner;
+import views.html.NewIngredient;
 import views.html.Recipe;
 import views.html.SignUp;
 import views.loginData.LoginData;
@@ -214,5 +216,20 @@ public class Application extends Controller {
   public static Result subOne(String farmer, long ingredient) {
     Farmer.subtractOneToIngredient(farmer, ingredient);
     return ok(FarmersDashboard.render(Farmer.findFarmer(farmer)));
+  }
+
+  public static Result postIngredient(){
+    System.out.println("In post Contact.");
+    Form<IngredientFormData> formData = Form.form(IngredientFormData.class).bindFromRequest();
+    if (formData.hasErrors()) {
+      System.out.println("Form has errors.");
+      return badRequest(NewIngredient.render(formData));
+    }
+    else {
+      IngredientFormData data = formData.get();
+      farmer
+
+      return ok(NewContact.render(formData, TelephoneTypes.getTypes(data.telephoneType), DietTypes.getTypes(data.dietTypes)));
+    }
   }
 }
