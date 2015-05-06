@@ -44,6 +44,12 @@ html, body, .container-fluid, .row, .map {
   padding: 20px;
 }
 
+.fresh_image {
+  width: 100px;
+  display: block;
+  padding-right: 25px;
+}
+
 .produce_image {
   height: 100px;
   display: block;
