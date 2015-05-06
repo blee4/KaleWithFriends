@@ -376,8 +376,8 @@ public class Farmer extends Model {
     TimedIngredient timedIngredient = new TimedIngredient( formData.name, Integer.parseInt(formData.quantity));
     timedIngredient.setPrice(formData.price);
     timedIngredient.setImage("images/farmPicture.jpg");
-    timedIngredient.setStartDate(TimeStamp.makeCalendar(2012, 5, 5));
-    timedIngredient.setEndDate(TimeStamp.makeCalendar(2016, 5, 5));
+    timedIngredient.setEndDate(formData.endDate);
+    timedIngredient.setEndDate(TimeStamp.makeCalendar(formData.expYear, formData.expMonth, formData.expDay));
     timedIngredient.setFarmer(Farmer.findFarmer(name));
 
     IngredientDB.addIngredient(timedIngredient);

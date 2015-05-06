@@ -1,5 +1,6 @@
 package views.forms;
 
+import assets.TimeStamp;
 import models.Farmer;
 import models.TimedIngredient;
 import play.data.validation.ValidationError;
@@ -23,6 +24,10 @@ public class IngredientFormData {
     public String name;
 
     public String quantity;
+
+  public int expMonth;
+  public int expDay;
+  public int expYear;
 
 
     public Calendar startDate;
@@ -52,6 +57,26 @@ public class IngredientFormData {
       this.image = ingredient.getImage();
       this.name = ingredient.getName();
     }
+
+
+  /**
+   * Creates a model of a ingredient without the id. Method used for testing purposes.
+   *
+   * @param name
+   * @param price
+   * @param quantity
+   * @param image
+   */
+  public IngredientFormData(String name, String price, String quantity, String image, int expMonth, int expDay, int expYear) {
+    this.name = name;
+    this.price = price;
+    this.quantity = quantity;
+    this.image = image;
+    this.expMonth = expMonth;
+    this.expDay = expDay;
+    this.expYear = expYear;
+
+  }
 
     /**
      * Creates a model of a ingredient without the id. Method used for testing purposes.

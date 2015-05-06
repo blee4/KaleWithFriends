@@ -3,10 +3,10 @@
 @Main("Page1", isLoggedIn, farmer) {
         <div id="homepage">
             <div class="row">
-                <div class="col-sm-8">
+                <div class="col-sm-6">
                     <div class="well">
-                        <img src="@routes.Assets.at(farmer.getPictureLocation())" id="farmerPicture">
-                        <h2>@farmer.getName()</h2>
+                        <div class = "farmer_image"><img src="@routes.Assets.at(farmer.getPictureLocation())" id="farmerPicture"></div>
+                        <h2><div class="recipe_header">@farmer.getName()</div></h2>
                         <h4>Farm location: </h4>  @farmer.getLocation()<br><br>
                         <h4>Market locations:</h4> @farmer.getMarkets()<br><br>
                         <h4>Phone Number: </h4>@farmer.getPhone()<br><br>
@@ -20,8 +20,8 @@
                                 <th></th>
                                 <th>Item</th>
                                 <th>Price</th>
+                                <th>Expiration Date</th>
                                 <th>Stock</th>
-                                <th></th>
                                 <th></th>
                             </tr>
 
@@ -32,10 +32,10 @@
                                         <i class="fa fa-times"></i></a></td>
                                     <td>@ingredient.getName()</td>
                                     <td>$@ingredient.getPrice() per lb.</td>
+                                    <td>@ingredient.printDate()</td>
                                     <td>@ingredient.getQuantity</td>
                                     <td><table><tr><td><a href="@routes.Application.addOne(farmer.getName(), ingredient.getId())"><i class="fa fa-plus"></i></a></td></tr>
                                         <tr><td><a href="@routes.Application.subOne(farmer.getName(), ingredient.getId())"><i class="fa fa-minus"></i></a></td></tr></table></td>
-                                    <td><a href="@routes.Application.editIngredient(farmer.getName(), ingredient.getId())">Edit</a></td>
                                     }
                         </tr>
                         </table>
@@ -49,7 +49,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-8">
+                <div class="col-sm-6">
                     <div class="well">
                         <div class="media">
                             <div class="media-left">

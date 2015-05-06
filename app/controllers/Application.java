@@ -262,7 +262,6 @@ public class Application extends Controller {
    */
   @Security.Authenticated(Secured.class)
   public static Result newIngredient(String farmer) {
-    System.out.println("LOOK HERE PLZ " + farmer);
     IngredientFormData data = new IngredientFormData();
     Form<IngredientFormData> formData = Form.form(IngredientFormData.class).fill(data);
     return ok(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
