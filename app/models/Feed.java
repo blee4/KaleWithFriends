@@ -5,7 +5,11 @@ import play.db.ebean.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.text.DateFormat;
+import java.util.Date;
+
 
 /**
  * Model to represent a farmer's message feed that will appear on their dashboard/news food.
@@ -129,5 +133,16 @@ public class Feed extends Model {
    */
   public void setId(long id) {
     this.id = id;
+  }
+
+  public String printDate() {
+    Calendar cal = time;
+    SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+    String formatted = format1.format(cal.getTime());
+    if (formatted != null) {
+      return formatted;
+    } else {
+      return null;
+    }
   }
 }

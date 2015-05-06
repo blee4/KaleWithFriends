@@ -153,5 +153,11 @@ html, body, .container-fluid, .row, .map {
   margin-left: 30px;
 }
 
+.whats-new {
+  padding-left: 20px;
+}
 
+.whats-new-button {
+  padding-bottom: 20px;
+}
 

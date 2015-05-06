@@ -27,6 +27,7 @@ GET         /newingredient                  controllers.Application.newIngredien
 GET         /editFarmer                     controllers.Application.editFarmer(farmer: String ?= "")
 POST        /editFarmer                     controllers.Application.postEditFarmer(farmer: String ?= "")
 GET         /editIngredient                 controllers.Application.editIngredient(farmer: String ?= "", ingredient : Long ?= 0)
+POST        /farmersdashboard/post          controllers.Application.postFeed()
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                   controllers.Assets.at(path="/public", file)
