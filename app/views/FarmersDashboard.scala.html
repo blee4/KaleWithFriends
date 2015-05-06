@@ -1,12 +1,15 @@
-@(farmer: Farmer, isLoggedIn: Boolean)
+@(contactForm: Form[views.forms.FeedData], farmer: Farmer, isLoggedIn: Boolean)
+
+@import views.html.helper._
+@import views.html.bootstrap3._
 
 @Main("Page1", isLoggedIn, farmer) {
         <div id="homepage">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <div class="well">
-                        <img src="@routes.Assets.at(farmer.getPictureLocation())" id="farmerPicture">
-                        <h2>@farmer.getName()</h2>
+                        <div class = "farmer_image"><img src="@routes.Assets.at(farmer.getPictureLocation())" id="farmerPicture"></div>
+                        <h2><div class="recipe_header">@farmer.getName()</div></h2>
                         <h4>Farm location: </h4>  @farmer.getLocation()<br><br>
                         <h4>Market locations:</h4> @farmer.getMarkets()<br><br>
                         <h4>Phone Number: </h4>@farmer.getPhone()<br><br>
@@ -20,8 +23,8 @@
                                 <th></th>
                                 <th>Item</th>
                                 <th>Price</th>
+                                <th>Expiration Date</th>
                                 <th>Stock</th>
-                                <th></th>
                                 <th></th>
                             </tr>
 
@@ -32,10 +35,10 @@
                                         <i class="fa fa-times"></i></a></td>
                                     <td>@ingredient.getName()</td>
                                     <td>$@ingredient.getPrice() per lb.</td>
+                                    <td>@ingredient.printDate()</td>
                                     <td>@ingredient.getQuantity</td>
                                     <td><table><tr><td><a href="@routes.Application.addOne(farmer.getName(), ingredient.getId())"><i class="fa fa-plus"></i></a></td></tr>
                                         <tr><td><a href="@routes.Application.subOne(farmer.getName(), ingredient.getId())"><i class="fa fa-minus"></i></a></td></tr></table></td>
-                                    <td><a href="#">Edit</a></td>
                                     }
                         </tr>
                         </table>
@@ -49,31 +52,31 @@
                     </div>
                 </div>
 
-                <div class="col-sm-8">
-                    <div class="well">
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="@routes.Assets.at("images/farmPicture.jpg")">
-                                </a>
+                <div class="col-sm-5">
+                    <div class="row whats-new-button">
+                            @form(routes.Application.postFeed(), 'class -> "form-horizontal") {
+                                <input type ="hidden" name="@contactForm("id").name" id="@contactForm("id").id" value="@contactForm("id").value">
+
+                                    <!-- Name -->
+                                @bootstrap3.textarea(contactForm("entry"),
+                                    rows = "10",
+                                    label = "",
+                                    placeholder = "What's new?",
+                                    help = "")
+
+
+                                <button class="btn btn-lg btn-block btn-success" type="submit">Submit</button>
+                            }</div>
+
+                    @for(feed <- FeedDB.getFeeds()) {
+                            <div class="well">
+                                <div class="recipe">
+                                    <img src="@routes.Assets.at(farmer.getPictureLocation())">
+                                    <a href="@routes.Application.farmersProfile()"><h4>@feed.getFarmer().getName() @feed.printDate()</h4></a>
+                                    <p>@feed.getEntry()</p>
+                                </div>
                             </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">Nalo LIFE</h4>
-                                We just ran out of kale. But we still have lots of other fresh vegetables waiting
-                                to be bought! Come see us at the Windward Mall Farmers market!
-                            </div>
-                        </div>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="@routes.Assets.at("images/farmPicture.jpg")">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">Aloun Farms</h4>
-                                Our hard-working farmers just finished picking some fresh kale! Come see us on
-                                Saturday morning at KCC for your weekly dose of kale!
-                            </div></div>
+                    }
                     </div>
                 </div>
             </div>

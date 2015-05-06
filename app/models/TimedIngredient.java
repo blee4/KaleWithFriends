@@ -5,6 +5,7 @@ import play.db.ebean.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -21,6 +22,7 @@ public class TimedIngredient extends Model implements Comparable<TimedIngredient
   private String image;
   private String name;
   private int quantity;
+
 
   @ManyToOne
   private Farmer farmer;
@@ -165,8 +167,10 @@ public class TimedIngredient extends Model implements Comparable<TimedIngredient
       quantity = quantity - sub;
       this.save();
     }
+    //you cannot have a negative quantity
     else {
-      throw new RuntimeException("You cannot have a negative amount of stock.");
+      quantity = 0;
+      this.save();
     }
   }
 
@@ -279,6 +283,20 @@ public class TimedIngredient extends Model implements Comparable<TimedIngredient
 
   public void setFarmer(Farmer farmer) {
     this.farmer = farmer;
+  }
+
+  public String printDate() {
+    Calendar cal = endDate;
+    if (cal != null) {
+      SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+      //System.out.println(cal.getTime());
+// Ouput "Wed Sep 26 14:23:28 EST 2012"
+
+      String formatted = format1.format(cal.getTime());
+      return formatted;
+    } else {
+      return null;
+    }
   }
 }
 

@@ -2,12 +2,15 @@ package controllers;
 
 import models.Farmer;
 import models.FarmerDB;
+import models.Feed;
+import models.FeedDB;
 import models.RecipeDB;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
 import views.forms.EditFarmerData;
+import views.forms.FeedData;
 import views.forms.IngredientFormData;
 import views.html.AvailableNow;
 import views.html.Cookbook;
@@ -124,7 +127,10 @@ public class Application extends Controller {
    */
   @Security.Authenticated(Secured.class)
   public static Result farmersDashboard() {
-    return ok(FarmersDashboard.render(Secured.getFarmer(ctx()), Secured.isLoggedIn(ctx())));
+    FeedData data = new FeedData();
+
+    Form<FeedData> formData = Form.form(FeedData.class).fill(data);
+    return ok(FarmersDashboard.render(formData, Secured.getFarmer(ctx()), Secured.isLoggedIn(ctx())));
   }
 
   /**
@@ -205,7 +211,7 @@ public class Application extends Controller {
   @Security.Authenticated(Secured.class)
   public static Result deleteIngredient(String farmer, long ingredient) {
     Farmer.deleteIngredient(farmer, ingredient);
-    return ok(FarmersDashboard.render(Farmer.findFarmer(farmer), Secured.isLoggedIn(ctx())));
+    return redirect(routes.Application.farmersDashboard());
   }
 
   public static Result editFarmer(String farmer) {
@@ -238,7 +244,7 @@ public class Application extends Controller {
   public static Result addOne(String farmer, long ingredient) {
 
     Farmer.addOneToIngredient(farmer, ingredient);
-    return ok(FarmersDashboard.render(Farmer.findFarmer(farmer), Secured.isLoggedIn(ctx())));
+    return redirect(routes.Application.farmersDashboard());
   }
 
   /**
@@ -251,7 +257,7 @@ public class Application extends Controller {
   @Security.Authenticated(Secured.class)
   public static Result subOne(String farmer, long ingredient) {
     Farmer.subtractOneToIngredient(farmer, ingredient);
-    return ok(FarmersDashboard.render(Farmer.findFarmer(farmer), Secured.isLoggedIn(ctx())));
+    return redirect(routes.Application.farmersDashboard());
   }
 
 
@@ -262,7 +268,6 @@ public class Application extends Controller {
    */
   @Security.Authenticated(Secured.class)
   public static Result newIngredient(String farmer) {
-    System.out.println("LOOK HERE PLZ " + farmer);
     IngredientFormData data = new IngredientFormData();
     Form<IngredientFormData> formData = Form.form(IngredientFormData.class).fill(data);
     return ok(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
@@ -286,7 +291,38 @@ public class Application extends Controller {
       IngredientFormData data = formData.get();
       System.out.println("Trying to add ingredient " + farmer);
       Secured.getFarmer(ctx()).addIngredient(data);
-      return ok(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
+      return redirect(routes.Application.farmersDashboard());
     }
   }
+
+  /**
+   *  Retrieves the new ingredient page for a user to edit ingredient.
+   * @param farmer the current farmer name.
+   * @return edit ingredient page.
+   */
+  @Security.Authenticated(Secured.class)
+  public static Result editIngredient(String farmer, long ingredient) {
+    IngredientFormData data = new IngredientFormData(Farmer.findFarmer(farmer).findIngredient(ingredient));
+    Form<IngredientFormData> formData = Form.form(IngredientFormData.class).fill(data);
+    return ok(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
+  }
+
+  /**
+   * Processes a new feed form.
+   *
+   * @return The user's dashboard.
+   */
+  @Security.Authenticated(Secured.class)
+  public static Result postFeed() {
+    Form<FeedData> formData = Form.form(FeedData.class).bindFromRequest();
+    if (formData.hasErrors()) {
+      System.out.println("Errors found.");
+      return badRequest(FarmersDashboard.render(formData, Secured.getFarmer(ctx()), Secured.isLoggedIn(ctx())));
+    }
+    FeedData data = formData.get();
+    FeedDB.addProcedure(new Feed(data.entry, Secured.getFarmer(ctx())));
+    return redirect(routes.Application.farmersDashboard());
+
+  }
+
 }
