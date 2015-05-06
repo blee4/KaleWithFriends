@@ -2,13 +2,12 @@
 
   @Main("Cookbook", isLoggedIn, farmer) {
     <div class="container">
-      <div class="row">
-
+        <div class="well"><h1>All Public Recipes</h1></div>
+        <div class="row">
       @for(recipe <- recipeList) {
         <div class="col-sm-6">
           <div class="well">
             <div class="recipe">
-              <h2>Public Recipes Recently Added</h2>
               <img src="@routes.Assets.at(recipe.getImagePath())">
               <a href="@routes.Application.recipe(recipe.getId)"><h4>@recipe.getName</h4></a>
               <p>@recipe.getDescription</p>
