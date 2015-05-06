@@ -19,6 +19,13 @@ public class EditFarmerData {
 
   private String location;
   private String pictureLocation = "images/farmPicture.jpg";
+  private String markets;
+  private String phone;
+  private String password;
+  private String name;
+
+  @Id
+  private long id;
 
   public String getLocation() {
     return location;
@@ -76,15 +83,6 @@ public class EditFarmerData {
     this.id = id;
   }
 
-  private String markets;
-  private String phone;
-  private String password;
-  private String name;
-
-  @Id
-  private long id;
-
-
     /**
      * Public no arg constructor for Play.
      */
@@ -119,7 +117,7 @@ public class EditFarmerData {
       }
 
       if (password == null || password.length() == 0) {
-        errors.add(new ValidationError("name", "Name is required."));
+        errors.add(new ValidationError("password", "Password is required."));
       }
 
       return errors.isEmpty() ? null : errors;

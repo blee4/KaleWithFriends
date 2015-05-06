@@ -223,11 +223,7 @@ public class Application extends Controller {
     }
     EditFarmerData data = formData.get();
     session("username", data.getName());
-    FarmerDB.getFarmer(data.getName()).setLocation(data.getLocation());
-    FarmerDB.getFarmer(data.getName()).setPassword(data.getPassword());
-    FarmerDB.getFarmer(data.getName()).setMarkets(data.getMarkets());
-    FarmerDB.getFarmer(data.getName()).setPhone(data.getPhone());
-    FarmerDB.getFarmer(data.getName()).setName(data.getName());
+    FarmerDB.editFarmer(data);
     return redirect(routes.Application.farmersDashboard());
   }
 

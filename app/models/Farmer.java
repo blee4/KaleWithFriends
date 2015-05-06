@@ -82,6 +82,28 @@ public class Farmer extends Model {
     this.ingredientList = ingredientList;
   }
 
+  /**
+   * Creates a farmer object with an associated picture location.
+   *
+   * @param id              The id of the farmer.
+   * @param name            The name of the farmer.
+   * @param markets         The location of the farmers markets.
+   * @param phone           The phone number of the farmer.
+   * @param location        The location of the farmer.
+   * @param pictureLocation The location of the picture.
+   * @param ingredientList  The list of current farmer stock.
+   */
+  public Farmer(long id, String name, String location,
+                String markets, String phone, String pictureLocation, List<TimedIngredient> ingredientList) {
+    this.id = id;
+    this.name = name;
+    this.location = location;
+    this.markets = markets;
+    this.phone = phone;
+    this.ingredientList = ingredientList;
+    this.pictureLocation = pictureLocation;
+  }
+
 
   /**
    * Creates a farmer object with an associated picture location.
@@ -351,7 +373,6 @@ public class Farmer extends Model {
    * @param formData The form data.
    */
   public void addIngredient(IngredientFormData formData){
-    System.out.println("MOOOOOO");
     TimedIngredient timedIngredient = new TimedIngredient( formData.name, Integer.parseInt(formData.quantity));
     timedIngredient.setPrice(formData.price);
     timedIngredient.setImage("images/farmPicture.jpg");
