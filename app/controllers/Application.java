@@ -239,6 +239,11 @@ public class Application extends Controller {
   }
 
 
+  /**
+   *  Retrieves the new ingredient page for a user to add a new ingredient.
+   * @param farmer the current farmer name.
+   * @return new ingredient page.
+   */
   @Security.Authenticated(Secured.class)
   public static Result newIngredient(String farmer) {
     IngredientFormData data = new IngredientFormData();
@@ -246,6 +251,13 @@ public class Application extends Controller {
     return ok(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
   }
 
+  /**
+   * CURRENTLY BUGGED, farmer is hard coded
+   *
+   * Sends a post request to add the new ingredient using the form.
+   * @param farmer the current farmer name.
+   * @return the new ingredient page.
+   */
   @Security.Authenticated(Secured.class)
   public static Result postIngredient(String farmer) {
     System.out.println("In post Ingredient.");
@@ -257,7 +269,7 @@ public class Application extends Controller {
     else {
       IngredientFormData data = formData.get();
       System.out.println("Trying to add ingredient");
-      Farmer.findFarmer(farmer).addIngredient(data);
+      Farmer.findFarmer("Aloun Farms").addIngredient(data);
       return ok(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
     }
   }

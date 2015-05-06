@@ -345,6 +345,11 @@ public class Farmer extends Model {
     }
   }
 
+
+  /**
+   * Adds a new ingredient to the farmer given a ingredient form data.
+   * @param formData The form data.
+   */
   public void addIngredient(IngredientFormData formData){
     TimedIngredient timedIngredient = new TimedIngredient( formData.name, Integer.parseInt(formData.quantity));
     timedIngredient.setPrice(formData.price);

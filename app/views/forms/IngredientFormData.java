@@ -9,13 +9,14 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
+ * The backend for the ingredient form data.
  * Created by Jack on 5/6/2015.
  */
 public class IngredientFormData {
 
     public Farmer farmer;
 
-    public String price = "";
+    public String price;
 
     public String image;
 
@@ -40,7 +41,7 @@ public class IngredientFormData {
     /**
      * Creates a ingredient given a ingredient.
      *
-     * @param ingredient The contact.
+     * @param ingredient The ingredient.
      */
     public IngredientFormData(TimedIngredient ingredient) {
       this.price = ingredient.getPrice();
@@ -52,7 +53,7 @@ public class IngredientFormData {
     }
 
     /**
-     * Creates a model of a contact without the id. Method used for testing purposes.
+     * Creates a model of a ingredient without the id. Method used for testing purposes.
      *
      * @param name
      * @param price
