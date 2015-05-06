@@ -1,6 +1,8 @@
 package models;
 
+import assets.TimeStamp;
 import play.db.ebean.Model;
+import views.forms.IngredientFormData;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -342,8 +344,15 @@ public class Farmer extends Model {
     }
   }
 
-  public void addNewIngredient(TimedIngredient timedIngredient){
-    this.ingredientList.add(timedIngredient);
+  public void addIngredient(IngredientFormData formData){
+    TimedIngredient timedIngredient = new TimedIngredient( formData.name, formData.quantity);
+    timedIngredient.setPrice(formData.price);
+    timedIngredient.setImage("images/farmPicture.jpg");
+    timedIngredient.setStartDate(TimeStamp.makeCalendar(2015, 5, 5));
+    timedIngredient.setEndDate(TimeStamp.makeCalendar(2016, 5, 5));
+    timedIngredient.setFarmer(this);
+    timedIngredient.save();
+
   }
 
   /**

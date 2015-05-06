@@ -43,7 +43,7 @@ public class IngredientFormData {
      * @param ingredient The contact.
      */
     public IngredientFormData(TimedIngredient ingredient) {
-        this.price = ingredient.getPrice();
+      this.price = ingredient.getPrice();
       this.endDate = ingredient.getEndDate();
       this.startDate = ingredient.getStartDate();
       this.id = ingredient.getId();

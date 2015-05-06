@@ -3,6 +3,7 @@ package controllers;
 import models.Farmer;
 import models.FarmerDB;
 import models.RecipeDB;
+import models.TimedIngredient;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -218,18 +219,24 @@ public class Application extends Controller {
     return ok(FarmersDashboard.render(Farmer.findFarmer(farmer)));
   }
 
-  public static Result postIngredient(){
+
+
+  public static Result newIngredient(String farmer){
+    Form<IngredientFormData> formData = Form.form(IngredientFormData.class);
+    return ok(NewIngredient.render(formData, Farmer.findFarmer(farmer)));
+  }
+
+  public static Result postIngredient(String farmer){
     System.out.println("In post Contact.");
     Form<IngredientFormData> formData = Form.form(IngredientFormData.class).bindFromRequest();
     if (formData.hasErrors()) {
       System.out.println("Form has errors.");
-      return badRequest(NewIngredient.render(formData));
+      return badRequest(NewIngredient.render(formData, Farmer.findFarmer(farmer)));
     }
     else {
       IngredientFormData data = formData.get();
-      farmer
-
-      return ok(NewContact.render(formData, TelephoneTypes.getTypes(data.telephoneType), DietTypes.getTypes(data.dietTypes)));
+      Farmer.findFarmer(farmer).addIngredient(data);
+      return ok(NewIngredient.render(formData, Farmer.findFarmer(farmer)));
     }
   }
 }
