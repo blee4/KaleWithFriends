@@ -1,6 +1,8 @@
 package models;
 
+import assets.TimeStamp;
 import play.db.ebean.Model;
+import views.forms.IngredientFormData;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -78,6 +80,28 @@ public class Farmer extends Model {
     this.markets = markets;
     this.phone = phone;
     this.ingredientList = ingredientList;
+  }
+
+  /**
+   * Creates a farmer object with an associated picture location.
+   *
+   * @param id              The id of the farmer.
+   * @param name            The name of the farmer.
+   * @param markets         The location of the farmers markets.
+   * @param phone           The phone number of the farmer.
+   * @param location        The location of the farmer.
+   * @param pictureLocation The location of the picture.
+   * @param ingredientList  The list of current farmer stock.
+   */
+  public Farmer(long id, String name, String location,
+                String markets, String phone, String pictureLocation, List<TimedIngredient> ingredientList) {
+    this.id = id;
+    this.name = name;
+    this.location = location;
+    this.markets = markets;
+    this.phone = phone;
+    this.ingredientList = ingredientList;
+    this.pictureLocation = pictureLocation;
   }
 
 
@@ -341,6 +365,23 @@ public class Farmer extends Model {
     else {
       return null;
     }
+  }
+
+
+  /**
+   * Adds a new ingredient to the farmer given a ingredient form data.
+   * @param formData The form data.
+   */
+  public void addIngredient(IngredientFormData formData){
+    TimedIngredient timedIngredient = new TimedIngredient( formData.name, Integer.parseInt(formData.quantity));
+    timedIngredient.setPrice(formData.price);
+    timedIngredient.setImage("images/farmPicture.jpg");
+    timedIngredient.setStartDate(TimeStamp.makeCalendar(2012, 5, 5));
+    timedIngredient.setEndDate(TimeStamp.makeCalendar(2016, 5, 5));
+    timedIngredient.setFarmer(Farmer.findFarmer(name));
+
+    IngredientDB.addIngredient(timedIngredient);
+
   }
 
   /**

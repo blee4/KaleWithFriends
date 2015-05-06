@@ -7,14 +7,18 @@ import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
+import views.forms.EditFarmerData;
+import views.forms.IngredientFormData;
 import views.html.AvailableNow;
 import views.html.Cookbook;
+import views.html.EditFarmer;
 import views.html.FarmersDashboard;
 import views.html.FarmersProfile;
 import views.html.Index;
 import views.html.Local;
 import views.html.Login;
 import views.html.MealPlanner;
+import views.html.NewIngredient;
 import views.html.Recipe;
 import views.html.SignUp;
 import views.loginData.LoginData;
@@ -34,7 +38,7 @@ public class Application extends Controller {
    * @return The resulting home page.
    */
   public static Result index() {
-      return ok(Index.render("Index", Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
+    return ok(Index.render("Index", Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
 
   }
 
@@ -115,6 +119,7 @@ public class Application extends Controller {
 
   /**
    * Provides the Profile page (only to authenticated users).
+   *
    * @return The Profile page.
    */
   @Security.Authenticated(Secured.class)
@@ -203,10 +208,24 @@ public class Application extends Controller {
     return ok(FarmersDashboard.render(Farmer.findFarmer(farmer), Secured.isLoggedIn(ctx())));
   }
 
-  //public static Result editStock(TimedIngredient ingredient) {
+  public static Result editFarmer(String farmer) {
+    Farmer f = Farmer.findFarmer(farmer);
+    EditFarmerData data = new EditFarmerData(f);
+    Form<EditFarmerData> formData = Form.form(EditFarmerData.class).fill(data);
+    return ok(EditFarmer.render(formData, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
+   }
 
-  //
-  // }
+  public static Result postEditFarmer(String farmer) {
+    Form<EditFarmerData> formData = Form.form(EditFarmerData.class).bindFromRequest();
+    if (formData.hasErrors()) {
+      System.out.println("Errors found.");
+      return badRequest(EditFarmer.render(formData, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
+    }
+    EditFarmerData data = formData.get();
+    session("username", data.getName());
+    FarmerDB.editFarmer(data);
+    return redirect(routes.Application.farmersDashboard());
+  }
 
   /**
    * Adds just one quantity to the ingredient.
@@ -233,5 +252,41 @@ public class Application extends Controller {
   public static Result subOne(String farmer, long ingredient) {
     Farmer.subtractOneToIngredient(farmer, ingredient);
     return ok(FarmersDashboard.render(Farmer.findFarmer(farmer), Secured.isLoggedIn(ctx())));
+  }
+
+
+  /**
+   *  Retrieves the new ingredient page for a user to add a new ingredient.
+   * @param farmer the current farmer name.
+   * @return new ingredient page.
+   */
+  @Security.Authenticated(Secured.class)
+  public static Result newIngredient(String farmer) {
+    System.out.println("LOOK HERE PLZ " + farmer);
+    IngredientFormData data = new IngredientFormData();
+    Form<IngredientFormData> formData = Form.form(IngredientFormData.class).fill(data);
+    return ok(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
+  }
+
+  /**
+   *
+   * Sends a post request to add the new ingredient using the form.
+   * @param farmer the current farmer name.
+   * @return the new ingredient page.
+   */
+  @Security.Authenticated(Secured.class)
+  public static Result postIngredient(String farmer) {
+    System.out.println("In post Ingredient.");
+    Form<IngredientFormData> formData = Form.form(IngredientFormData.class).bindFromRequest();
+    if (formData.hasErrors()) {
+      System.out.println("Form has errors.");
+      return badRequest(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
+    }
+    else {
+      IngredientFormData data = formData.get();
+      System.out.println("Trying to add ingredient " + farmer);
+      Secured.getFarmer(ctx()).addIngredient(data);
+      return ok(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
+    }
   }
 }

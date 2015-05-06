@@ -1,5 +1,8 @@
 package models;
 
+import controllers.Secured;
+import views.forms.EditFarmerData;
+import play.mvc.Security;
 import java.util.List;
 
 /**
@@ -18,6 +21,22 @@ public class FarmerDB {
    */
   public static void addFarmer(Farmer farmer) {
     farmer.save();
+  }
+
+  /**
+   * Add a contact to the list database.
+   *
+   * @param form the filled out contact form
+   */
+  public static void editFarmer(EditFarmerData data) {
+    long idVal = data.getId();
+    Farmer f = getFarmer(data.getName());
+    f.setLocation(data.getLocation());
+    f.setPassword(data.getPassword());
+    f.setMarkets(data.getMarkets());
+    f.setPhone(data.getPhone());
+    f.setName(data.getName());
+    f.save();
   }
 
   /**

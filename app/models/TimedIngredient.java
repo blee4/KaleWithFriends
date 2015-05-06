@@ -27,6 +27,7 @@ public class TimedIngredient extends Model implements Comparable<TimedIngredient
 
 
   @ManyToOne
+
   private Recipe recipe;
 
   @Id
@@ -267,6 +268,17 @@ public class TimedIngredient extends Model implements Comparable<TimedIngredient
    */
   public void setRecipe(Recipe recipe) {
     this.recipe = recipe;
+  }
+
+
+
+
+  public Farmer getFarmer() {
+    return farmer;
+  }
+
+  public void setFarmer(Farmer farmer) {
+    this.farmer = farmer;
   }
 }
 
