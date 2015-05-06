@@ -1,14 +1,15 @@
-@(contactForm: Form[views.loginData.SignUpForm])
+@(contactForm: Form[views.loginData.SignUpForm], isLoggedIn: Boolean, farmer: Farmer)
 
 @import views.html.helper._
 @import views.html.bootstrap3._
 
 
-@Main("Home") {
+@Main("Home", isLoggedIn, farmer) {
     <div class="row">
 
         <div class = "col-sm-4 col-sm-offset-4">
-        @form(routes.Application.postSignUp(), 'class -> "form-horizontal") {
+            <h3> <i class="fa fa-leaf"></i> Sign Up</h3>
+            @form(routes.Application.postSignUp(), 'class -> "form-horizontal") {
             <input type ="hidden" name="@contactForm("id").name" id="@contactForm("id").id" value="@contactForm("id").value">
 
                 <!-- Name -->

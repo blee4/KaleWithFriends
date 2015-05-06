@@ -4,12 +4,13 @@
 
 # Home page
 
-GET         /                        controllers.Application.index(username: String ?= null)
-POST        /                        controllers.Application.login()
+GET         /                        controllers.Application.index()
+GET         /login                   controllers.Application.login()
+POST        /login                   controllers.Application.postLogin()
 GET         /signup                  controllers.Application.signUp()
 POST        /signup                  controllers.Application.postSignUp()
 GET         /logout                  controllers.Application.logout()
-GET         /profile                 controllers.Application.index(username: String ?= null)
+GET         /profile                 controllers.Application.index()
 GET         /farmersprofile          controllers.Application.farmersProfile(name: String ?= "Nalo LIFE")
 GET         /cookbook                controllers.Application.cookbook()
 GET         /recipe                  controllers.Application.recipe(id: Long ?= 0)
@@ -17,7 +18,7 @@ GET         /mealplanner             controllers.Application.mealPlanner()
 GET         /local                   controllers.Application.local()
 GET         /availablenow            controllers.Application.availableNow()
 GET         /farmersdashboard/delete controllers.Application.deleteIngredient(farmer: String ?= "", ingredient : Long ?= 0)
-GET         /farmersdashboard        controllers.Application.login()
+GET         /farmersdashboard        controllers.Application.farmersDashboard()
 GET         /farmersdashboard/addOne controllers.Application.addOne(farmer: String ?= "", ingredient : Long ?= 0)
 GET         /farmersdashboard/subOne controllers.Application.subOne(farmer: String ?= "", ingredient : Long ?= 0)
 

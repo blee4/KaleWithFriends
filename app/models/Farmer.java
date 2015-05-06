@@ -47,18 +47,18 @@ public class Farmer extends Model {
     return new Finder<Long, Farmer>(Long.class, Farmer.class);
   }
 
-
   /**
    * Creates a farmer object with default id.
    *
    * @param name     The name of the farmer.
-   * @param location The location of the farmer.
+   * @param password The password of the farmer.
    */
-  public Farmer(String name, String location) {
+  public Farmer(String name, String password) {
     this.id = 0;
     this.name = name;
-    this.location = location;
+    this.password = password;
   }
+
 
   /**
    * Creates a farmer object.
@@ -115,7 +115,7 @@ public class Farmer extends Model {
    * @param ingredientList  The list of current farmer stock.
    */
   public Farmer(String name, String location,
-                String markets, String phone, String pictureLocation, ArrayList<TimedIngredient> ingredientList) {
+                String markets, String phone, String pictureLocation, ArrayList<TimedIngredient> ingredientList, String password) {
     this.id = id;
     this.name = name;
     this.location = location;
@@ -123,6 +123,7 @@ public class Farmer extends Model {
     this.phone = phone;
     this.ingredientList = ingredientList;
     this.pictureLocation = pictureLocation;
+    this.password = password;
   }
 
   public String getPassword() {

@@ -1,6 +1,7 @@
 package views.loginData;
 
 import models.Farmer;
+import models.FarmerDB;
 import play.data.validation.ValidationError;
 
 import java.util.ArrayList;
@@ -38,18 +39,23 @@ public class LoginData {
   }
 
 
+
   /**
-   * Checks for field validations.
-   *
-   * @return List of errors or null if there are no errors
+   * Validates Form
+   * Called automatically in the controller by bindFromRequest().
+   * Checks to see that email and password are valid credentials.
+   * @return Null if valid, or a List[ValidationError] if problems found.
    */
   public List<ValidationError> validate() {
+
     List<ValidationError> errors = new ArrayList<>();
 
-    if (name == null || !Farmer.isName(name)) {
-      errors.add(new ValidationError("name", "Username is invalid."));
+    if (!FarmerDB.isValid(name, password)) {
+      errors.add(new ValidationError("name", "Invalid"));
+      errors.add(new ValidationError("password", "Invalid"));
     }
-      return errors.isEmpty() ? null : errors;
+
+    return (errors.size() > 0) ? errors : null;
   }
 
   /**

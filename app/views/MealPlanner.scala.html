@@ -1,6 +1,6 @@
-@(message: String, recipeList: List[Recipe])
+@(message: String, recipeList: List[Recipe], isLoggedIn: Boolean, farmer: Farmer)
 
-@Main("Meal Planner") {
+@Main("Meal Planner", isLoggedIn, farmer) {
   <div class="container">
     <div class="well">
       <h2>Meal Planner</h2>
