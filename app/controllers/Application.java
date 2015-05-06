@@ -1,33 +1,25 @@
 package controllers;
 
-import models.Consumer;
-import models.ConsumerDB;
 import models.Farmer;
 import models.FarmerDB;
-import models.Ingredient;
 import models.RecipeDB;
-import models.User;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.AvailableNow;
 import views.html.Cookbook;
-import views.html.Dashboard;
 import views.html.FarmersDashboard;
 import views.html.FarmersProfile;
-import views.html.FriendsProfile;
 import views.html.Index;
 import views.html.Local;
 import views.html.MealPlanner;
 import views.html.Recipe;
 import views.html.SignUp;
 import views.loginData.LoginData;
-import views.loginData.LoginTypes;
 import views.loginData.SignUpForm;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Provides controllers for this application.
@@ -45,18 +37,12 @@ public class Application extends Controller {
       LoginData data = new LoginData();
 
       Form<LoginData> formData = Form.form(LoginData.class).fill(data);
-      Map<String, Boolean> loginTypeMap = LoginTypes.getTypes();
-      return ok(Index.render(formData, loginTypeMap));
+      return ok(Index.render(formData));
     }
-    else {
-      User data = User.getUser(username);
-      if (data.getType().equals("Farmer")) {
-        return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.getName())));
-      }
-      else {
-        return ok(Dashboard.render(ConsumerDB.getConsumer(data.getName())));
-      }
-    }
+    Farmer data = Farmer.getFarmer(username);
+    return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.getName())));
+
+
   }
 
   /**
@@ -68,23 +54,17 @@ public class Application extends Controller {
     Form<LoginData> formData = Form.form(LoginData.class).bindFromRequest();
     if (formData.hasErrors()) {
       System.out.println("Errors found.");
-      return badRequest(Index.render(formData, LoginTypes.getTypes()));
+      return badRequest(Index.render(formData));
     }
-    else {
-      LoginData data = formData.get();
-      System.out.println("OK: " + data.name + " " + data.type);
-      session("username", data.name);
-      if (data.type.equals("Farmer")) {
-        return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.name)));
-      }
-      else {
-        return ok(Dashboard.render(ConsumerDB.getConsumer(data.name)));
-      }
-    }
+    LoginData data = formData.get();
+    System.out.println("OK: " + data.name + " " + data.password);
+    session("username", data.name);
+    return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.name)));
   }
 
   /**
    * Logs the current user out.
+   *
    * @return The login page
    */
   public static Result logout() {
@@ -100,46 +80,31 @@ public class Application extends Controller {
    * @return The resulting sign up page.
    */
   public static Result signUp() {
-      SignUpForm data = new SignUpForm();
+    SignUpForm data = new SignUpForm();
 
-      Form<SignUpForm> formData = Form.form(SignUpForm.class).fill(data);
-      Map<String, Boolean> loginTypeMap = LoginTypes.getTypes();
-      return ok(SignUp.render(formData, loginTypeMap));
+    Form<SignUpForm> formData = Form.form(SignUpForm.class).fill(data);
+    return ok(SignUp.render(formData));
   }
 
   /**
    * Processes a new user form.
+   *
    * @return The new user's dashboard.
    */
   public static Result postSignUp() {
     Form<SignUpForm> formData = Form.form(SignUpForm.class).bindFromRequest();
     if (formData.hasErrors()) {
       System.out.println("Errors found.");
-      return badRequest(SignUp.render(formData, LoginTypes.getTypes()));
+      return badRequest(SignUp.render(formData));
     }
-    else {
-      SignUpForm data = formData.get();
-      System.out.println("OK: " + data.name + " " + data.type);
-      session("username", data.name);
-      if (data.type.equals("Farmer")) {
-        FarmerDB.addFarmer(new Farmer(data.name, data.type, data.location));
-        return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.name)));
-      }
-      else {
-        ConsumerDB.addConsumer(new Consumer(data.name, data.type, data.location));
-        return ok(Dashboard.render(ConsumerDB.getConsumer(data.name)));
-      }
-    }
+    SignUpForm data = formData.get();
+    System.out.println("OK: " + data.name + " " + data.password);
+    session("username", data.name);
+    FarmerDB.addFarmer(new Farmer(data.name, data.location));
+    return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.name)));
+
   }
 
-  /**
-   * Returns the Friend's profile page.
-   *
-   * @return The resulting Friend's profile page.
-   */
-  public static Result friendsProfile() {
-    return ok(FriendsProfile.render("Welcome to friend profile."));
-  }
 
   /**
    * Returns the Farmer's profile page.
@@ -158,6 +123,7 @@ public class Application extends Controller {
    * @return The resulting cookbook page.
    */
   public static Result cookbook() {
+    //return ok(Cookbook.render(RecipeDB.getRecipe()));
     return ok(Cookbook.render(RecipeDB.getRecipe()));
   }
 
@@ -210,39 +176,43 @@ public class Application extends Controller {
 
   /**
    * Deletes the ingredient from the farmer's stock.
-   * @param farmer the current farmer
+   *
+   * @param farmer     the current farmer
    * @param ingredient the ingredient to delete
    * @return Result the resulting page
    */
-  public static Result deleteIngredient(String farmer, String ingredient) {
+  public static Result deleteIngredient(String farmer, long ingredient) {
     Farmer.deleteIngredient(farmer, ingredient);
     return ok(FarmersDashboard.render(Farmer.findFarmer(farmer)));
   }
 
-  //public static Result editStock(Ingredient ingredient) {
+  //public static Result editStock(TimedIngredient ingredient) {
 
   //
   // }
 
   /**
    * Adds just one quantity to the ingredient.
-   * @param farmer the current farmer name
+   *
+   * @param farmer     the current farmer name
    * @param ingredient the ingredient to increment
    * @return the Dashboard with the new ingredient amount
    */
-  public static Result addOne(String farmer, String ingredient) {
-    Farmer.findFarmer(farmer).findIngredient(ingredient).addQuantity(1);
+  public static Result addOne(String farmer, long ingredient) {
+
+    Farmer.addOneToIngredient(farmer, ingredient);
     return ok(FarmersDashboard.render(Farmer.findFarmer(farmer)));
   }
 
   /**
    * Subtracts just one quantity from the ingredient.
-   * @param farmer the current farmer name
+   *
+   * @param farmer     the current farmer name
    * @param ingredient the ingredient to subtract
    * @return the Dashboard with the new ingredient amount
    */
-  public static Result subOne(String farmer, String ingredient) {
-    Farmer.findFarmer(farmer).findIngredient(ingredient).subtractQuantity(1);
+  public static Result subOne(String farmer, long ingredient) {
+    Farmer.subtractOneToIngredient(farmer, ingredient);
     return ok(FarmersDashboard.render(Farmer.findFarmer(farmer)));
   }
 }

@@ -1,6 +1,6 @@
 package views.loginData;
 
-import models.User;
+import models.Farmer;
 import play.data.validation.ValidationError;
 
 import java.util.ArrayList;
@@ -11,14 +11,14 @@ import java.util.List;
  */
 public class LoginData {
   /**
-   * User name field.
+   * Farmer name field.
    */
   public String name;
 
   /**
    * Login type field.
    */
-  public String type;
+  public String password;
 
 
   /**
@@ -30,11 +30,11 @@ public class LoginData {
   /**
    * Constructor using existing login.
    *
-   * @param user existing contact
+   * @param farmer existing contact
    */
-  public LoginData(User user) {
-    this.type = user.getType();
-    this.name = user.getName();
+  public LoginData(Farmer farmer) {
+    this.name = farmer.getName();
+    this.password = farmer.getPassword();
   }
 
 
@@ -46,11 +46,8 @@ public class LoginData {
   public List<ValidationError> validate() {
     List<ValidationError> errors = new ArrayList<>();
 
-    if (name == null || !User.isName(name)) {
+    if (name == null || !Farmer.isName(name)) {
       errors.add(new ValidationError("name", "Username is invalid."));
-    }
-    if (type == null || !LoginTypes.isType(type)) {
-      errors.add(new ValidationError("type", "Login type is invalid."));
     }
       return errors.isEmpty() ? null : errors;
   }

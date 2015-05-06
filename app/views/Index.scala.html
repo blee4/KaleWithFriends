@@ -1,4 +1,4 @@
-@(contactForm: Form[views.loginData.LoginData], loginTypeMap: Map[String, Boolean])
+@(contactForm: Form[views.loginData.LoginData])
 
 @import views.html.helper._
 @import views.html.bootstrap3._
@@ -19,18 +19,30 @@
             placeholder = "Username",
             help = "")
 
-            <!-- UserType -->
-        @bootstrap3.select(contactForm("type"),
-            label = "Login",
-            optionMap = loginTypeMap,
-            isMultiple = false,
-            help = "")
+                <!-- Password -->
+            @text(contactForm("password"),
+                label = "Password",
+                placeholder = "Password",
+                help = "")
 
             <button class="btn btn-md btn-block btn-success" type="submit">Login</button><a class="btn btn-md btn-block btn-success" style="margin-top:10px;" type="button" href="@routes.Application.signUp()">Not a member yet? Sign up now!</a>
         }</div>
     </div>
 
         <div class="col-sm-8">
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="...">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Search . . . <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        <li><a href="#">Search Farmers</a></li>
+                        <li><a href="#">Search Ingredients</a></li>
+                        <li><a href="#">Search Recipes</a></li>
+                        <li><a href="#">Search Friends</a></li>
+                    </ul>
+                </div><!-- /btn-group -->
+            </div><!-- /input-group -->
+
             <img style="height:200px; float:left; padding-right:15px;" src="@routes.Assets.at("images/kale.jpg")">
             <h2>Welcome to Kale With Friends!</h2><br>
             <p style="margin-right: 30px;">Eating local produce is healthy, often tastier, and helps boost the local economy, but knowing what is available and getting it when it's at its at its freshest can be a challenge. Kale With Friends is a hot new app that solves this problem by connecting consumers and producers. Through KWF, everyone is aware of what is available nearby, where to buy it and how much it costs. If you grow produce, whether in a backyard garden or on a large scale commercial farm, and are interested in selling it, KWF will bring the local consumers to you. If you are a consumer just looking for local produce, we will make shopping much easier for you.

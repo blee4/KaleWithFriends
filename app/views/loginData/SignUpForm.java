@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class SignUpForm {
   /**
-   * User name field.
+   * Farmer name field.
    */
   public String name;
 
@@ -23,6 +23,8 @@ public class SignUpForm {
    * Location field.
    */
   public String location;
+
+  public String password;
 
   /**
    * Default constructor.
@@ -42,9 +44,7 @@ public class SignUpForm {
     if (name == null) {
       errors.add(new ValidationError("name", "Please enter a username."));
     }
-    if (type == null || !LoginTypes.isType(type)) {
-      errors.add(new ValidationError("loginType", "Login type is invalid."));
-    }
+
       return errors.isEmpty() ? null : errors;
   }
 
