@@ -36,6 +36,9 @@
               @if(isLoggedIn) {
                   <li class="@("active".when(page == "Dashboard"))">
                       <a href="@routes.Application.farmersDashboard()">Dashboard</a></li>
+              } else {
+                  <li class="@("active".when(page == "Index"))">
+                      <a href="@routes.Application.index()">Home</a></li>
               }
               <li class="@("active".when(page == "Local"))">
                   <a href="@routes.Application.local()">Local</a></li>

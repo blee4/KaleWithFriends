@@ -4,7 +4,8 @@
 
 
   <div class="container">
-  @for(farmer <- farmerList) {
+      <div class="well"><h1>Fresh Produce Available Right Now</h1></div>
+      @for(farmer <- farmerList) {
     @for(ingredient <- farmer.getFreshIngredientList) {
 
 
