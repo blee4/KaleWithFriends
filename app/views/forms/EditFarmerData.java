@@ -1,14 +1,11 @@
 package views.forms;
 
 import models.Farmer;
-import models.TimedIngredient;
+import models.Market;
 import play.data.validation.ValidationError;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -19,7 +16,7 @@ public class EditFarmerData {
 
   private String location;
   private String pictureLocation = "images/farmPicture.jpg";
-  private String markets;
+  private List<Market> markets;
   private String phone;
   private String password;
   private String name;
@@ -43,11 +40,11 @@ public class EditFarmerData {
     this.pictureLocation = pictureLocation;
   }
 
-  public String getMarkets() {
+  public List<Market> getMarkets() {
     return markets;
   }
 
-  public void setMarkets(String markets) {
+  public void setMarkets(List<Market> markets) {
     this.markets = markets;
   }
 

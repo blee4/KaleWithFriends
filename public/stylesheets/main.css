@@ -161,3 +161,6 @@ html, body, .container-fluid, .row, .map {
   padding-bottom: 20px;
 }
 
+.market-padding {
+    padding-top: 125px;
+}
