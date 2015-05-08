@@ -1,6 +1,7 @@
 package models;
 
 import assets.TimeStamp;
+import javax.persistence.ManyToMany;
 import play.db.ebean.Model;
 import views.forms.IngredientFormData;
 
@@ -24,7 +25,6 @@ public class Farmer extends Model {
   private String location;
 
   private String pictureLocation = "images/farmPicture.jpg";
-  private String markets;
   private String phone;
   private String password;
   private String name;
@@ -39,7 +39,8 @@ public class Farmer extends Model {
   @OneToMany(mappedBy = "farmer", cascade = CascadeType.PERSIST)
   private List<Feed> feedList;
 
-
+  @ManyToMany
+  private List<Market> markets;
   /**
    * The EBean ORM finder method for database queries.
    *
@@ -73,7 +74,7 @@ public class Farmer extends Model {
    * @param ingredientList The list of current farmer stock.
    */
   public Farmer(long id, String name, String location,
-                String markets, String phone, ArrayList<TimedIngredient> ingredientList) {
+                List<Market> markets, String phone, ArrayList<TimedIngredient> ingredientList) {
     this.id = id;
     this.name = name;
     this.location = location;
@@ -94,7 +95,7 @@ public class Farmer extends Model {
    * @param ingredientList  The list of current farmer stock.
    */
   public Farmer(long id, String name, String location,
-                String markets, String phone, String pictureLocation, List<TimedIngredient> ingredientList) {
+                List<Market> markets, String phone, String pictureLocation, List<TimedIngredient> ingredientList) {
     this.id = id;
     this.name = name;
     this.location = location;
@@ -117,7 +118,7 @@ public class Farmer extends Model {
    * @param ingredientList  The list of current farmer stock.
    */
   public Farmer(long id, String name, String location,
-                String markets, String phone, String pictureLocation, ArrayList<TimedIngredient> ingredientList) {
+                List<Market> markets, String phone, String pictureLocation, ArrayList<TimedIngredient> ingredientList) {
     this.id = id;
     this.name = name;
     this.location = location;
@@ -137,9 +138,10 @@ public class Farmer extends Model {
    * @param location        The location of the farmer.
    * @param pictureLocation The location of the picture.
    * @param ingredientList  The list of current farmer stock.
+   * @param password        The password for the farmer.
    */
   public Farmer(String name, String location,
-                String markets, String phone, String pictureLocation, ArrayList<TimedIngredient> ingredientList, String password) {
+                List<Market> markets, String phone, String pictureLocation, ArrayList<TimedIngredient> ingredientList, String password) {
     this.id = id;
     this.name = name;
     this.location = location;
@@ -150,10 +152,18 @@ public class Farmer extends Model {
     this.password = password;
   }
 
+    /**
+     * Get the password.
+     * @return The password.
+     */
   public String getPassword() {
     return password;
   }
 
+    /**
+     * Set the password.
+     * @param password The password.
+     */
   public void setPassword(String password) {
     this.password = password;
   }
@@ -182,7 +192,7 @@ public class Farmer extends Model {
    *
    * @return The location.
    */
-  public String getMarkets() {
+  public List<Market> getMarkets() {
     return markets;
   }
 
@@ -307,6 +317,28 @@ public class Farmer extends Model {
     TimedIngredient.find().byId(ingredient).subtractQuantity(1);
   }
 
+  /**
+   * Adds a market to the farmer's list of markets.
+   * @param market The market to add.
+   */
+  public void addMarket(Market market) {
+    this.markets.add(market);
+  }
+
+
+  /**
+   * Remove a single market from the farmer's list.
+   * @param market The market to remove.
+   */
+  public void removeMarket(Market market) {
+    for (int i = 0; i < markets.size(); i++) {
+      if (markets.get(i).getId() == market.getId()) {
+        markets.remove(i);
+        break;
+      }
+    }
+  }
+
   //methods below are originally from the obsolete class
 
   /**
@@ -416,7 +448,7 @@ public class Farmer extends Model {
    *
    * @param markets The market.
    */
-  public void setMarkets(String markets) {
+  public void setMarkets(List<Market> markets) {
     this.markets = markets;
   }
 

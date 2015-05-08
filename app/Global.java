@@ -2,6 +2,8 @@
 import assets.TimeStamp;
 import models.Farmer;
 import models.FarmerDB;
+import models.Market;
+import models.MarketDB;
 import models.Procedure;
 import models.Recipe;
 import models.RecipeDB;
@@ -22,6 +24,18 @@ public class Global extends GlobalSettings {
   @Override
   public void onStart(Application application) {
     super.onStart(application);
+
+    Market mk1 = new Market("Honolulu@Night", "Neal Blaisdell Concert Hall, 777 Ward Ave, Honolulu, HI 96814");
+    Market mk2 = new Market("Kapiolani Community College Farmers Market", "Mililani High School, 95-1200 Meheula Pkwy, Mililani, HI 96789");
+    Market mk3 = new Market("Farmers Market at Windward Mall", "46-056 Kamehameha Hwy, Kaneohe, HI 96744");
+
+    // Create a few markets
+    if (MarketDB.getMarkets().isEmpty()) {
+
+      MarketDB.addMarket(mk1);
+      MarketDB.addMarket(mk2);
+      MarketDB.addMarket(mk3);
+    }
 
     if (TimedIngredient.find().all().isEmpty()) {
       ArrayList<TimedIngredient> ingredients = new ArrayList<TimedIngredient>();
@@ -69,12 +83,19 @@ public class Global extends GlobalSettings {
           TimeStamp.makeCalendar(2016, Calendar.MAY, 30), "2.00", "images/ingredient/nozawa_corn.jpg"));
       ingredients.add(new TimedIngredient("Ho Farm Tomato", 14, TimeStamp.makeCalendar(2015, Calendar.APRIL, 5),
           TimeStamp.makeCalendar(2016, Calendar.MAY, 30), "1.00", "images/ingredient/ho_farm_tomato.jpg"));
+
+      // Make list of markets for farmer
+      List<Market> m = new ArrayList<>();
+      m.add(mk1);
+      m.add(mk2);
+      m.add(mk3);
+
       Farmer farmer = new Farmer("Nalo LIFE", "41-574 Makakalo Street Waimanalo, HI 96795",
-          "Farmers Market at Windward Mall, Honolulu@Night (Neal Blaisdell Concert Hall), "
-              + "Kailua@Night (Longs Kailua Parking Structure), Farmers Market @ HMSA,"
-              + " Kapiolani Community College Farmers Market, Mililani High School",
+          m,
           "808-259-7698", "images/farmPicture.jpg", ingredients, "password");
       FarmerDB.addFarmer(farmer);
+
+      m.clear();
 
       ArrayList<TimedIngredient> ingredients2 = new ArrayList<TimedIngredient>();
       ingredients2.add(new TimedIngredient("Green Onions", 21, TimeStamp.makeCalendar(2015, Calendar.APRIL, 5),
@@ -152,10 +173,19 @@ public class Global extends GlobalSettings {
           TimeStamp.makeCalendar(2016, Calendar.MAY, 30), "0.25", "images/ingredient/thai_watermelon.jpg"));
       ingredients2.add(new TimedIngredient("Curly Kale", 9, TimeStamp.makeCalendar(2015, Calendar.APRIL, 5),
           TimeStamp.makeCalendar(2016, Calendar.MAY, 30), "2.00", "images/ingredient/curly_kale.jpg"));
+
+      // Make list of markets for farmer
+      List<Market> m2 = new ArrayList<>();
+      m.add(mk2);
+
       Farmer farmer2 = new Farmer("Aloun Farms", "91-1440 Farrington Hwy, Kapolei, HI 96707",
-          "Kapiolani Community College Farmers Market", "808-677-9516", "images/farmPicture.jpg", ingredients2, "password");
+          m, "808-677-9516", "images/farmPicture.jpg", ingredients2, "password");
       FarmerDB.addFarmer(farmer2);
+
+      m.clear();
     }
+
+
 
     if (Recipe.find().all().isEmpty()) {
       ArrayList<TimedIngredient> saladIngredients = new ArrayList<TimedIngredient>();

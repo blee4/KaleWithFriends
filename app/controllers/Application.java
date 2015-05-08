@@ -4,6 +4,8 @@ import models.Farmer;
 import models.FarmerDB;
 import models.Feed;
 import models.FeedDB;
+import models.Market;
+import models.MarketDB;
 import models.RecipeDB;
 import play.data.Form;
 import play.mvc.Controller;
@@ -18,8 +20,8 @@ import views.html.EditFarmer;
 import views.html.FarmersDashboard;
 import views.html.FarmersProfile;
 import views.html.Index;
-import views.html.Local;
 import views.html.Login;
+import views.html.Markets;
 import views.html.MealPlanner;
 import views.html.NewIngredient;
 import views.html.Recipe;
@@ -168,18 +170,13 @@ public class Application extends Controller {
   }
 
   /**
-   * Returns the local page.
+   * Returns the farmersMarket page.
    *
    * @return The resulting local page.
    */
-  public static Result local() {
-    List<String> addresses = new ArrayList<>();
-
-    for (Farmer f : FarmerDB.getFarmers()) {
-      addresses.add(f.getName() + "|" + f.getLocation());
-    }
-
-    return ok(Local.render("Welcome to local.", addresses, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
+  public static Result farmersMarkets() {
+    List<Market> markets = MarketDB.getMarkets();
+    return ok(Markets.render("Welcome to markets.", markets, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
   }
 
   /**

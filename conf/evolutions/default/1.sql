@@ -7,7 +7,6 @@ create table farmer (
   id                        bigint not null,
   location                  varchar(255),
   picture_location          varchar(255),
-  markets                   varchar(255),
   phone                     varchar(255),
   password                  varchar(255),
   name                      varchar(255),
@@ -20,6 +19,13 @@ create table feed (
   entry                     varchar(255),
   farmer_id                 bigint,
   constraint pk_feed primary key (id))
+;
+
+create table market (
+  id                        bigint not null,
+  market_name               varchar(255),
+  location                  varchar(255),
+  constraint pk_market primary key (id))
 ;
 
 create table procedure (
@@ -50,9 +56,17 @@ create table timed_ingredient (
   constraint pk_timed_ingredient primary key (id))
 ;
 
+
+create table farmer_market (
+  farmer_id                      bigint not null,
+  market_id                      bigint not null,
+  constraint pk_farmer_market primary key (farmer_id, market_id))
+;
 create sequence farmer_seq;
 
 create sequence feed_seq;
+
+create sequence market_seq;
 
 create sequence procedure_seq;
 
@@ -71,11 +85,19 @@ create index ix_timed_ingredient_recipe_4 on timed_ingredient (recipe_id);
 
 
 
+alter table farmer_market add constraint fk_farmer_market_farmer_01 foreign key (farmer_id) references farmer (id);
+
+alter table farmer_market add constraint fk_farmer_market_market_02 foreign key (market_id) references market (id);
+
 # --- !Downs
 
 drop table if exists farmer cascade;
 
+drop table if exists farmer_market cascade;
+
 drop table if exists feed cascade;
+
+drop table if exists market cascade;
 
 drop table if exists procedure cascade;
 
@@ -86,6 +108,8 @@ drop table if exists timed_ingredient cascade;
 drop sequence if exists farmer_seq;
 
 drop sequence if exists feed_seq;
+
+drop sequence if exists market_seq;
 
 drop sequence if exists procedure_seq;
 
