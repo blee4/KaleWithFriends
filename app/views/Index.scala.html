@@ -7,6 +7,7 @@
 @Main("Home", isLoggedIn, farmer) {
     <div class="row">
         <div class = "col-sm-4">
+            <h3>Recent News</h3>
         @for(feed <- FeedDB.getFeeds()) {
             <div class="well">
                 <div class="recipe">
