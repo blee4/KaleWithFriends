@@ -18,30 +18,17 @@
         </div>
 
         @for(market <- marketList) {
-            <h3><a name="@market.getMarketName">@market.getMarketName</a></h3>
+            <div class="row">
+            <h3><a name="@market.getMarketName"></a>@market.getMarketName</h3>
             @for(farmer <- market.getFarmers) {
-                @for(ingredient <- farmer.getFreshIngredientList) {
-                    <div class="col-md-4">
-                        <div class="well">
-                            <a href="@routes.Application.farmersProfile(farmer.getName)"> <img src="@routes.Assets.at(ingredient.getImage())" class="produce_image"></a>
-                            <ul class="list-unstyled">
-                                <li>@ingredient.getName()</li>
-                                <li>$@ingredient.getPrice() per lb.</li>
-                                <li><a href="@routes.Application.farmersProfile(farmer.getName)">@farmer.getName()</a></li>
-                                <li>Quantity:
-                                    @if(ingredient.getQuantity / 2 < 2) {
-                                        <i class="fa fa-sun-o"></i>
-                                    } else {
-                                        @for(a <- 1 until ingredient.getQuantity / 2) {
-                                            <i class="fa fa-certificate"></i>
-                                        }
-                                    }
-                                </li>
-                            </ul>
-                        </div>
+                <div class="col-sm-4">
+                    <div class="well  market_farmer">
+                        <a href="@routes.Application.farmersProfile(farmer.getName)"> <img src="@routes.Assets.at(farmer.getPictureLocation)" class="market_farmer_image"></a>
+                        <a href="@routes.Application.farmersProfile(farmer.getName)">@farmer.getName()</a>
                     </div>
-                }
+                </div>
             }
+            </div>
         }
     </div>
 }
