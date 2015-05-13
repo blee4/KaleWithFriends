@@ -21,15 +21,15 @@ Websites that allow users to enter ingredients they currently have and find reci
 
 One of the most interesting features of our site is the Meal Planner. Farmers are responsible for keeping their online inventory up-to-date, then using this inventory, the Meal Planner searches the onlne list of recipes, finds the recipes that can be created using fresh, local ingredients and produce a list. Each item in the list links to the corresponding recipe page.
 
-<img src="doc/images/dashboard.jpg" width="400 px"><br>
+<img src="doc/images/dashboard.png" width="400 px"><br>
 <i>Main view of the dashboard page. This shows the newest items in the public feed on the left, and quick links to get started.</i>
 
 <br>
-<img src="doc/images/availableNow.jpg" width="400 px"><br>
+<img src="doc/images/availableNow.png" width="400 px"><br>
 <i>The Available Now page allows users to select from the dropdown list of markets, then displays all of the produce currently avaialble.</i>
 
 <br>
-<img src="doc/images/markets.jpg" width="400 px"><br>
+<img src="doc/images/markets.png" width="400 px"><br>
 <i>The Farmer's Market page shows all of the markets that have been registered and all farmers that intend to participate in the market. There is a state filter to make it easier to find nearby markets.</i>
 
 ## Development Approach
