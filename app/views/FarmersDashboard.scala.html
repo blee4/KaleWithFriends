@@ -1,86 +1,88 @@
 @(contactForm: Form[views.forms.FeedData], farmer: Farmer, isLoggedIn: Boolean)
 
-@import views.html.helper._
-@import views.html.bootstrap3._
+  @import views.html.helper._
 
-@Main("Dashboard", isLoggedIn, farmer) {
-        <div id="homepage">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="well">
-                        <div class = "farmer_image"><img src="@routes.Assets.at(farmer.getPictureLocation())" id="farmerPicture"></div>
-                        <h2><div class="recipe_header">@farmer.getName()</div></h2>
-                        <h4>Farm location: </h4>  @farmer.getLocation()<br><br>
-                        <h4>Market locations:</h4> @farmer.getMarkets()<br><br>
-                        <h4>Phone Number: </h4>@farmer.getPhone()<br><br>
-                        <p><a href="@routes.Application.editFarmer(farmer.getName())">Edit Profile</a></p>
-                    </div>
+  @Main("Dashboard", isLoggedIn, farmer) {
+    <div id="homepage">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="well">
+            <div class = "farmer_image"><img src="@routes.Assets.at(farmer.getPictureLocation())" id="farmerPicture"></div>
+            <h2><div class="recipe_header">@farmer.getName()</div></h2>
+            <h4>Farm location: </h4>  @farmer.getLocation()<br><br>
+            <h4>Market locations:</h4> @farmer.getMarkets()<br><br>
+            <h4>Phone Number: </h4>@farmer.getPhone()<br><br>
+            <p><a href="@routes.Application.editFarmer(farmer.getName())">Edit Profile</a></p>
+          </div>
 
-                    <div class="well">
-                        <h2>Inventory</h2>
-                        <table class="table table-striped table-bordered">
-                            <tr>
-                                <th></th>
-                                <th>Item</th>
-                                <th>Price</th>
-                                <th>Expiration Date</th>
-                                <th>Stock</th>
-                                <th></th>
-                            </tr>
+          <div class="well">
+            <h2>Inventory</h2>
+            <table class="table table-striped table-bordered">
+              <tr>
+                <th></th>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Expiration Date</th>
+                <th>Stock</th>
+                <th></th>
+              </tr>
 
-                                @if(farmer.getIngredientList != null) {
-                            @for(ingredient <- farmer.getIngredientList) {
-                                <tr>
-                                    <td><a href="@routes.Application.deleteIngredient(farmer.getName(), ingredient.getId())">
-                                        <i class="fa fa-times"></i></a></td>
-                                    <td>@ingredient.getName()</td>
-                                    <td>$@ingredient.getPrice() per lb.</td>
-                                    <td>@ingredient.printDate()</td>
-                                    <td>@ingredient.getQuantity</td>
-                                    <td><table><tr><td><a href="@routes.Application.addOne(farmer.getName(), ingredient.getId())"><i class="fa fa-plus"></i></a></td></tr>
-                                        <tr><td><a href="@routes.Application.subOne(farmer.getName(), ingredient.getId())"><i class="fa fa-minus"></i></a></td></tr></table></td>
-                                    }
-                        </tr>
-                        </table>
-
-                        } else {
-                        </tr>
-                        </table> No stock available
-
+              @if(farmer.getIngredientList != null) {
+                @for(ingredient <- farmer.getIngredientList) {
+                  <tr>
+                    <td><a href="@routes.Application.deleteIngredient(farmer.getName(), ingredient.getId())">
+                      <i class="fa fa-times"></i></a>
+                    </td>
+                    <td>@ingredient.getName()</td>
+                    <td>$@ingredient.getPrice() per lb.</td>
+                    <td>@ingredient.printDate()</td>
+                    <td>@ingredient.getQuantity</td>
+                    <td><table><tr><td><a href="@routes.Application.addOne(farmer.getName(), ingredient.getId())"><i class="fa fa-plus"></i></a></td></tr>
+                      <tr><td><a href="@routes.Application.subOne(farmer.getName(), ingredient.getId())"><i class="fa fa-minus"></i></a></td></tr></table>
+                    </td>
                     }
-                        <a href="@routes.Application.newIngredient(farmer.getName())"><i class="fa fa-plus"></i> Add new stock item</a>
-                    </div>
-                </div>
+              </tr>
+              </table>
 
-                <div class="col-sm-5">
-                    <div class="row whats-new-button">
-                            @form(routes.Application.postFeed(), 'class -> "form-horizontal") {
-                                <input type ="hidden" name="@contactForm("id").name" id="@contactForm("id").id" value="@contactForm("id").value">
+            } else {
+            </tr>
+            </table> No stock available
 
-                                    <!-- Name -->
-                                @bootstrap3.textarea(contactForm("entry"),
-                                    rows = "10",
-                                    label = "",
-                                    placeholder = "What's new?",
-                                    help = "")
-
-
-                                <button class="btn btn-lg btn-block btn-success" type="submit">Submit</button>
-                            }</div>
-
-                    @for(feed <- FeedDB.getFeeds()) {
-                            <div class="well">
-                                <div class="recipe">
-                                    <img src="@routes.Assets.at(farmer.getPictureLocation())">
-                                    <a href="@routes.Application.farmersProfile()"><h4>@feed.getFarmer().getName() @feed.printDate()</h4></a>
-                                    <p>@feed.getEntry()</p>
-                                </div>
-                            </div>
-                    }
-                    </div>
-                </div>
-            </div>
+          }
+            <a href="@routes.Application.newIngredient(farmer.getName())"><i class="fa fa-plus"></i>
+              Add new stock item</a>
+          </div>
         </div>
 
+        <div class="col-sm-5">
+          <div class="row whats-new-button">
+          @form(routes.Application.postFeed(), 'class -> "form-horizontal") {
+            <input type ="hidden" name="@contactForm("id").name" id="@contactForm("id").id" value="@contactForm("id").value">
 
-    }
+              <!-- Name -->
+            @bootstrap3.textarea(contactForm("entry"),
+              rows = "10",
+              label = "",
+              placeholder = "What's new?",
+              help = "")
+
+
+            <button class="btn btn-lg btn-block btn-success" type="submit">Submit</button>
+          }</div>
+
+          @for(feed <- FeedDB.getFeeds()) {
+            <div class="well">
+              <div class="recipe">
+                <img src="@routes.Assets.at(farmer.getPictureLocation())">
+                <a href="@routes.Application.farmersProfile(feed.getFarmer().getName())"><h4>@feed.getFarmer().getName() @feed.printDate()</h4></a>
+                <p>@feed.getEntry()</p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+  }
