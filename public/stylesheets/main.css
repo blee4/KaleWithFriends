@@ -166,6 +166,14 @@ html, body, .container-fluid, .row, .map {
     padding-top: 125px;
 }
 
+
+.market_farmer_image {
+    height: 100px;
+    display: block;
+    padding-right: 25px;
+    padding-bottom: 10px;
+}
+
 .index_header {
     text-align: center;
 }
