@@ -16,7 +16,7 @@ GET         /farmersprofile                 controllers.Application.farmersProfi
 GET         /cookbook                       controllers.Application.cookbook()
 GET         /recipe                         controllers.Application.recipe(id: Long ?= 0)
 GET         /mealplanner                    controllers.Application.mealPlanner()
-GET         /availablenow                   controllers.Application.availableNow()
+GET         /availablenow                   controllers.Application.availableNow(market: String ?= "Honolulu@Night")
 GET         /farmersmarkets                 controllers.Application.farmersMarkets()
 GET         /farmersdashboard/delete        controllers.Application.deleteIngredient(farmer: String ?= "", ingredient : Long ?= 0)
 GET         /farmersdashboard               controllers.Application.farmersDashboard()

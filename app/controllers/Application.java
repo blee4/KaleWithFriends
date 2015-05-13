@@ -194,8 +194,8 @@ public class Application extends Controller {
    *
    * @return The resulting available now page.
    */
-  public static Result availableNow() {
-    return ok(AvailableNow.render(FarmerDB.getFarmers(), Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
+  public static Result availableNow(String market) {
+    return ok(AvailableNow.render(FarmerDB.getFarmers(), Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx()), MarketDB.getMarkets(), MarketDB.getMarket(market)));
   }
 
   /**
