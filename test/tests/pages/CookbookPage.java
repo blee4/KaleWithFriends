@@ -6,21 +6,21 @@ import org.openqa.selenium.WebDriver;
 import static org.fest.assertions.Assertions.assertThat;
 
 /**
- * Provides testing support for the Farmer's profile page.
+ * Provides testing support for the cookbook page.
  *
  */
-public class FarmerProfilePage extends FluentPage {
+public class CookbookPage extends FluentPage {
   private String url;
 
   /**
-   * Create the farmer's profile page.
+   * Create the cookbook page.
    *
    * @param webDriver The driver.
    * @param port      The port.
    */
-  public FarmerProfilePage(WebDriver webDriver, int port) {
+  public CookbookPage(WebDriver webDriver, int port) {
     super(webDriver);
-    this.url = "http://localhost:" + port + "/farmersprofile";
+    this.url = "http://localhost:" + port + "/cookbook";
   }
 
   @Override
@@ -30,7 +30,7 @@ public class FarmerProfilePage extends FluentPage {
 
   @Override
   public void isAt() {
-    assertThat(title()).isEqualTo("Farmer's Dashboard (Kale With Friends)");
+    assertThat(title()).isEqualTo("Cookbook (Kale With Friends)");
   }
 
 
