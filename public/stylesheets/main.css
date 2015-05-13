@@ -36,6 +36,7 @@ html, body, .container-fluid, .row, .map {
   width: 60%;
 }
 
+
 .farmer_image {
   width: 600px;
   display: block;
@@ -222,4 +223,5 @@ html, body, .container-fluid, .row, .map {
     .collapsing {
         overflow: hidden!important;
     }
+
 }
