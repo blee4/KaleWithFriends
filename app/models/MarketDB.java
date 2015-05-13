@@ -43,4 +43,8 @@ public class MarketDB {
   public static List<Market> getMarkets() {
     return Market.find().all();
   }
+
+  public static List<Market> getMarketsByState(String state) {
+    return Market.find().where().contains("location", state).findList();
+  }
 }

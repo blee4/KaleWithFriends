@@ -174,8 +174,15 @@ public class Application extends Controller {
    *
    * @return The resulting local page.
    */
-  public static Result farmersMarkets() {
-    List<Market> markets = MarketDB.getMarkets();
+  public static Result farmersMarkets(String state) {
+    List<Market> markets;
+    if (state != "") {
+          markets = MarketDB.getMarketsByState(state);
+      }
+    else {
+      markets = MarketDB.getMarkets();
+    }
+
     return ok(Markets.render("Welcome to markets.", markets, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
   }
 
