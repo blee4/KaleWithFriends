@@ -36,6 +36,9 @@ html, body, .container-fluid, .row, .map {
   width: 60%;
 }
 
+.li {
+  list-style-type: none;
+}
 
 .farmer_image {
   width: 600px;
@@ -60,7 +63,7 @@ html, body, .container-fluid, .row, .map {
 }
 
 .produce_image {
-  height: 100px;
+  height: 220px;
   display: block;
   padding-right: 25px;
 }
