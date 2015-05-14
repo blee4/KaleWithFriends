@@ -1,30 +1,55 @@
-@(farmerList: List[Farmer])
+@(farmerList: List[Farmer], isLoggedIn: Boolean, farmer: Farmer, marketList: List[Market], currentMarket: Market)
 
-@Main("Available Now") {
+@Main("Available Now", isLoggedIn, farmer) {
+
 
   <div class="container">
-    <div class="col-md-12">
       <div class="well">
-        <table class="table table-striped table-bordered">
-          <tr>
-            <th>Farmer</th>
-            <th>Item</th>
-            <th>Price</th>
-            <th>Stock</th>
-          </tr>
-          @for(farmer <- farmerList) {
-            @for(ingredient <- farmer.getFreshIngredientList) {
-              <tr>
-                <td><a href="@routes.Application.farmersProfile(farmer.getName)">@farmer.getName()</a></td>
-                <td>@ingredient.getName()</td>
-                <td>$@ingredient.getPrice() per lb.</td>
-                <td>@ingredient.getQuantity</td>
-              </tr>
-            }
-          }
-        </table>
-      </div>
-    </div>
-  </div>
+    <h1><i class="fa fa-leaf"></i> Fresh Produce Available at @currentMarket.getMarketName </h1></div>
 
+    <div class="row">
+        <div class="col-md-2"><div class="dropdown">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+        Select Market
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+      @for(market <- marketList) {
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="@routes.Application.availableNow(market.getMarketName)">@market.getMarketName</a></li>
+      }
+      </ul>
+    </div></div>
+
+      @for(f <- currentMarket.getFarmers()) {
+          <div class="col-md-5">
+          <div class="well"><h4 style="padding-right:60px"><a href="#@f.getName">@f.getName</a></h4>
+              <ul><li><h5 style="padding-right:60px"><a href="https://www.google.com/maps/place/@f.getLocation">@f.getLocation</a></h5></li></ul></div>
+              </div>
+              }
+    </div>
+
+
+    @for(farmer <- currentMarket.getFarmers()) {
+      <h3><a name="@farmer.getName">@farmer.getName()</a></h3><br>
+      @for(ingredient <- farmer.getFreshIngredientList()) {
+
+          <div class="col-md-3">
+              <div class="well produce_image" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(@routes.Assets.at(ingredient.getImage())); background-size: cover;">
+              <h4>@ingredient.getName()</h4>
+                  <h4 style="text-align: center;">$@ingredient.getPrice() per lb.</h4>
+                  <h4 style="text-align: center;"><a href="@routes.Application.farmersProfile(farmer.getName)">@farmer.getName()</a></h4>
+              <li></li><h4 style="text-align: center;">Quantity:
+                @if(ingredient.getQuantity / 2 < 2) {
+                  <i class="fa fa-sun-o"></i>
+                } else {
+                  @for(a <- 1 until ingredient.getQuantity / 2) {
+                    <i class="fa fa-certificate"></i>
+                  }
+                }
+              </h4>
+              </div>
+          </div>
+      }
+        }
+  </div>
 }

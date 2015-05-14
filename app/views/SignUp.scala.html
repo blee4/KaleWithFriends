@@ -1,0 +1,30 @@
+@(contactForm: Form[views.loginData.SignUpForm], isLoggedIn: Boolean, farmer: Farmer)
+
+@import views.html.bootstrap3._
+@import views.html.helper._
+
+
+@Main("Home", isLoggedIn, farmer) {
+    <div class="row">
+
+        <div class = "col-sm-4 col-sm-offset-4">
+            <h3> <i class="fa fa-leaf"></i> Sign Up</h3>
+            @form(routes.Application.postSignUp(), 'class -> "form-horizontal") {
+            <input type ="hidden" name="@contactForm("id").name" id="@contactForm("id").id" value="@contactForm("id").value">
+
+                <!-- Name -->
+            @text(contactForm("name"),
+                label = "Username",
+                placeholder = "Username",
+                help = "")
+
+                <!-- Password -->
+            @password(contactForm("password"),
+                label = "Password",
+                placeholder = "Password",
+                help = "")
+
+            <button class="btn btn-lg btn-block btn-success" type="submit">Sign up</button>
+        }</div>
+    </div>
+}

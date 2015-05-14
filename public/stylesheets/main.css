@@ -13,6 +13,26 @@ h1 {
   text-align: center;
 }
 
+h2 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+h4 {
+  text-align: center;
+}
+
+h5 {
+  text-align: center;
+}
+
+li {
+  list-style-type: none;
+}
+
 /* all map containers must be full height */
 html, body, .container-fluid, .row, .map {
   height: 100%
@@ -28,8 +48,34 @@ html, body, .container-fluid, .row, .map {
   width: 60%;
 }
 
+.li {
+  list-style-type: none;
+}
+
+.farmer_image {
+  width: 600px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+}
+
 .recipe_image {
-  height: 100px;
+  width: 600px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+}
+
+.fresh_image {
+  width: 100px;
+  display: block;
+  padding-right: 25px;
+}
+
+.produce_image {
+  height: 220px;
   display: block;
   padding-right: 25px;
 }
@@ -48,6 +94,11 @@ html, body, .container-fluid, .row, .map {
 .recipe h2 {
   padding-bottom: 25px;
 }
+
+.recipe_header {
+  text-align: left;
+}
+
 .recipe img {
   background-image: url("../images/recipe-1.jpg");
   width: 150px;
@@ -112,5 +163,95 @@ html, body, .container-fluid, .row, .map {
 }
 
 .fa-times {
-  color: red;
+}
+
+.login-form {
+  margin-left: 30px;
+}
+
+.whats-new {
+  padding-left: 20px;
+}
+
+.whats-new-button {
+  padding-bottom: 20px;
+}
+
+.market-padding {
+    padding-top: 125px;
+}
+
+
+.market_farmer_image {
+    height: 100px;
+    display: block;
+    padding-right: 25px;
+    padding-bottom: 10px;
+}
+
+.index_header {
+    text-align: center;
+}
+
+.index_header img {
+    height:200px;
+    float:left;
+    padding-right:15px;
+}
+
+
+.index_header h5 {
+    font-style: italic;
+}
+
+.index_header p {
+    padding-top: 10px;
+    margin-right: 30px;
+    text-align: left;
+}
+
+@media (max-width: 991px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
+    /* since 3.1.0 */
+    .navbar-collapse.collapse.in {
+        display: block!important;
+    }
+    .collapsing {
+        overflow: hidden!important;
+    }
+}
+
+.stateFilter {
+    padding-bottom: 100px;
+    font-size: 15px;
+}
+
+.oneFarmer {
 }

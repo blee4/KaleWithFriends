@@ -1,0 +1,49 @@
+@(ingredientForm: Form[views.forms.IngredientFormData], isLoggedIn: Boolean, farmer: Farmer)
+
+@import views.html.bootstrap3._
+@import views.html.helper._
+
+@Main("New Ingredient", isLoggedIn, farmer) {
+  <div class="container">
+  @form(routes.Application.postIngredient(), 'class -> "form-horizontal") {
+    <input type = "hidden"
+    name = "@ingredientForm("id").name"
+    id = "@ingredientForm("id").id"
+    value = "@ingredientForm("id").value" >
+
+
+    @text(ingredientForm("name"),
+      label = "Name",
+      placeholder = "Ex. Squash",
+      help = "")
+
+    @text(ingredientForm("price"),
+      label = "Price $",
+      placeholder = "Ex. 0.50",
+      help = "")
+
+    @text(ingredientForm("quantity"),
+      label = "Quantity",
+      placeholder = "Ex. 100",
+      help = "")
+
+      @text(ingredientForm("expMonth"),
+          label = "Expiration (Month)",
+          placeholder = "Ex. 1 (Please enter number of month)",
+          help = "")
+
+      @text(ingredientForm("expDay"),
+          label = "Expiration (Day)",
+          placeholder = "Ex. 12",
+          help = "")
+
+      @text(ingredientForm("expYear"),
+          label = "Expiration (Year)",
+          placeholder = "Ex. 2015",
+          help = "")
+
+
+    <button id="submit" type="submit" class="btn btn-default">Submit</button>
+  }
+  </div>
+}

@@ -1,31 +1,33 @@
 package controllers;
 
-import java.util.Map;
-
-import models.Consumer;
-import models.ConsumerDB;
 import models.Farmer;
 import models.FarmerDB;
-import models.Ingredient;
+import models.Feed;
+import models.FeedDB;
+import models.Market;
+import models.MarketDB;
 import models.RecipeDB;
-import models.TimedIngredient;
-import models.User;
-import play.api.mvc.Security;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
+import views.forms.EditFarmerData;
+import views.forms.FeedData;
+import views.forms.IngredientFormData;
 import views.html.AvailableNow;
 import views.html.Cookbook;
-import views.html.Dashboard;
+import views.html.EditFarmer;
 import views.html.FarmersDashboard;
 import views.html.FarmersProfile;
-import views.html.FriendsProfile;
 import views.html.Index;
-import views.html.Local;
+import views.html.Login;
+import views.html.Markets;
 import views.html.MealPlanner;
+import views.html.NewIngredient;
 import views.html.Recipe;
+import views.html.SignUp;
 import views.loginData.LoginData;
-import views.loginData.LoginTypes;
+import views.loginData.SignUpForm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,65 +42,97 @@ public class Application extends Controller {
    *
    * @return The resulting home page.
    */
-  public static Result index(String username) {
-    if(username == null) {
-      System.out.println("NULL FOR SOME REASON");
-      LoginData data = new LoginData();
+  public static Result index() {
+    return ok(Index.render("Index", Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
 
-      Form<LoginData> formData = Form.form(LoginData.class).fill(data);
-      Map<String, Boolean> loginTypeMap = LoginTypes.getTypes();
-      return ok(Index.render(formData, loginTypeMap));
-    }
-    else {
-      User data = User.getUser(username);
-      System.out.println("TYPE: " + data.getType());
-      if (data.getType().equals("Farmer")) {
-        return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.getName())));
-      }
-      else {
-        return ok(Dashboard.render(ConsumerDB.getConsumer(data.getName())));
-      }
-    }
   }
+
 
   /**
-   * Processes the form submitted from the Login page.
+   * Logs the current user out.
    *
-   * @return The appropriate user home page
+   * @return The login page
    */
-  public static Result login() {
-    System.out.println("IM HERE!");
-    Form<LoginData> formData = Form.form(LoginData.class).bindFromRequest();
-    if (formData.hasErrors()) {
-      System.out.println("Errors found.");
-      return badRequest(Index.render(formData, LoginTypes.getTypes()));
-    }
-    else {
-      LoginData data = formData.get();
-      System.out.println("OK: " + data.name + " " + data.loginType);
-      session("username", data.name);
-      if (data.loginType.equals("Farmer")) {
-        return ok(FarmersDashboard.render(FarmerDB.getFarmer(data.name)));
-      }
-      else {
-        return ok(Dashboard.render(ConsumerDB.getConsumer(data.name)));
-      }
-    }
-  }
-
+  @Security.Authenticated(Secured.class)
   public static Result logout() {
     session().clear();
     flash("success", "You've been logged out");
-    return index(null);
+    return index();
+  }
+
+
+  /**
+   * Returns the login page.
+   *
+   * @return The resulting sign up page.
+   */
+  public static Result login() {
+    LoginData data = new LoginData();
+
+    Form<LoginData> formData = Form.form(LoginData.class).fill(data);
+    return ok(Login.render(formData, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
   }
 
   /**
-   * Returns the Friend's profile page.
+   * Processes a login form.
    *
-   * @return The resulting Friend's profile page.
+   * @return The user's dashboard.
    */
-  public static Result friendsProfile() {
-    return ok(FriendsProfile.render("Welcome to friend profile."));
+  public static Result postLogin() {
+    Form<LoginData> formData = Form.form(LoginData.class).bindFromRequest();
+    if (formData.hasErrors()) {
+      System.out.println("Errors found.");
+      return badRequest(Login.render(formData, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
+    }
+    LoginData data = formData.get();
+    System.out.println("OK: " + data.name + " " + data.password);
+    session("username", data.name);
+    return redirect(routes.Application.farmersDashboard());
+
+  }
+
+  /**
+   * Returns the sign up page.
+   *
+   * @return The resulting sign up page.
+   */
+  public static Result signUp() {
+    SignUpForm data = new SignUpForm();
+
+    Form<SignUpForm> formData = Form.form(SignUpForm.class).fill(data);
+    return ok(SignUp.render(formData, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
+  }
+
+  /**
+   * Processes a new user form.
+   *
+   * @return The new user's dashboard.
+   */
+  public static Result postSignUp() {
+    Form<SignUpForm> formData = Form.form(SignUpForm.class).bindFromRequest();
+    if (formData.hasErrors()) {
+      System.out.println("Errors found.");
+      return badRequest(SignUp.render(formData, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
+    }
+    SignUpForm data = formData.get();
+    System.out.println("OK: " + data.name + " " + data.password);
+    session("username", data.name);
+    FarmerDB.addFarmer(new Farmer(data.name, data.location));
+    return redirect(routes.Application.farmersDashboard());
+
+  }
+
+  /**
+   * Provides the Profile page (only to authenticated users).
+   *
+   * @return The Profile page.
+   */
+  @Security.Authenticated(Secured.class)
+  public static Result farmersDashboard() {
+    FeedData data = new FeedData();
+
+    Form<FeedData> formData = Form.form(FeedData.class).fill(data);
+    return ok(FarmersDashboard.render(formData, Secured.getFarmer(ctx()), Secured.isLoggedIn(ctx())));
   }
 
   /**
@@ -109,7 +143,7 @@ public class Application extends Controller {
    */
   public static Result farmersProfile(String name) {
     Farmer farmer = FarmerDB.getFarmer(name);
-    return ok(FarmersProfile.render(farmer));
+    return ok(FarmersProfile.render(farmer, Secured.isLoggedIn(ctx())));
   }
 
   /**
@@ -118,7 +152,8 @@ public class Application extends Controller {
    * @return The resulting cookbook page.
    */
   public static Result cookbook() {
-    return ok(Cookbook.render(RecipeDB.getRecipe()));
+    //return ok(Cookbook.render(RecipeDB.getRecipe()));
+    return ok(Cookbook.render(RecipeDB.getRecipe(), Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
   }
 
   /**
@@ -131,22 +166,24 @@ public class Application extends Controller {
     ArrayList<models.Recipe> r = new ArrayList<>();
     r.add(RecipeDB.getRecipe(id));
 
-    return ok(Recipe.render(r));
+    return ok(Recipe.render(r, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
   }
 
   /**
-   * Returns the local page.
+   * Returns the farmersMarket page.
    *
    * @return The resulting local page.
    */
-  public static Result local() {
-    List<String> addresses = new ArrayList<>();
-
-    for (Farmer f : FarmerDB.getFarmers()) {
-      addresses.add(f.getName() + "|" + f.getLocation());
+  public static Result farmersMarkets(String state) {
+    List<Market> markets;
+    if (state != "") {
+          markets = MarketDB.getMarketsByState(state);
+      }
+    else {
+      markets = MarketDB.getMarkets();
     }
 
-    return ok(Local.render("Welcome to local.", addresses));
+    return ok(Markets.render("Welcome to markets.", markets, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
   }
 
   /**
@@ -155,7 +192,8 @@ public class Application extends Controller {
    * @return The resulting Meal Planner page.
    */
   public static Result mealPlanner() {
-    return ok(MealPlanner.render("Welcome to Meal Planner.", RecipeDB.getFreshRecipeList()));
+    return ok(MealPlanner.render("Welcome to Meal Planner.", RecipeDB.getFreshRecipeList(),
+        Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
   }
 
 
@@ -164,18 +202,143 @@ public class Application extends Controller {
    *
    * @return The resulting available now page.
    */
-  public static Result availableNow() {
-    return ok(AvailableNow.render(FarmerDB.getFarmers()));
+  public static Result availableNow(String market) {
+    return ok(AvailableNow.render(FarmerDB.getFarmers(), Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx()), MarketDB.getMarkets(), MarketDB.getMarket(market)));
   }
 
   /**
    * Deletes the ingredient from the farmer's stock.
-   * @param farmer the current farmer
+   *
+   * @param farmer     the current farmer
    * @param ingredient the ingredient to delete
    * @return Result the resulting page
    */
-  public static Result deleteIngredient(String farmer, String ingredient) {
+  @Security.Authenticated(Secured.class)
+  public static Result deleteIngredient(String farmer, long ingredient) {
     Farmer.deleteIngredient(farmer, ingredient);
-    return ok(FarmersDashboard.render(Farmer.findFarmer(farmer)));
+    return redirect(routes.Application.farmersDashboard());
   }
+
+  /**
+   * Allows user to edit farmer information.
+   * @param farmer the farmer to edit
+   * @return the new farmer edit form
+   */
+  public static Result editFarmer(String farmer) {
+    Farmer f = Farmer.findFarmer(farmer);
+    EditFarmerData data = new EditFarmerData(f);
+    Form<EditFarmerData> formData = Form.form(EditFarmerData.class).fill(data);
+    return ok(EditFarmer.render(formData, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
+   }
+
+  /**
+   * Allows user to edit farmer information
+   * @param farmer the farmer to edit
+   * @return the new farmer dashboard
+   */
+  public static Result postEditFarmer(String farmer) {
+    Form<EditFarmerData> formData = Form.form(EditFarmerData.class).bindFromRequest();
+    if (formData.hasErrors()) {
+      System.out.println("Errors found.");
+      return badRequest(EditFarmer.render(formData, Secured.isLoggedIn(ctx()), Secured.getFarmer(ctx())));
+    }
+    EditFarmerData data = formData.get();
+    session("username", data.getName());
+    FarmerDB.editFarmer(data);
+    return redirect(routes.Application.farmersDashboard());
+  }
+
+  /**
+   * Adds just one quantity to the ingredient.
+   *
+   * @param farmer     the current farmer name
+   * @param ingredient the ingredient to increment
+   * @return the Dashboard with the new ingredient amount
+   */
+  @Security.Authenticated(Secured.class)
+  public static Result addOne(String farmer, long ingredient) {
+
+    Farmer.addOneToIngredient(farmer, ingredient);
+    return redirect(routes.Application.farmersDashboard());
+  }
+
+  /**
+   * Subtracts just one quantity from the ingredient.
+   *
+   * @param farmer     the current farmer name
+   * @param ingredient the ingredient to subtract
+   * @return the Dashboard with the new ingredient amount
+   */
+  @Security.Authenticated(Secured.class)
+  public static Result subOne(String farmer, long ingredient) {
+    Farmer.subtractOneToIngredient(farmer, ingredient);
+    return redirect(routes.Application.farmersDashboard());
+  }
+
+
+  /**
+   *  Retrieves the new ingredient page for a user to add a new ingredient.
+   * @param farmer the current farmer name.
+   * @return new ingredient page.
+   */
+  @Security.Authenticated(Secured.class)
+  public static Result newIngredient(String farmer) {
+    IngredientFormData data = new IngredientFormData();
+    Form<IngredientFormData> formData = Form.form(IngredientFormData.class).fill(data);
+    return ok(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
+  }
+
+  /**
+   *
+   * Sends a post request to add the new ingredient using the form.
+   * @param farmer the current farmer name.
+   * @return the new ingredient page.
+   */
+  @Security.Authenticated(Secured.class)
+  public static Result postIngredient(String farmer) {
+    System.out.println("In post Ingredient.");
+    Form<IngredientFormData> formData = Form.form(IngredientFormData.class).bindFromRequest();
+    if (formData.hasErrors()) {
+      System.out.println("Form has errors.");
+      return badRequest(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
+    }
+    else {
+      IngredientFormData data = formData.get();
+      System.out.println("Trying to add ingredient " + farmer);
+      Secured.getFarmer(ctx()).addIngredient(data);
+      return redirect(routes.Application.farmersDashboard());
+    }
+  }
+
+  /**
+   *  Retrieves the new ingredient page for a user to edit ingredient.
+   * @param farmer the current farmer name.
+   * @param ingredient the ingredient to edit.
+   * @return edit ingredient page.
+   */
+  @Security.Authenticated(Secured.class)
+  public static Result editIngredient(String farmer, long ingredient) {
+    IngredientFormData data = new IngredientFormData(Farmer.findFarmer(farmer).findIngredient(ingredient));
+    Form<IngredientFormData> formData = Form.form(IngredientFormData.class).fill(data);
+    return ok(NewIngredient.render(formData, Secured.isLoggedIn(ctx()), Farmer.findFarmer(farmer)));
+  }
+
+  /**
+   * Processes a new feed form.
+   *
+   * @return The user's dashboard.
+   */
+  @Security.Authenticated(Secured.class)
+  public static Result postFeed() {
+    Form<FeedData> formData = Form.form(FeedData.class).bindFromRequest();
+    if (formData.hasErrors()) {
+      System.out.println("Errors found.");
+      return badRequest(FarmersDashboard.render(formData, Secured.getFarmer(ctx()), Secured.isLoggedIn(ctx())));
+    }
+    FeedData data = formData.get();
+    FeedDB.addProcedure(new Feed(data.entry, Secured.getFarmer(ctx())));
+    return redirect(routes.Application.farmersDashboard());
+
+  }
+
 }
